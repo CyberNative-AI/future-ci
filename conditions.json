@@ -1,0 +1,69 @@
+{
+  "asOf": "2026-10-14",
+  "conditions": [
+    {
+      "id": "ubuntu-26.04",
+      "title": "ubuntu-latest moves to Ubuntu 26.04",
+      "date": "2026-10-19",
+      "until": "2026-11-19",
+      "kind": "runner",
+      "runsOn": "ubuntu-26.04",
+      "baseline": "ubuntu-24.04",
+      "fix": "Drop or move matrix versions that have no 26.04 build (Python 3.8/3.9, Ruby up to 3.1, old exact patch pins), or pin those jobs to ubuntu-24.04 until you do.",
+      "source": "https://github.com/actions/runner-images/issues/14748"
+    },
+    {
+      "id": "python-3.15",
+      "title": "Python 3.15 is the newest Python (3.x, unpinned users and new projects get it)",
+      "date": "2026-10-09",
+      "kind": "python",
+      "python": "3.15",
+      "fix": "Add 3.15 to the test matrix; replace removed sre_* modules with re; lift requires-python caps once tests pass; expect source builds for dependencies with no cp315 wheel.",
+      "source": "https://www.python.org/downloads/release/python-3150/"
+    },
+    {
+      "id": "node-26-lts",
+      "title": "Node.js 26 becomes LTS (node-version: lts/* moves to 26)",
+      "date": "2026-10-28",
+      "kind": "node",
+      "node": "26",
+      "optIn": true,
+      "experimental": true,
+      "fix": "Pin node-version to 24 if you are not ready, or fix what fails on 26 before lts/* moves.",
+      "source": "https://github.com/nodejs/release#release-schedule"
+    },
+    {
+      "id": "canada-tz-2026-11-01",
+      "title": "Alberta, the Northwest Territories, Manitoba and British Columbia stop falling back (tzdata 2026e); the US falls back the same day",
+      "date": "2026-11-01",
+      "kind": "tz",
+      "tzdata": "2026e",
+      "optIn": true,
+      "experimental": true,
+      "tzdataUrl": "https://data.iana.org/time-zones/releases/tzdata2026e.tar.gz",
+      "tzdataSha256": "b26882805f26aac59d5b222978e6580484b834ccdc98be89df2f05a6dc53a652",
+      "zone": "America/Edmonton",
+      "clock": "2026-11-02 09:30:00",
+      "probe": {"zone": "America/Winnipeg", "utc": "2026-12-15T12:00:00Z", "offset": "-0500"},
+      "fix": "Update bundled time-zone data (tzdata/pytz/moment-timezone/JDK tzdb) to 2026e or later; do not hard-code Canadian UTC offsets in tests. A test that fails only because the clock is past 2026-11-01 has a date limit to move.",
+      "source": "https://www.iana.org/time-zones"
+    },
+    {
+      "id": "macos-14-retired",
+      "title": "GitHub retires the macos-14 runner image",
+      "date": "2026-11-02",
+      "kind": "static",
+      "brownouts": ["2026-10-16", "2026-10-19", "2026-10-23", "2026-10-26", "2026-10-29", "2026-10-30"],
+      "fix": "Move macos-14, macos-14-large and macos-14-xlarge jobs to macos-15 (check Xcode and simulator versions).",
+      "source": "https://github.blog/changelog/2026-10-01-github-actions-macos-14-runner-image-retirement/"
+    },
+    {
+      "id": "node24-actions",
+      "title": "JavaScript actions run on Node 24 (Node 20 removed from hosted runners)",
+      "date": "2026-09-23",
+      "kind": "static",
+      "fix": "Nothing to run: if your workflows have passed since 23 September, your actions already work on Node 24.",
+      "source": "https://github.blog/changelog/2026-09-23-node-20-is-no-longer-available-in-github-actions/"
+    }
+  ]
+}

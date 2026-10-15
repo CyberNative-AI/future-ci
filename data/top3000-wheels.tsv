@@ -1,0 +1,3001 @@
+rank	project	version	class	detail	requires_python
+1	boto3	1.43.111	pure		>=3.10
+2	packaging	26.3	pure		>=3.9
+3	typing-extensions	4.16.0	pure		>=3.9
+4	idna	3.20	pure		>=3.9
+5	urllib3	2.8.0	pure		>=3.10
+6	certifi	2026.7.22	pure		>=3.7
+7	requests	2.34.2	pure		>=3.10
+8	charset-normalizer	3.5.2	pure		>=3.7
+9	cryptography	50.0.2	abi3		!=3.9.0,!=3.9.1,>=3.9
+10	setuptools	84.0.0	pure		>=3.10
+11	cffi	2.1.1	cp315		>=3.10
+12	pygments	2.21.0	pure		>=3.9
+13	pyyaml	6.0.3	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp38 cp39	>=3.8
+14	python-dateutil	2.9.0.post0	pure		!=3.0.*,!=3.1.*,!=3.2.*,>=2.7
+15	six	1.17.0	pure		!=3.0.*,!=3.1.*,!=3.2.*,>=2.7
+16	pluggy	1.6.0	pure		>=3.9
+17	botocore	1.43.111	pure		>=3.10
+18	pydantic	2.14.1	pure		>=3.10
+19	pycparser	3.11	pure		>=3.10
+20	click	8.5.0	pure		>=3.10
+21	pydantic-core	2.50.1	cp315		>=3.10
+22	anyio	4.15.1	pure		>=3.10
+23	numpy	2.5.4	cp315		>=3.12
+24	pytest	9.1.1	pure		>=3.10
+25	iniconfig	2.3.1	pure		>=3.10
+26	annotated-types	0.8.0	pure		>=3.10
+27	h11	0.16.0	pure		>=3.8
+28	typing-inspection	0.4.4	pure		>=3.10
+29	attrs	26.1.0	pure		>=3.9
+30	s3transfer	0.19.2	pure		>=3.10
+31	aiobotocore	3.9.2	pure		>=3.10
+32	protobuf	7.36.2	pure		>=3.10
+33	httpx	0.28.1	pure		>=3.8
+34	markupsafe	3.0.4	cp315		>=3.9
+35	httpcore	1.0.9	pure		>=3.8
+36	python-dotenv	1.2.4	pure		>=3.10
+37	pyjwt	2.15.1	pure		>=3.9
+38	platformdirs	4.13.0	pure		>=3.11
+39	fsspec	2026.9.0	pure		>=3.10
+40	pandas	3.0.6	cp315		>=3.11
+41	jinja2	3.1.6	pure		>=3.7
+42	jmespath	1.1.0	pure		>=3.9
+43	pathspec	1.1.1	pure		>=3.9
+44	filelock	4.1.1	pure		>=3.11
+45	starlette	1.7.0	pure		>=3.10
+46	uvicorn	0.54.0	pure		>=3.10
+47	multidict	7.1.0	pure		>=3.10
+48	jsonschema	4.26.0	pure		>=3.10
+49	rpds-py	2026.9.1	cp315		>=3.11
+50	yarl	1.25.1	pure		>=3.10
+51	aiohttp	3.14.5	pure		>=3.10
+52	rich	15.0.0	pure		>=3.9.0
+53	tomlkit	0.15.1	pure		>=3.9
+54	markdown-it-py	4.2.0	pure		>=3.10
+55	propcache	0.5.4	pure		>=3.10
+56	referencing	0.37.0	pure		>=3.10
+57	jsonschema-specifications	2025.9.1	pure		>=3.9
+58	mdurl	0.1.2	pure		>=3.7
+59	pillow	12.3.0	cp315		>=3.10
+60	opentelemetry-api	1.45.1	pure		>=3.10
+61	frozenlist	1.8.0	pure		>=3.9
+62	tqdm	4.70.1	pure		>=3.8
+63	pip	26.2.1	pure		>=3.10
+64	googleapis-common-protos	1.75.5	pure		>=3.10
+65	pyasn1	0.6.4	pure		>=3.8
+66	aiosignal	1.4.0	pure		>=3.9
+67	aiohappyeyeballs	2.7.1	pure		>=3.10
+68	websockets	17.2	pure		>=3.11
+69	annotated-doc	0.0.5	pure		>=3.9
+70	wrapt	2.5.0	pure		>=3.9
+71	pytz	2026.5	pure		
+72	sniffio	1.3.1	pure		>=3.7
+73	tzdata	2026.5	pure		>=2
+74	fastapi	0.143.0	pure		>=3.10
+75	google-auth	2.61.0	pure		>=3.10
+76	zipp	4.1.1	pure		>=3.10
+77	greenlet	3.5.6	cp315		>=3.10
+78	importlib-metadata	9.0.1	pure		>=3.10
+79	pydantic-settings	2.15.0	pure		>=3.10
+80	wheel	0.48.0	pure		>=3.9
+81	tenacity	9.2.1	pure		>=3.10
+82	trove-classifiers	2026.9.21.13	pure		
+83	python-multipart	0.0.32	pure		>=3.10
+84	pyasn1-modules	0.4.2	pure		>=3.8
+85	grpcio-status	1.84.0	pure		>=3.10
+86	pyarrow	26.0.0	cp315		>=3.11
+87	sqlalchemy	2.1.4	pure		>=3.11
+88	hatchling	1.32.4	pure		>=3.10
+89	grpcio	1.84.0	cp315		>=3.10
+90	pyparsing	3.3.3	pure		>=3.9
+91	lxml	6.1.3	cp315		>=3.8
+92	jiter	0.17.0	cp315		>=3.10
+93	regex	2026.9.29	cp315		>=3.10
+94	watchfiles	1.3.0	abi3		>=3.10
+95	s3fs	2026.9.0	pure		>=3.10
+96	ruff	0.17.0	pure	platform	>=3.7
+97	scipy	1.18.1	cp315		>=3.12
+98	soupsieve	3.0.1	pure		>=3.11
+99	beautifulsoup4	4.15.0	pure		>=3.7.0
+100	openai	3.29.0	pure		>=3.10
+101	google-api-core	2.42.0	pure		>=3.10
+102	opentelemetry-semantic-conventions	0.66b1	pure		>=3.10
+103	psutil	7.2.2	abi3		>=3.6
+104	coverage	7.16.2	pure		>=3.10
+105	openpyxl	3.1.5	pure		>=3.8
+106	et-xmlfile	2.0.0	pure		>=3.8
+107	tomli	2.5.0	pure		>=3.8
+108	distro	1.9.0	pure		>=3.6
+109	opentelemetry-sdk	1.45.1	pure		>=3.10
+110	shellingham	1.5.4	pure		>=3.7
+111	mypy-extensions	1.1.0	pure		>=3.8
+112	colorama	0.4.6	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7
+113	proto-plus	1.29.0	pure		>=3.10
+114	typer	0.27.3	pure		>=3.10
+115	requests-oauthlib	2.0.0	pure		>=3.4
+116	virtualenv	21.14.6	pure		>=3.9
+117	ghapi	2.1.4	pure		>=3.10
+118	wcwidth	0.9.2	pure		>=3.9
+119	cachetools	7.2.1	pure		>=3.10
+120	exceptiongroup	1.3.1	pure		>=3.7
+121	mcp	2.3.0	pure		>=3.10
+122	huggingface-hub	2.2.0	pure		>=3.10.0
+123	sse-starlette	3.5.0	pure		>=3.10
+124	truststore	0.10.4	pure		>=3.10
+125	more-itertools	11.1.0	pure		>=3.10
+126	dnspython	2.9.0	pure		>=3.11
+127	oauthlib	4.0.0	pure		>=3.9
+128	pytest-asyncio	1.4.0	pure		>=3.10
+129	httpx2	2.13.1	pure		>=3.10
+130	httpcore2	2.13.1	pure		>=3.10
+131	distlib	0.4.3	pure		
+132	editables	0.6	pure		>=3.7
+133	opentelemetry-proto	1.45.1	pure		>=3.10
+134	httptools	0.9.0	cp315		>=3.9
+135	sortedcontainers	2.4.0	pure		
+136	uvloop	0.23.0	cp315		>=3.8.1
+137	docstring-parser	0.18.0	pure		>=3.8
+138	psycopg2-binary	2.9.13	cp315		>=3.10
+139	pytest-cov	7.1.0	pure		>=3.9
+140	redis	8.1.0	pure		>=3.10
+141	networkx	3.7	pure		!=3.14.1,>=3.12
+142	opentelemetry-exporter-otlp-proto-common	1.45.1	pure		>=3.10
+143	defusedxml	0.7.1	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+144	requests-toolbelt	1.0.0	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+145	msgpack	1.2.3	cp315		>=3.10
+146	fonttools	4.66.1	pure		>=3.11
+147	rsa	4.9.1	pure		<4,>=3.6
+148	hf-xet	1.7.0	abi3		>=3.8
+149	werkzeug	3.1.9	pure		>=3.9
+150	scikit-learn	1.9.1	cp315		>=3.11
+151	prompt-toolkit	3.0.53	pure		>=3.10
+152	mako	1.4.3	pure		>=3.10
+153	orjson	3.13.0	cp315		>=3.10
+154	alembic	1.20.0	pure		>=3.10
+155	tiktoken	0.14.0	cp315		>=3.9
+156	pyopenssl	26.4.0	pure		>=3.9
+157	opentelemetry-exporter-otlp-proto-http	1.45.1	pure		>=3.10
+158	nodeenv	1.11.0	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7
+159	threadpoolctl	3.7.0	pure		>=3.9
+160	isodate	0.7.2	pure		>=3.7
+161	langchain	1.4.4	pure		<4.0.0,>=3.10.0
+162	python-discovery	1.6.2	pure		>=3.9
+163	cloudpickle	3.1.2	pure		>=3.8
+164	tokenizers	0.23.3	abi3		>=3.10
+165	pynacl	1.6.2	abi3		>=3.8
+166	chardet	7.6.0	pure		>=3.10
+167	websocket-client	1.9.2	pure		>=3.10
+168	joblib	1.6.0	pure		>=3.10
+169	matplotlib	3.11.2	cp315		>=3.11
+170	tzlocal	5.4.4	pure		>=3.10
+171	email-validator	2.3.0	pure		>=3.8
+172	gitpython	3.2.0	pure		>=3.8
+173	azure-core	1.41.0	pure		>=3.10
+174	mypy	2.4.0	pure		>=3.10
+175	itsdangerous	2.2.0	pure		>=3.8
+176	google-cloud-core	2.8.0	pure		>=3.10
+177	zstandard	0.25.0	older_only	cp310 cp311 cp312 cp313 cp314 cp39	>=3.9
+178	httpx-sse	0.4.3	pure		>=3.9
+179	kiwisolver	1.5.1	cp315		>=3.10
+180	dill	0.4.1	pure		>=3.9
+181	ruamel-yaml	0.19.1	pure		>=3.9
+182	bcrypt	5.0.0	abi3		>=3.8
+183	identify	2.6.20	pure		>=3.10
+184	tabulate	0.10.0	pure		>=3.10
+185	opentelemetry-instrumentation	0.66b1	pure		>=3.10
+186	pre-commit	4.6.2	pure		>=3.10
+187	smmap	5.0.3	pure		>=3.7
+188	msal	1.39.0	pure		>=3.9
+189	cfgv	3.5.0	pure		>=3.10
+190	google-cloud-storage	3.17.0	pure		>=3.10
+191	keyring	25.7.0	pure		>=3.9
+192	h2	4.4.1	pure		>=3.10
+193	hpack	4.2.0	pure		>=3.10
+194	anthropic	1.13.0	pure		>=3.10
+195	langchain-core	1.6.9	pure		<4.0.0,>=3.10.0
+196	gitdb	4.0.12	pure		>=3.7
+197	decorator	5.3.1	pure		>=3.8
+198	hyperframe	6.1.0	pure		>=3.9
+199	jaraco-classes	3.4.0	pure		>=3.8
+200	google-cloud-bigquery	3.46.1	pure		>=3.10
+201	jaraco-functools	4.6.0	pure		>=3.10
+202	jeepney	0.9.0	pure		>=3.7
+203	cycler	0.12.1	pure		>=3.8
+204	secretstorage	3.5.0	pure		>=3.10
+205	toml	0.10.2	pure		>=2.6, !=3.0.*, !=3.1.*, !=3.2.*
+206	jaraco-context	6.1.2	pure		>=3.10
+207	google-crc32c	1.9.0	cp315		>=3.10
+208	contourpy	1.4.0	cp315		>=3.12
+209	google-resumable-media	2.11.0	pure		>=3.10
+210	docutils	0.23	pure		>=3.9
+211	grpcio-tools	1.84.0	cp315		>=3.10
+212	google-genai	2.29.0	pure		>=3.10
+213	pytest-xdist	3.8.0	pure		>=3.9
+214	execnet	2.1.2	pure		>=3.8
+215	flask	3.1.3	pure		>=3.9
+216	prometheus-client	0.26.0	pure		>=3.9
+217	asn1crypto	1.5.1	pure		
+218	backoff	2.2.1	pure		>=3.7,<4.0
+219	xxhash	4.0.1	cp315		>=3.9
+220	docker	7.2.0	pure		>=3.8
+221	psycopg	3.3.6	pure		>=3.10
+222	deprecated	3.0.0	pure		>=3.12
+223	sympy	1.14.0	pure		>=3.9
+224	jsonpointer	3.2.1	pure		>=3.10
+225	uritemplate	4.2.0	pure		>=3.9
+226	uv	0.13.0	pure	platform	>=3.8
+227	blinker	1.9.0	pure		>=3.9
+228	sentry-sdk	2.71.0	pure		>=3.6
+229	ptyprocess	0.7.0	pure		
+230	mpmath	1.4.1	pure		>=3.9
+231	psycopg-binary	3.3.6	cp315		>=3.10
+232	google-api-python-client	2.201.0	pure		>=3.10
+233	pypdf	6.20.0	pure		>=3.9
+234	pexpect	4.9.0	pure		
+235	librt	0.16.0	cp315		>=3.9
+236	google-auth-httplib2	0.4.4	pure		>=3.10
+237	pytest-json-ctrf	0.6.1	pure		>=3.8
+238	asgiref	3.12.1	pure		>=3.10
+239	async-timeout	5.0.1	pure		>=3.8
+240	multiprocess	0.70.19	pure		>=3.9
+241	aiofiles	25.1.0	pure		>=3.9
+242	rapidfuzz	3.14.6	cp315		>=3.11
+243	traitlets	5.16.1	pure		>=3.10
+244	httplib2	0.32.0	pure		>=3.8
+245	azure-identity	1.26.0	pure		>=3.9
+246	webencodings	0.6.1	pure		>=3.10
+247	narwhals	2.27.1	pure		>=3.10
+248	black	26.10.1	pure		>=3.10
+249	google-auth-oauthlib	1.5.0	pure		>=3.10
+250	opentelemetry-util-http	0.66b1	pure		>=3.10
+251	msal-extensions	1.3.1	pure		>=3.9
+252	sqlparse	0.6.0	pure		>=3.10
+253	authlib	1.8.0	pure		>=3.10
+254	fastjsonschema	2.22.2	pure		>=3.10
+255	opentelemetry-exporter-otlp-proto-grpc	1.45.1	pure		>=3.10
+256	jsonpatch	1.35	pure		>=3.10
+257	asyncpg	0.32.0	cp315		>=3.9.0
+258	paramiko	5.0.0	pure		>=3.9
+259	executing	2.3.0	pure		>=3.8
+260	babel	2.18.0	pure		>=3.8
+261	snowflake-connector-python	4.8.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+262	tornado	6.5.10	abi3		>=3.9
+263	ipython	9.17.1	pure		>=3.11
+264	grpc-google-iam-v1	0.14.5	pure		>=3.10
+265	gunicorn	26.2.0	pure		>=3.10
+266	joserfc	1.7.5	pure		>=3.10
+267	parso	0.8.7	pure		>=3.6
+268	jedi	0.20.0	pure		>=3.10
+269	structlog	26.1.0	pure		>=3.10
+270	azure-storage-blob	12.31.0	pure		>=3.10
+271	typedload	2.41	pure		>=3.10
+272	asttokens	3.0.2	pure		>=3.8
+273	pyproject-hooks	1.3.3	pure		>=3.8
+274	transformers	5.19.0	pure		>=3.10.0
+275	playwright	1.63.0	pure	platform	>=3.10
+276	xmltodict	1.0.4	pure		>=3.9
+277	python-docx	1.2.0	pure		>=3.9
+278	matplotlib-inline	0.2.2	pure		>=3.9
+279	markdown	3.11	pure		>=3.11
+280	pure-eval	0.2.4	pure		
+281	build	1.6.1	pure		>=3.10
+282	isort	9.0.2	pure		>=3.10.0
+283	litellm	1.105.0	abi3		<3.15,>=3.10
+284	pyzmq	27.2.0	abi3		>=3.9
+285	tinycss2	1.5.1	pure		>=3.10
+286	xlsxwriter	3.2.9	pure		>=3.8
+287	pyee	14.0.0	pure		>=3.12
+288	google-cloud-aiplatform	2.4.0	pure		>=3.10
+289	stack-data	0.6.3	pure		
+290	poetry-core	2.5.0	pure		<4.0,>=3.10
+291	python-json-logger	4.2.0	pure		>=3.10
+292	awscli	1.46.1	pure		>=3.10
+293	aioitertools	0.13.0	pure		>=3.9
+294	watchdog	6.0.0	pure	platform	>=3.9
+295	marshmallow	4.3.1	pure		>=3.10
+296	pymupdf	1.28.2	abi3		>=3.10
+297	awswrangler	3.17.1	pure		<4.0,>=3.10
+298	brotli	1.2.0	older_only	cp27 cp27 cp310 cp311 cp312 cp313 cp314 cp36 cp37 cp38 cp39	
+299	pytest-mock	3.16.0	pure		>=3.10
+300	pytest-timeout	2.4.0	pure		>=3.7
+301	setuptools-scm	10.3.4	pure		>=3.8
+302	databricks-sdk	0.151.0	pure		>=3.10
+303	cachecontrol	0.14.4	pure		>=3.10
+304	nest-asyncio	1.6.0	pure		>=3.5
+305	debugpy	1.8.22	pure		>=3.10
+306	cython	3.3.0	pure		>=3.9
+307	langsmith	0.14.7	pure		>=3.10
+308	flatbuffers	25.12.19	pure		
+309	griffelib	2.3.2	pure		>=3.11
+310	ast-serialize	0.12.1	abi3		>=3.7
+311	mcp-types	2.3.0	pure		>=3.10
+312	jupyter-core	5.9.1	pure		>=3.10
+313	types-requests	2.33.0.20261006	pure		>=3.10
+314	croniter	6.2.4	pure		>=3.9
+315	vcs-versioning	2.6.0	pure		>=3.8
+316	nbformat	5.11.1	pure		>=3.10
+317	slack-sdk	3.45.0	pure		>=3.7
+318	lz4	4.4.5	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp39	>=3.9
+319	pymysql	1.2.3	pure		>=3.9
+320	pyperclip	1.11.0	pure		
+321	kubernetes	37.0.1	pure		>=3.10
+322	types-pyyaml	6.0.12.20260906	pure		>=3.10
+323	opentelemetry-instrumentation-requests	0.66b1	pure		>=3.10
+324	pytokens	0.4.1	pure		>=3.8
+325	safetensors	0.8.0	abi3		>=3.10
+326	sqlglot	30.22.0	pure		>=3.9
+327	jupyter-client	8.10.0	pure		>=3.10
+328	cbor2	6.1.5	cp315		>=3.10
+329	uuid-utils	1.0.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314 pp311	>=3.10
+330	jsonref	1.1.0	pure		>=3.7
+331	datasets	5.1.0	pure		>=3.10.0
+332	termcolor	3.3.0	pure		>=3.10
+333	beartype	0.23.1	pure		>=3.10
+334	onnxruntime	1.31.0	older_only	cp311 cp312 cp313 cp313 cp314 cp314	>=3.11
+335	cyclopts	5.2.0	pure		>=3.11
+336	pycryptodome	3.24.1	abi3		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7
+337	mccabe	0.7.0	pure		>=3.6
+338	opentelemetry-instrumentation-fastapi	0.66b1	pure		>=3.10
+339	reportlab	5.0.1	pure		<4,>=3.9
+340	xlrd	2.0.2	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,>=2.7
+341	mdit-py-plugins	0.6.1	pure		>=3.10
+342	tomli-w	1.2.0	pure		>=3.9
+343	py4j	0.10.9.9	pure		
+344	fastuuid	0.14.0	older_only	cp310 cp311 cp312 cp313 cp314 cp38 cp39	>=3.8
+345	pathable	0.6.0	pure		<4.0,>=3.10
+346	opentelemetry-instrumentation-asgi	0.66b1	pure		>=3.10
+347	loguru	0.7.3	pure		<4.0,>=3.5
+348	faker	40.43.0	pure		>=3.10
+349	jsonschema-path	0.5.0	pure		<4.0.0,>=3.10
+350	importlib-resources	7.1.0	pure		>=3.10
+351	text-unidecode	1.3	pure		
+352	pymongo	4.18.3	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	>=3.9
+353	types-protobuf	7.35.1.20260906	pure		>=3.10
+354	lark	1.3.1	pure		>=3.8
+355	semver	3.1.0	pure		>=3.10
+356	linkify-it-py	2.2.0	pure		>=3.10
+357	python-slugify	9.1.3	pure		>=3.10
+358	ruamel-yaml-clib	0.2.15	older_only	cp310 cp311 cp312 cp313 cp314 cp39	>=3.9
+359	wsproto	1.3.2	pure		>=3.10
+360	typing-inspect	0.9.0	pure		
+361	rich-rst	2.2.0	pure		
+362	psycopg2	2.9.13	no_linux_x86_wheel	psycopg2-2.9.13-cp310-cp310-win_amd64.whl	>=3.10
+363	py-key-value-aio	0.4.6	pure		>=3.10
+364	argon2-cffi-bindings	26.1.0	abi3		>=3.10
+365	requests-file	3.0.1	pure		
+366	torch	2.14.1	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+367	aiosqlite	0.22.1	pure		>=3.9
+368	graphql-core	3.3.0	pure		>=3.10
+369	deprecation	2.1.0	pure		
+370	pypdfium2	5.14.0	pure	platform	>=3.6
+371	invoke	3.0.3	pure		>=3.9
+372	mistune	3.3.4	pure		>=3.8
+373	bleach	6.4.0	pure		>=3.10
+374	scramp	1.4.17	pure		>=3.10
+375	argon2-cffi	25.1.0	pure		>=3.8
+376	types-toml	0.10.8.20260518	pure		>=3.10
+377	rfc3339-validator	0.1.4	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+378	arrow	1.4.0	pure		>=3.8
+379	shapely	2.2.0	cp315		>=3.11
+380	grpclib	0.4.9	pure		>=3.10
+381	pycodestyle	2.15.0	pure		>=3.10
+382	smart-open	8.0.2	pure		<4.0,>=3.10
+383	caio	0.12.9	pure		>=3.10
+384	argcomplete	3.7.2	pure		>=3.10
+385	opentelemetry-exporter-otlp	1.45.1	pure		>=3.10
+386	comm	0.2.3	pure		>=3.8
+387	google-cloud-secret-manager	2.31.0	pure		>=3.10
+388	mmh3	5.3.1	cp315		>=3.10
+389	jsonpath-ng	1.10.0	pure		>=3.11
+390	ipython-pygments-lexers	1.1.1	pure		>=3.8
+391	uncalled-for	0.4.1	pure		>=3.10
+392	textual	8.2.8	pure		<4.0,>=3.9
+393	markdownify	1.2.3	pure		
+394	ipykernel	7.4.0	pure		>=3.11
+395	python-pptx	1.0.2	pure		>=3.8
+396	toolz	1.2.0	pure		>=3.9
+397	duckdb	1.5.6	older_only	cp310 cp311 cp312 cp313 cp314	>=3.10.0
+398	types-certifi	2021.10.8.3	pure		
+399	aiofile	3.12.3	pure		>=3.11
+400	fastmcp	4.1.0	pure		>=3.10
+401	durationpy	0.11	pure		
+402	deepdiff	9.1.0	pure		>=3.10
+403	pendulum	3.2.0	pure		>=3.9
+404	pdfminer-six	20260107	pure		>=3.10
+405	responses	0.26.3	pure		>=3.8
+406	polars	2.0.0	pure		>=3.10
+407	hypothesis	6.169.0	abi3		>=3.11
+408	modal	1.6.1	pure		<3.15,>=3.10
+409	numba	0.68.0	cp315		>=3.10
+410	llvmlite	0.50.0	cp315		>=3.10
+411	langchain-protocol	0.0.19	pure		<4.0.0,>=3.10.0
+412	openapi-pydantic	0.6.0	pure		>=3.9
+413	synchronicity	0.12.6	pure		>=3.10
+414	typeguard	4.6.0	pure		>=3.10
+415	pydantic-extra-types	2.11.1	pure		>=3.9
+416	nbclient	0.11.0	pure		>=3.10.0
+417	installer	1.0.1	pure		>=3.10
+418	plotly	7.1.0	pure		>=3.8
+419	dulwich	1.2.17	pure		>=3.10
+420	zope-interface	8.6	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+421	requests-aws4auth	1.4.0	pure		>=3.7
+422	nbconvert	7.17.1	pure		>=3.9
+423	msrest	0.7.1	pure		>=3.6
+424	pygithub	2.10.0	pure		>=3.10
+425	datadog	0.55.0	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7
+426	backports-zstd	1.8.0	older_only	cp310 cp311 cp312 cp313 pp310 pp311 pp312	<3.14,>=3.10
+427	tree-sitter	0.26.0	older_only	cp310 cp311 cp312 cp313 cp314	>=3.10
+428	pyspark	4.2.0	sdist_only		>=3.10
+429	antlr4-python3-runtime	4.13.2	pure		
+430	fastmcp-slim	4.1.0	pure		>=3.10
+431	pandocfilters	1.5.1	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+432	humanize	4.16.0	pure		>=3.10
+433	jupyterlab-pygments	0.3.0	pure		>=3.8
+434	botocore-stubs	1.43.67	pure		>=3.10
+435	pyflakes	4.0.3	pure		>=3.10
+436	pycryptodomex	3.24.1	abi3		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7
+437	opentelemetry-instrumentation-httpx	0.66b1	pure		>=3.10
+438	pkginfo	1.13	pure		>=3.9
+439	dataclasses-json	0.6.7	pure		<4.0,>=3.7
+440	humanfriendly	10.0	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+441	cssselect2	0.10.1	pure		>=3.10
+442	freezegun	1.5.5	pure		>=3.8
+443	click-plugins	1.1.1.2	pure		
+444	portalocker	4.4.0	pure		>=3.10
+445	amqp	5.4.1	pure		>=3.10
+446	langgraph	1.2.14	pure		>=3.10
+447	kombu	5.6.2	pure		>=3.9
+448	py	1.11.0	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+449	polars-runtime-32	2.0.0	abi3		>=3.10
+450	types-s3transfer	0.16.0	pure		>=3.9
+451	colorlog	6.12.0	pure		>=3.6
+452	json5	0.17.3	pure		>=3.8.0
+453	celery	5.6.3	pure		>=3.9
+454	pg8000	1.31.5	pure		>=3.9
+455	thrift	0.25.0	older_only	cp310 cp311 cp312 cp313 cp314	
+456	vine	5.1.0	pure		>=3.6
+457	billiard	4.3.1	pure		>=3.10
+458	future	1.0.0	pure		>=2.6, !=3.0.*, !=3.1.*, !=3.2.*
+459	redshift-connector	2.2.0	pure		>=3.8
+460	nltk	3.10.3	pure		>=3.10
+461	langgraph-sdk	0.4.6	pure		>=3.10
+462	triton	3.8.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	<3.15,>=3.10
+463	click-repl	0.4.1	pure		>=3.9
+464	google-cloud-resource-manager	1.19.0	pure		>=3.10
+465	django	6.1.2	pure		>=3.12
+466	simplejson	4.2.0	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,!=3.7.*,!=3.8.*,>=2.7
+467	click-didyoumean	0.3.1	pure		>=3.6.2
+468	langgraph-checkpoint	4.2.0	pure		>=3.10
+469	ormsgpack	1.12.2	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+470	google-cloud-pubsub	2.42.0	pure		>=3.10
+471	confluent-kafka	2.16.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp38 cp39	>=3.8
+472	orderly-set	5.5.0	pure		>=3.8
+473	rich-toolkit	0.20.6	pure		>=3.8
+474	absl-py	2.5.1	pure		>=3.10
+475	poetry	2.5.1	pure		<4.0,>=3.10
+476	flask-cors	6.0.5	pure		<4.0,>=3.9
+477	langgraph-prebuilt	1.1.0	pure		>=3.10
+478	types-python-dateutil	2.9.0.20260807	pure		>=3.10
+479	pysocks	1.7.1	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+480	ty	0.0.86	pure	platform	>=3.8
+481	backports-tarfile	1.2.0	pure		>=3.8
+482	pyright	1.1.414	pure		>=3.7
+483	azure-keyvault-secrets	4.11.3	pure		>=3.9
+484	ecdsa	0.19.2	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,>=2.6
+485	pdfplumber	0.11.10	pure		>=3.8
+486	semantic-version	2.10.0	pure		>=2.7
+487	prettytable	3.18.0	pure		>=3.10
+488	flake8	7.4.1	pure		>=3.10
+489	ijson	3.5.1	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39 pp311	>=3.9
+490	bracex	3.1	pure		>=3.10
+491	bytecode	0.19.1	pure		>=3.11
+492	fastapi-cli	0.0.32	pure		>=3.10
+493	crashtest	0.4.1	pure		>=3.7,<4.0
+494	ddtrace	4.15.6	older_only	cp310 cp311 cp312 cp313 cp314 cp39	<3.15,>=3.9
+495	cleo	2.1.0	pure		>=3.7,<4.0
+496	opensearch-py	3.2.0	pure		<4,>=3.10
+497	posthog	7.67.0	pure		>=3.10
+498	peewee	4.5.3	pure		>=3.8
+499	wcmatch	11.1	pure		>=3.10
+500	astroid	4.3.4	pure		>=3.10.0
+501	pylint	4.1.3	pure		>=3.10.0
+502	temporalio	1.34.0	abi3		>=3.10
+503	webcolors	25.10.0	pure		>=3.10
+504	dateparser	1.4.3	pure		>=3.10
+505	pytest-rerunfailures	16.7	pure		>=3.10
+506	altair	6.3.0	pure		>=3.11
+507	mypy-boto3-s3	1.43.106	pure		>=3.9
+508	langchain-text-splitters	1.1.3	pure		<4.0.0,>=3.10.0
+509	pymssql	2.4.4	cp315		>=3.9
+510	psycopg-pool	3.3.3	pure		>=3.10
+511	langchain-openai	1.7.0	pure		<4.0.0,>=3.10.0
+512	opencv-python-headless	5.0.0.93	abi3		>=3.6
+513	databricks-sql-connector	4.6.0	pure		<4.0,>=3.10
+514	coloredlogs	15.0.1	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+515	libcst	1.9.0	cp315		>=3.9
+516	imageio	2.38.1	pure		>=3.11
+517	boto3-stubs	1.43.111	pure		>=3.9
+518	isoduration	20.11.0	pure		>=3.7
+519	strands-agents	1.59.0	pure		>=3.10
+520	limits	5.8.0	pure		>=3.10
+521	envier	0.6.1	pure		>=3.7
+522	stripe	16.0.0	pure		>=3.9
+523	moto	5.2.4	pure		>=3.10
+524	pyarrow-hotfix	0.7	pure		>=3.5
+525	fastcore	2.2.33	pure		>=3.10
+526	fakeredis	2.39.0	pure		>=3.8
+527	azure-common	1.1.28	pure		
+528	inflection	0.5.1	pure		>=3.5
+529	nexus-rpc	1.4.0	pure		>=3.10
+530	uc-micro-py	2.0.0	pure		>=3.10
+531	fqdn	1.6.0	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,<4,>=2.7
+532	trio	0.34.0	pure		>=3.10
+533	filetype	1.2.0	pure		
+534	async-lru	2.3.0	pure		>=3.10
+535	uri-template	1.3.0	pure		>=3.7
+536	aiohttp-retry	2.9.1	pure		>=3.7
+537	phonenumbers	9.0.41	pure		>=2.5
+538	elasticsearch	9.5.1	pure		>=3.10
+539	opentelemetry-instrumentation-threading	0.66b1	pure		>=3.10
+540	apscheduler	3.11.3	pure		>=3.8
+541	tldextract	5.4.0	pure		>=3.10
+542	types-awscrt	0.36.2	pure		>=3.10
+543	nh3	0.3.7	abi3		>=3.8
+544	cattrs	26.2.1	pure		>=3.10
+545	amazon-ion	0.15.0	older_only	cp310 cp311 cp312 cp313 cp39	>=3.9
+546	pbs-installer	2026.10.3	pure		>=3.9
+547	graphviz	0.21	pure		>=3.9
+548	pyphen	0.18.1	pure		>=3.10
+549	license-expression	30.4.4	pure		>=3.9
+550	boolean-py	5.0	pure		
+551	setproctitle	1.3.8	cp315		>=3.8
+552	google-cloud-appengine-logging	1.11.0	pure		>=3.10
+553	cuda-bindings	13.4.3	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+554	rfc3986-validator	0.1.1	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+555	jupyter-server	2.21.1	pure		>=3.10
+556	curl-cffi	0.16.3	abi3		>=3.10
+557	passlib	1.7.4	pure		
+558	google-cloud-logging	3.17.0	pure		>=3.10
+559	google-cloud-audit-log	0.6.2	pure		>=3.10
+560	statsmodels	0.15.0	cp315		>=3.10
+561	weasyprint	70.0	pure		>=3.10
+562	outcome	1.3.0.post0	pure		>=3.7
+563	send2trash	2.1.0	pure		>=3.8
+564	widgetsnbextension	4.0.16	pure		>=3.7
+565	gspread	6.2.1	pure		>=3.8
+566	cuda-pathfinder	1.8.3	pure		>=3.10
+567	pyotp	2.10.0	pure		>=3.8
+568	jupyterlab-widgets	3.0.17	pure		>=3.7
+569	testcontainers	4.15.0	pure		>=3.10
+570	python-jose	3.5.0	pure		>=3.9
+571	findpython	0.8.0	pure		>=3.9
+572	cyclonedx-python-lib	11.12.0	pure		<4.0,>=3.9
+573	ipywidgets	8.1.9	pure		>=3.7
+574	pgvector	0.5.1	pure		>=3.10
+575	packageurl-python	0.17.6	pure		>=3.8
+576	jupyterlab	4.6.4	pure		>=3.10
+577	cramjam	2.13.0	cp315		>=3.11
+578	pycountry	26.2.16	pure		>=3.10
+579	unidiff	1.0.1	pure		>=3.9
+580	zopfli	0.4.3	abi3		>=3.10
+581	google-cloud-firestore	2.34.1	pure		>=3.10
+582	stevedore	5.9.1	pure		>=3.11
+583	nest-asyncio2	1.7.4	pure		>=3.5
+584	fastapi-cloud-cli	0.26.0	pure		>=3.10
+585	opencv-python	5.0.0.93	abi3		>=3.6
+586	py-serializable	2.1.0	pure		<4.0,>=3.8
+587	entrypoints	0.4	pure		>=3.6
+588	rignore	0.8.1	cp315		>=3.8
+589	fastavro	1.13.1	cp315		>=3.11
+590	xgboost	3.4.1	pure	platform	>=3.12
+591	terminado	0.18.1	pure		>=3.8
+592	langchain-google-vertexai	3.2.4	pure		<4.0.0,>=3.10.0
+593	qrcode	8.2	pure		<4.0,>=3.9
+594	strenum	0.4.15	pure		
+595	opentelemetry-instrumentation-dbapi	0.66b1	pure		>=3.10
+596	patsy	1.0.3	pure		>=3.6
+597	zeep	4.3.3	pure		>=3.10
+598	claude-agent-sdk	0.2.165	pure	platform	>=3.10
+599	opentelemetry-instrumentation-sqlalchemy	0.66b1	pure		>=3.10
+600	msgspec	0.22.0	cp315		>=3.10
+601	json-repair	0.64.0	pure		>=3.10
+602	notebook	7.6.3	pure		>=3.10
+603	fastar	0.12.0	cp315		>=3.8
+604	pydyf	0.12.1	pure		>=3.10
+605	jupyter-events	0.12.1	pure		>=3.9
+606	mysql-connector-python	26.7.0	pure		>=3.10
+607	graphql-relay	3.2.0	pure		>=3.6,<4
+608	aenum	3.1.17	pure		
+609	jupyter-server-terminals	0.5.4	pure		>=3.8
+610	lazy-object-proxy	1.12.0	pure		>=3.9
+611	ujson	6.0.0	cp315		>=3.10
+612	jupyterlab-server	2.28.1	pure		>=3.10
+613	events	0.5	pure		
+614	selenium	4.51.0	pure		>=3.10
+615	av	19.0.1	abi3		>=3.12
+616	overrides	7.7.0	pure		>=3.6
+617	nvidia-nccl-cu13	2.32.3	pure	platform	>=3
+618	pip-requirements-parser	32.0.1	pure		>=3.6.0
+619	hiredis	3.4.2	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp38 cp39	>=3.8
+620	nvidia-nccl-cu12	2.32.3	pure	platform	>=3
+621	graphene	3.4.3	pure		
+622	pytest-split	0.11.0	pure		<4.0,>=3.10
+623	rfc3987-syntax	1.1.0	pure		>=3.9
+624	opentelemetry-instrumentation-urllib3	0.66b1	pure		>=3.10
+625	ml-dtypes	0.6.0	cp315		>=3.10
+626	db-dtypes	1.7.2	pure		>=3.10
+627	notebook-shim	0.2.4	pure		>=3.7
+628	types-pytz	2026.5.0.20261006	pure		>=3.10
+629	delta-spark	4.4.1	pure		>=3.10
+630	olefile	0.47	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+631	langchain-community	0.4.2	pure		<4.0.0,>=3.10.0
+632	opentelemetry-instrumentation-django	0.66b1	pure		>=3.10
+633	omegaconf	2.4.0	pure		>=3.10
+634	opentelemetry-instrumentation-wsgi	0.66b1	pure		>=3.10
+635	pyodbc	5.3.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	>=3.9
+636	seaborn	0.13.2	pure		>=3.8
+637	holidays	0.106	pure		>=3.10
+638	tinyhtml5	2.1.0	pure		>=3.10
+639	clickhouse-connect	1.10.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314 pp310	<3.15,>=3.10
+640	gcsfs	2026.10.0	pure		>=3.10
+641	nvidia-cudnn-cu13	9.27.0.42	pure	platform	>=3
+642	sentencepiece	0.2.2	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314 cp39	>=3.9
+643	pip-api	0.0.35	pure		>=3.9
+644	opentelemetry-instrumentation-psycopg2	0.66b1	pure		>=3.10
+645	aioboto3	15.5.0	pure		>=3.9
+646	jupyter-lsp	2.3.1	pure		>=3.8
+647	ply	3.11	pure		
+648	h5py	3.16.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+649	pathvalidate	3.3.1	pure		>=3.9
+650	python-magic	0.4.27	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+651	pyroaring	1.2.0	cp315		
+652	snowballstemmer	3.1.1	pure		>=3.3
+653	opentelemetry-instrumentation-logging	0.66b1	pure		>=3.10
+654	appdirs	1.4.4	pure		
+655	unidecode	1.4.0	pure		>=3.7
+656	pip-audit	2.10.1	pure		>=3.10
+657	gevent	26.9.0	cp315		>=3.10
+658	mlflow-skinny	3.17.0	pure		>=3.10
+659	crc32c	2.9.post0	cp315		>=3.8
+660	dbt-adapters	1.24.5	pure		>=3.10.0
+661	dask	2026.8.0	pure		>=3.10
+662	ordered-set	4.1.0	pure		>=3.7
+663	lazy-loader	0.6	pure		>=3.9
+664	diskcache	5.6.3	pure		>=3
+665	flit-core	4.1.0	pure		>=3.8
+666	pybreaker	1.4.1	pure		>=3.9
+667	nvidia-nvjitlink	13.4.92	pure	platform	>=3
+668	opentelemetry-instrumentation-flask	0.66b1	pure		>=3.10
+669	mock	5.2.0	pure		>=3.6
+670	cuda-toolkit	13.4.2	pure		
+671	html5lib	1.1	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+672	pytest-runner	6.0.1	pure		>=3.7
+673	scikit-image	0.26.0	older_only	cp311 cp312 cp313 cp313 cp314 cp314	>=3.11
+674	yamllint	1.38.0	pure		>=3.10
+675	bandit	1.9.4	pure		>=3.10
+676	oauth2client	4.1.3	pure		
+677	opentelemetry-instrumentation-urllib	0.66b1	pure		>=3.10
+678	sqlmodel	0.0.48	pure		>=3.10
+679	logfire-api	5.1.1	pure		>=3.10
+680	retry	0.9.2	pure		
+681	dbt-common	1.39.0	pure		>=3.10
+682	trio-websocket	0.12.2	pure		>=3.8
+683	snowflake-sqlalchemy	1.11.1	pure		>=3.8
+684	nvidia-cublas	13.8.1.7	pure	platform	>=3
+685	djangorestframework	3.18.3	pure		>=3.10
+686	genai-prices	0.1.10	pure		>=3.10
+687	cloudpathlib	0.26.0	pure		>=3.10
+688	diff-cover	10.6.0	pure		>=3.10
+689	mashumaro	3.23	pure		>=3.10
+690	nvidia-cusparselt-cu13	0.10.0	pure	platform	
+691	tblib	3.2.2	pure		>=3.9
+692	adal	1.2.7	pure		
+693	pydantic-ai-slim	2.55.0	pure		>=3.11
+694	nvidia-nvshmem-cu13	3.8.0	pure	platform	>=3
+695	pydantic-graph	2.55.0	pure		>=3.11
+696	click-option-group	0.5.9	pure		>=3.7
+697	pyrsistent	0.20.0	pure		>=3.8
+698	rfc3986	2.0.0	pure		>=3.7
+699	zope-event	6.2	pure		>=3.10
+700	azure-monitor-opentelemetry-exporter	1.0.0b58	pure		>=3.10
+701	nvidia-cuda-nvrtc	13.4.92	pure	platform	>=3
+702	nvidia-cufft	12.4.0.43	pure	platform	>=3
+703	nvidia-cusolver	12.3.4.7	pure	platform	>=3
+704	partd	1.4.2	pure		>=3.9
+705	nvidia-cusparse	12.8.6.72	pure	platform	>=3
+706	langfuse	4.17.0	pure		<4.0,>=3.10
+707	nvidia-cuda-runtime	13.4.92	pure	platform	>=3
+708	types-setuptools	84.0.0.20261006	pure		>=3.10
+709	respx	0.23.1	pure		>=3.8
+710	bidict	0.24.1	pure		>=3.11
+711	catalogue	2.0.10	pure		>=3.6
+712	locket	1.0.0	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+713	nvidia-cuda-cupti	13.4.92	pure	platform	>=3
+714	eval-type-backport	0.4.0	pure		>=3.7
+715	sentence-transformers	6.1.0	pure		>=3.10
+716	google-cloud-bigquery-storage	2.42.0	pure		>=3.10
+717	nvidia-curand	10.4.4.72	pure	platform	>=3
+718	ninja	1.13.2	pure	platform	>=3.8
+719	validators	0.36.0	pure		>=3.11
+720	griffe	2.3.2	pure		>=3.11
+721	dbt-core	1.12.5	pure		>=3.10
+722	swebench	5.0.2	pure		>=3.10
+723	inflect	7.5.0	pure		>=3.9
+724	azure-mgmt-core	1.6.0	pure		>=3.9
+725	soundfile	0.14.0	pure		>=3.10
+726	vcrpy	8.3.0	pure		>=3.10
+727	nvidia-cufile	1.19.1.55	pure	platform	>=3
+728	pytimeparse	1.1.9	pure		>=3.11
+729	pytest-metadata	3.1.1	pure		>=3.8
+730	boltons	26.2.0	pure		>=3.7
+731	google-cloud-monitoring	2.32.0	pure		>=3.10
+732	nvidia-nvtx	13.4.92	pure	platform	>=3
+733	realtime	2.32.0	pure		>=3.9
+734	postgrest	2.32.0	pure		>=3.9
+735	storage3	2.32.0	pure		>=3.9
+736	supabase	2.32.0	pure		>=3.9
+737	retrying	1.4.2	pure		>=3.6
+738	strictyaml	1.7.3	pure		>=3.7.0
+739	opentelemetry-instrumentation-aiohttp-client	0.66b1	pure		>=3.10
+740	parsedatetime	2.6	pure		
+741	agent-client-protocol	0.12.1	pure		<3.15,>=3.10
+742	simple-websocket	1.1.0	pure		>=3.6
+743	lupa	2.8	abi3		>=3.8
+744	python-engineio	4.14.0	pure		>=3.8
+745	spacy	3.8.16	older_only	cp310 cp311 cp312 cp313 cp314	<3.15,>=3.9
+746	python-socketio	5.17.0	pure		>=3.8
+747	requirements-parser	0.13.1	pure		<4.0,>=3.8
+748	aws-cdk-asset-awscli-v1	2.2.295	pure		>=3.10
+749	slowapi	0.1.10	pure		<4.0,>=3.7
+750	questionary	2.1.1	pure		>=3.9
+751	docopt	0.6.2	sdist_only		
+752	murmurhash	1.0.15	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314 cp39	<3.15,>=3.6
+753	mergedeep	1.3.4	pure		>=3.6
+754	thinc	9.1.1	older_only	cp310 cp311 cp312 cp39	>=3.9
+755	grimp	3.17	cp315		>=3.10
+756	pytest-django	4.14.0	pure		>=3.10
+757	glom	25.12.0	pure		
+758	pyproj	3.8.0	cp315		>=3.12
+759	blis	1.3.3	older_only	cp310 cp311 cp312 cp313 cp314	<3.15,>=3.9
+760	face	26.0.1	pure		>=3.10
+761	einops	0.8.2	pure		>=3.9
+762	azure-storage-file-datalake	12.26.0	pure		>=3.10
+763	srsly	2.5.4	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	<3.15,>=3.9
+764	factory-boy	3.3.3	pure		>=3.8
+765	mlflow	3.17.0	pure		>=3.10
+766	universal-pathlib	0.3.10	pure		>=3.9
+767	preshed	3.0.13	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	<3.15,>=3.9
+768	python-http-client	3.3.7	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+769	elastic-transport	9.4.2	pure		>=3.10
+770	cymem	2.0.13	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314 cp39	<3.15,>=3.9
+771	requests-mock	1.12.1	pure		>=3.5
+772	wasabi	1.1.3	pure		>=3.6
+773	dacite	1.9.2	pure		>=3.7
+774	awscrt	0.37.0	abi3		>=3.8
+775	azure-storage-queue	12.18.0	pure		>=3.10
+776	hvac	2.4.0	pure		<4.0,>=3.8
+777	py-spy	0.4.2	older_only	py2.py3	
+778	hyperlink	21.0.0	pure		
+779	pytest-env	1.8.0	pure		>=3.11
+780	pybind11	3.1.0	pure		>=3.9
+781	import-linter	2.15	pure		>=3.10
+782	agate	1.14.2	pure		
+783	sendgrid	6.12.5	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7
+784	simple-salesforce	1.12.10	pure		>=3.9
+785	opentelemetry-instrumentation-redis	0.66b1	pure		>=3.10
+786	supabase-auth	2.32.0	pure		>=3.9
+787	supabase-functions	2.32.0	pure		>=3.9
+788	cached-property	2.0.1	pure		>=3.8
+789	streamlit	1.65.0	pure		>=3.10
+790	pyiceberg	0.12.0	older_only	cp310 cp311 cp312 cp313 cp314	<4.0.0,>=3.10.0
+791	python-utils	4.1.1	pure		>=3.10
+792	confection	1.3.3	pure		>=3.10
+793	twilio	9.11.2	pure		>=3.7.0
+794	schema	0.7.8	pure		
+795	time-machine	3.5.1	cp315		>=3.10
+796	spacy-legacy	3.0.12	pure		>=3.6
+797	ua-parser	1.0.2	pure		>=3.10
+798	spacy-loggers	1.0.5	pure		>=3.6
+799	imagesize	2.0.1	pure		>=3.10
+800	cssselect	1.6.0	pure		>=3.11
+801	pytest-httpx	0.36.2	pure		>=3.10
+802	sqlalchemy-utils	0.43.0	pure		>=3.10
+803	progressbar2	4.6.0	pure		>=3.10
+804	py-partiql-parser	0.6.3	pure		
+805	great-expectations	1.24.0	pure		<3.15,>=3.10
+806	socksio	1.0.0	pure		>=3.6
+807	leather	0.4.1	pure		
+808	weasel	1.0.0	pure		>=3.7
+809	django-cors-headers	4.9.0	pure		>=3.9
+810	datadog-api-client	2.61.0	pure		>=3.10
+811	grpcio-health-checking	1.84.0	pure		>=3.10
+812	texttable	1.7.0	pure		
+813	dbt-extractor	0.6.0	abi3		>=3.9
+814	gql	4.4.0	pure		>=3.10
+815	semgrep	1.180.0	older_only	cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314	>=3.10
+816	lightgbm	4.7.0	pure	platform	>=3.10
+817	pymdown-extensions	12.2	pure		>=3.10
+818	yfinance	1.7.0	pure		
+819	google-pasta	0.2.0	pure		
+820	tifffile	2026.9.20	pure		>=3.12
+821	google-re2	1.1.20251105	older_only	cp310 cp311 cp312 cp313 cp314	~=3.9
+822	pandas-stubs	3.0.5.260914	pure		>=3.11
+823	sphinx	9.1.0	pure		>=3.12
+824	id	1.6.1	pure		>=3.9
+825	oracledb	26.0.1	cp315		>=3.10
+826	pydeck	0.9.3	pure		>=3.8
+827	jupyter-builder	1.2.3	pure		>=3.10
+828	pandas-gbq	0.35.2	pure		>=3.10
+829	pydub	0.25.1	pure		
+830	accelerate	1.15.0	pure		>=3.10.0
+831	jira	3.10.5	pure		>=3.10
+832	readme-renderer	46.0	pure		>=3.10
+833	langchain-anthropic	1.7.5	pure		<4.0.0,>=3.10.0
+834	types-urllib3	1.26.25.14	pure		
+835	emoji	2.16.0	pure		>=3.8
+836	pybase64	1.5.1	cp315		>=3.9
+837	aws-requests-auth	0.4.3	pure		
+838	fire	0.7.1	pure		>=3.7
+839	flask-login	0.6.3	pure		>=3.7
+840	opentelemetry-exporter-prometheus	0.66b1	pure		>=3.10
+841	twine	7.0.0	pure		>=3.10
+842	pillow-heif	1.8.1	cp315		>=3.10
+843	cron-descriptor	2.1.1	pure		>=3.9
+844	maxminddb	3.2.0	cp315		>=3.10
+845	openapi-schema-validator	0.9.0	pure		<4.0.0,>=3.10.0
+846	fastspec	0.2.5	pure		>=3.10
+847	jsonconversion	1.2.1	pure		>=3.9
+848	oscrypto	1.3.0	pure		
+849	configargparse	1.8.0	pure		>=3.6
+850	pbr	7.1.3	pure		>=2.6
+851	mistralai	3.2.0	pure		>=3.10
+852	feedparser	6.0.14	pure		>=3.10
+853	openapi-spec-validator	0.9.0	pure		<4.0,>=3.10
+854	alabaster	1.0.0	pure		>=3.10
+855	tensorboard	2.21.0	pure		>=3.9
+856	nodejs-wheel-binaries	24.19.0	older_only	py2.py3	>=3.7
+857	rich-click	1.9.9	pure		>=3.8
+858	lxml-html-clean	0.4.5	pure		
+859	kafka-python	3.0.11	pure		>=3.8
+860	daff	1.4.2	pure		
+861	pytesseract	0.3.13	pure		>=3.8
+862	fpdf2	2.8.9	pure		>=3.10
+863	frozendict	2.4.7	pure		>=3.6
+864	magika	1.0.3	pure		>=3.8
+865	shortuuid	1.0.13	pure		>=3.6
+866	mammoth	1.13.0	pure		>=3.7
+867	ua-parser-builtins	202610	pure		>=3.10
+868	sphinxcontrib-serializinghtml	2.0.0	pure		>=3.9
+869	pdf2image	1.17.0	pure		
+870	py-cpuinfo	9.0.0	pure		
+871	pydot	4.0.1	pure		>=3.8
+872	dbt-protos	1.0.594	pure		>=3.6
+873	service-identity	26.1.0	pure		>=3.8
+874	groq	1.7.0	pure		>=3.10
+875	pydata-google-auth	1.9.1	pure		>=3.9
+876	types-cachetools	7.0.0.20260713	pure		>=3.10
+877	sphinxcontrib-htmlhelp	2.1.0	pure		>=3.9
+878	sphinxcontrib-applehelp	2.0.0	pure		>=3.9
+879	sphinxcontrib-qthelp	2.0.0	pure		>=3.9
+880	sphinxcontrib-devhelp	2.0.0	pure		>=3.9
+881	cobble	0.1.4	pure		>=3.5
+882	sagemaker	3.24.0	pure		>=3.10
+883	mysqlclient	2.3.0	no_linux_x86_wheel	mysqlclient-2.3.0-cp310-cp310-win_amd64.whl	>=3.10
+884	bs4	0.0.2	pure		
+885	prek	0.5.5	pure	platform	>=3.8
+886	jwcrypto	1.6.1	pure		>=3.9
+887	torchvision	0.29.1	older_only	cp310 cp311 cp312 cp313 cp314 cp314	!=3.14.1,>=3.10
+888	maturin	1.15.0	pure	platform	>=3.7
+889	azure-keyvault-keys	4.11.3	pure		>=3.9
+890	sounddevice	0.5.6	pure		>=3.7
+891	sphinxcontrib-jsmath	1.0.1	pure		>=3.5
+892	snowplow-tracker	1.1.0	pure		
+893	poetry-plugin-export	1.10.1	pure		<4.0,>=3.10
+894	google-cloud-spanner	3.71.0	pure		>=3.10
+895	azure-servicebus	7.15.0	pure		>=3.9
+896	papermill	2.7.0	pure		>=3.10
+897	typer-slim	0.24.0	pure		>=3.10
+898	markitdown	0.1.8	pure		<3.15,>=3.10
+899	types-redis	4.6.0.20241004	pure		>=3.8
+900	opt-einsum	3.4.0	pure		>=3.8
+901	natsort	8.4.0	pure		>=3.7
+902	immutabledict	4.3.1	pure		<4.0,>=3.8
+903	bitarray	3.12.1	cp315		>=3.7
+904	sshtunnel	0.5.1	pure		
+905	levenshtein	0.27.5	cp315		>=3.11
+906	tld	0.13.2	pure		>=3.7
+907	youtube-transcript-api	1.2.4	pure		<3.15,>=3.8
+908	multitasking	0.0.13	pure		
+909	databricks-labs-blueprint	0.12.0	pure		>=3.10
+910	watchtower	3.4.0	pure		>=3.8
+911	optuna	5.0.0	pure		>=3.9
+912	google-cloud-speech	2.41.0	pure		>=3.10
+913	swifter	1.4.0	sdist_only		
+914	types-cffi	2.1.0.20260827	pure		>=3.10
+915	mlflow-tracing	3.17.0	pure		>=3.10
+916	jsonpath-python	1.1.6	pure		>=3.8
+917	tree-sitter-languages	1.10.2	older_only	cp310 cp311 cp312 cp37 cp38 cp39	
+918	pypdf2	3.0.1	pure		>=3.6
+919	uv-build	0.13.0	pure	platform	>=3.8
+920	gremlinpython	3.8.2	pure		<3.14,>=3.10
+921	nvidia-cudnn-cu12	9.27.0.42	pure	platform	>=3
+922	types-paramiko	5.0.0.20261006	pure		>=3.10
+923	genson	1.4.0	pure		>=3.10
+924	nvidia-cublas-cu12	12.9.2.10	pure	platform	>=3
+925	rich-argparse	1.8.0	pure		>=3.9
+926	firebase-admin	7.7.0	pure		>=3.9
+927	msrestazure	0.6.4.post1	pure		
+928	trino	0.340.0	pure		>=3.9
+929	lockfile	0.12.2	pure		
+930	pywavelets	1.10.0	cp315		>=3.12
+931	vulture	2.16	pure		>=3.9
+932	grpc-interceptor	0.15.4	pure		>=3.7,<4.0
+933	google-cloud-kms	3.18.0	pure		>=3.10
+934	google-cloud-bigtable	2.50.0	pure		>=3.10
+935	pyathena	4.0.0	pure		>=3.11
+936	puremagic	2.2.0	pure		>=3.12
+937	pytest-randomly	5.0.0	pure		>=3.10
+938	parse	1.22.3	pure		
+939	deptry	0.25.1	abi3		>=3.10
+940	google-cloud-tasks	2.26.0	pure		>=3.10
+941	opentelemetry-distro	0.66b1	pure		>=3.10
+942	pfzy	0.3.4	pure		>=3.7,<4.0
+943	nvidia-cuda-nvrtc-cu12	12.9.86	pure	platform	>=3
+944	ldap3	2.9.1	pure		
+945	blake3	1.0.11	cp315		>=3.11
+946	pyspnego	0.12.4	pure		>=3.9
+947	whitenoise	6.12.0	pure		>=3.10
+948	langchain-classic	1.0.8	pure		<4.0.0,>=3.10.0
+949	jsonpickle	4.1.3	pure		>=3.8
+950	tox	4.65.3	pure		>=3.11
+951	imageio-ffmpeg	0.6.0	pure	platform	>=3.9
+952	hatch-vcs	0.5.0	pure		>=3.9
+953	oss2	2.19.1	sdist_only		
+954	ratelimit	2.2.1	sdist_only		
+955	nvidia-cusparse-cu12	12.5.10.65	pure	platform	>=3
+956	inquirerpy	0.3.4	pure		>=3.7,<4.0
+957	ansicolors	1.1.8	pure		
+958	dunamai	1.26.2	pure		>=3.5
+959	nvidia-cusolver-cu12	11.7.5.82	pure	platform	>=3
+960	nvidia-cufft-cu12	11.4.1.4	pure	platform	>=3
+961	wandb	0.30.0	pure	platform	>=3.10
+962	dask-expr	2.0.0	pure		>=3.10
+963	opentelemetry-semantic-conventions-ai	0.5.1	pure		<4,>=3.9
+964	ipdb	0.13.13	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+965	nvidia-cuda-runtime-cu12	12.9.79	pure	platform	>=3
+966	opentelemetry-resourcedetector-gcp	1.14.0	pure		>=3.10
+967	ftfy	6.3.1	pure		>=3.9
+968	h3	4.5.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+969	pycares	5.1.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+970	basedpyright	1.40.2	pure		>=3.10
+971	nvidia-nvjitlink-cu12	12.9.86	pure	platform	>=3
+972	aiodns	4.0.4	pure		>=3.10
+973	aws-xray-sdk	2.15.0	pure		>=3.7
+974	django-filter	26.2	pure		>=3.11
+975	aws-lambda-powertools	3.35.0	pure		<4.0.0,>=3.10
+976	datamodel-code-generator	0.83.0	pure		>=3.10
+977	pytest-html	4.2.0	pure		>=3.9
+978	jpype1	1.7.1	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314 cp38 cp39	>=3.8
+979	incremental	24.11.0	pure		>=3.8
+980	nvidia-curand-cu12	10.3.10.19	pure	platform	>=3
+981	nvidia-ml-py	13.615.71	pure		
+982	pathlib-abc	0.5.2	pure		>=3.9
+983	nvidia-cuda-cupti-cu12	12.9.79	pure	platform	>=3
+984	jsonlines	4.0.0	pure		>=3.8
+985	apache-airflow-providers-common-sql	2.2.0	pure		>=3.10
+986	types-pyopenssl	24.1.0.20240722	pure		>=3.8
+987	pywin32	312	no_linux_x86_wheel	pywin32-312-cp310-cp310-win32.whl	>=3.9
+988	resolvelib	1.2.1	pure		>=3.9
+989	langcodes	3.5.1	pure		>=3.9
+990	makefun	1.16.0	pure		
+991	google-ads	33.0.0	pure		<3.15,>=3.9
+992	cchardet	2.4.0	cp315		>=3.11
+993	skops	0.16.0	pure		>=3.9
+994	azure-cosmos	4.17.1	pure		>=3.9
+995	twisted	26.4.0	pure		>=3.9.12
+996	langchain-google-genai	4.4.1	pure		<4.0.0,>=3.10.0
+997	huey	3.4.0	pure		
+998	html2text	2025.4.15	pure		>=3.9
+999	geopandas	1.2.0	pure		>=3.11
+1000	opentelemetry-instrumentation-grpc	0.66b1	pure		>=3.10
+1001	aiokafka	0.14.0	older_only	cp310 cp311 cp312 cp313 cp314	>=3.10
+1002	mkdocs	1.6.1	pure		>=3.8
+1003	rdflib	7.6.0	pure		>=3.8.1
+1004	google-cloud-run	0.16.2	pure		>=3.10
+1005	hydra-core	1.3.7	pure		
+1006	ghp-import	2.1.0	pure		
+1007	tree-sitter-bash	0.25.1	abi3		>=3.10
+1008	ray	2.59.0	older_only	cp310 cp311 cp312 cp313 cp314	>=3.10
+1009	python-gnupg	0.5.7	pure		
+1010	parameterized	0.9.0	pure		>=3.7
+1011	binaryornot	0.6.0	pure		>=3.10
+1012	pyyaml-env-tag	1.1	pure		>=3.9
+1013	logfire	5.1.1	pure		>=3.10
+1014	nvidia-nvtx-cu12	12.9.79	pure	platform	>=3
+1015	constantly	23.10.4	pure		>=3.8
+1016	automat	25.4.16	pure		>=3.9
+1017	flask-sqlalchemy	3.1.1	pure		>=3.8
+1018	django-extensions	4.1	pure		>=3.9
+1019	onnx	1.23.2	abi3		>=3.10
+1020	dbt-semantic-interfaces	0.10.5	pure		>=3.8
+1021	cairosvg	2.9.1	pure		>=3.10
+1022	giturlparse	0.15.0	pure		>=3.8
+1023	jupyter-console	6.6.3	pure		>=3.7
+1024	drf-spectacular	0.30.0	pure		>=3.8
+1025	azure-batch	15.1.0	pure		>=3.9
+1026	pyogrio	0.13.0	abi3		>=3.10
+1027	ollama	0.6.3	pure		>=3.8
+1028	pooch	1.9.0	pure		>=3.9
+1029	htmldate	1.11.0	pure		>=3.10
+1030	python-snappy	0.7.3	pure		
+1031	dockerfile-parse	2.0.1	pure		>=3.6
+1032	pox	0.3.7	pure		>=3.9
+1033	pyrfc3339	2.1.1	pure		>=3.11
+1034	geoip2	5.3.0	pure		>=3.10
+1035	keyrings-google-artifactregistry-auth	1.1.2	pure		>=3.6
+1036	jupyter	1.1.1	pure		
+1037	mkdocs-get-deps	0.2.2	pure		>=3.9
+1038	courlan	1.4.0	pure		>=3.10
+1039	trafilatura	2.3.1	pure		>=3.10
+1040	kubernetes-asyncio	36.1.0	pure		>=3.10
+1041	cairocffi	1.7.1	pure		>=3.8
+1042	cfn-lint	1.57.2	pure		<3.15,>=3.10
+1043	yt-dlp	2026.8.19	pure		>=3.10
+1044	tree-sitter-javascript	0.25.0	abi3		>=3.10
+1045	opencensus-context	0.1.3	pure		
+1046	opencensus	0.11.4	pure		
+1047	cmake	4.4.4	pure	platform	>=3.8
+1048	argparse	1.4.0	pure		
+1049	ansible-core	2.21.5	pure		>=3.12
+1050	openai-agents	0.23.1	pure		>=3.10
+1051	types-deprecated	1.3.1.20260928	pure		>=3.10
+1052	pydeequ	1.7.0	pure		<4,>=3.9
+1053	detect-installer	0.2.1	pure		>=3.10
+1054	pathos	0.3.5	pure		>=3.9
+1055	gcloud-aio-auth	5.5.1	pure		<4.0,>=3.10
+1056	google-cloud-dataproc	5.31.0	pure		>=3.10
+1057	msoffcrypto-tool	6.0.0	pure		<4.0,>=3.10
+1058	neo4j	6.4.0	pure		>=3.10
+1059	gast	0.7.0	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7
+1060	ppft	1.7.8	pure		>=3.9
+1061	prometheus-fastapi-instrumentator	8.1.0	pure		>=3.10
+1062	pyserial	3.5	pure		
+1063	azure-mgmt-resource	26.0.0	pure		>=3.10
+1064	avro	1.12.2	pure		>=3.10
+1065	aiosmtplib	5.1.3	pure		>=3.10
+1066	pip-tools	7.6.2	pure		>=3.9
+1067	patchelf	0.19.1.0	pure	platform	>=3.7
+1068	faiss-cpu	1.15.1	abi3		>=3.10
+1069	tensorboard-data-server	0.7.2	pure		>=3.7
+1070	django-storages	1.14.6	pure		>=3.7
+1071	slack-bolt	1.30.0	pure		>=3.7
+1072	mkdocs-material	9.7.7	pure		>=3.8
+1073	types-jsonschema	4.26.0.20261006	pure		>=3.10
+1074	gcloud-aio-storage	9.6.5	pure		<4.0,>=3.10
+1075	google-cloud-vision	3.16.0	pure		>=3.10
+1076	fasttransport	0.0.4	pure		>=3.10
+1077	griffecli	2.3.2	pure		>=3.11
+1078	readchar	4.2.2	pure		>=3.8
+1079	smdebug-rulesconfig	1.0.1	pure		>=2.7
+1080	opensearch-protobufs	1.7.0	pure		>=3.10
+1081	pysftp	0.2.9	sdist_only		
+1082	python-gitlab	8.6.0	pure		>=3.10.0
+1083	django-stubs-ext	6.1.2	pure		>=3.11
+1084	keras	3.15.1	pure		>=3.11
+1085	qdrant-client	1.19.1	pure		>=3.10
+1086	tensorflow	2.21.0	older_only	cp310 cp311 cp312 cp313	>=3.10
+1087	snowflake-snowpark-python	1.55.1	pure		<3.15,>=3.10
+1088	astor	0.8.1	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7
+1089	ctranslate2	4.8.2	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	>=3.9
+1090	python-daemon	3.1.2	pure		>=3.7
+1091	opentelemetry-instrumentation-botocore	0.66b1	pure		>=3.10
+1092	numexpr	2.14.2	older_only	cp311 cp312 cp313 cp314 cp314	>=3.11
+1093	polyfactory	3.3.0	pure		<4.0,>=3.9
+1094	syrupy	6.1.1	pure		>=3.10
+1095	pytest-repeat	0.9.4	pure		>=3.9
+1096	asyncssh	2.24.1	pure		>=3.10
+1097	mkdocs-material-extensions	1.3.1	pure		>=3.8
+1098	nvidia-cusparselt-cu12	0.8.1	pure	platform	
+1099	sseclient-py	1.9.0	pure		>=3.7
+1100	kestra	2.0.0	pure		>=3
+1101	torchmetrics	1.9.0	pure		>=3.10
+1102	paginate	0.5.7	pure		
+1103	meson	1.12.1	pure		>=3.10
+1104	chevron	0.14.0	pure		
+1105	google-cloud-compute	1.55.0	pure		>=3.10
+1106	fuzzywuzzy	0.18.0	pure		
+1107	justext	3.0.2	pure		
+1108	line-bot-sdk	3.26.0	pure		>=3.10.0
+1109	azure-ai-documentintelligence	1.0.2	pure		>=3.8
+1110	cachebox	6.2.8	cp315		>=3.10
+1111	types-aiofiles	25.1.0.20260518	pure		>=3.10
+1112	obstore	0.11.1	abi3		>=3.10
+1113	memray	1.20.0	cp315		>=3.9.0
+1114	opentelemetry-propagator-aws-xray	1.0.2	pure		>=3.8
+1115	types-markdown	3.10.2.20261007	pure		>=3.10
+1116	a2a-sdk	1.2.2	pure		>=3.10
+1117	lightning-utilities	0.15.3	pure		>=3.10
+1118	uuid6	2025.0.1	pure		>=3.9
+1119	pika	1.4.4	pure		>=3.7
+1120	httpx-ws	0.9.0	pure		>=3.10
+1121	toposort	1.10	pure		
+1122	clickhouse-driver	0.2.11	older_only	cp310 cp311 cp312 cp313 cp314 cp39 pp310 pp311 pp39	<4,>=3.9
+1123	pyinstaller	6.22.3	pure	platform	<3.16,>=3.8
+1124	office365-rest-python-client	3.2.0	pure		>=3.8.0
+1125	mypy-boto3-sqs	1.43.0	pure		>=3.9
+1126	opentelemetry-resource-detector-azure	0.3.0	pure		>=3.10
+1127	kfp	2.17.0	pure		>=3.9.0
+1128	geventhttpclient	2.6.1	cp315		>=3.11
+1129	pyproject-api	1.11.5	pure		>=3.11
+1130	formulaic	1.2.2	pure		>=3.9
+1131	wtforms	3.2.2	pure		>=3.10
+1132	interface-meta	2.0.1	pure		>=3.10
+1133	google-cloud-dataplex	2.21.0	pure		>=3.10
+1134	langchain-google-community	5.1.1	pure		<4.0.0,>=3.10.0
+1135	aiomysql	0.3.2	pure		>=3.9
+1136	uuid7	0.1.0	pure		>=3.7
+1137	resend	2.49.1	pure		>=3.7
+1138	pyelftools	0.33	pure		>=3.10
+1139	azure-core-tracing-opentelemetry	1.0.0b13	pure		>=3.10
+1140	backrefs	8.1	pure		>=3.10
+1141	pyinstaller-hooks-contrib	2026.8	pure		>=3.8
+1142	fasteners	0.20	pure		>=3.6
+1143	django-stubs	6.1.2	pure		>=3.11
+1144	granian	2.8.4	cp315		>=3.10
+1145	azure-monitor-opentelemetry	1.8.11	pure		>=3.10
+1146	timm	1.0.30	pure		>=3.8
+1147	cohere	7.2.0	pure		<4.0,>=3.10
+1148	rouge-score	0.1.2	sdist_only		>=3.7
+1149	geopy	2.5.0	pure		>=3.8
+1150	azure-data-tables	12.7.0	pure		>=3.9
+1151	google-cloud-dlp	3.40.0	pure		>=3.10
+1152	jaydebeapi	1.2.3	pure		
+1153	django-redis	7.0.0	pure		>=3.10
+1154	mini-swe-agent	2.4.6	pure		>=3.10
+1155	userpath	1.9.2	pure		>=3.7
+1156	geographiclib	2.1	pure		>=3.7
+1157	pytorch-lightning	2.6.6	pure		>=3.10
+1158	xarray	2026.9.0	pure		>=3.11
+1159	google-cloud-storage-control	1.16.0	pure		>=3.10
+1160	launchdarkly-eventsource	1.7.3	pure		>=3.10
+1161	types-croniter	6.2.4.20261006	pure		>=3.10
+1162	sqlalchemy-bigquery	1.17.3	pure		>=3.10
+1163	uv-dynamic-versioning	0.14.1	pure		<4.0,>=3.10
+1164	pkgutil-resolve-name	1.3.10	pure		>=3.6
+1165	pyroscope-io	1.2.5	older_only	cp310 cp311 cp312 cp313 cp314	>=3.10
+1166	google-adk	2.11.0	pure		>=3.10
+1167	datetime	6.0	pure		>=3.10
+1168	sqlalchemy-spanner	1.20.1	pure		>=3.10
+1169	pytest-benchmark	5.3.0	pure		>=3.10
+1170	pytzdata	2020.1	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+1171	pyinstrument	5.1.3	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39 graalpy312	>=3.8
+1172	python-ulid	4.0.1	pure		>=3.10
+1173	weaviate-client	4.23.1	pure		>=3.10
+1174	langdetect	1.0.9	pure		
+1175	monotonic	1.6	pure		
+1176	pydocket	0.27.0	pure		>=3.10
+1177	soxr	1.1.0	abi3		>=3.9
+1178	pipenv	2026.9.0	pure		>=3.10
+1179	flask-wtf	1.3.0	pure		>=3.10
+1180	pytest-socket	0.8.1	pure		>=3.10
+1181	google-cloud-translate	3.28.0	pure		>=3.10
+1182	expiringdict	1.2.2	pure		
+1183	tavily-python	0.8.5	pure		>=3.8
+1184	python-frontmatter	1.3.0	pure		>=3.10
+1185	mypy-boto3-dynamodb	1.43.106	pure		>=3.9
+1186	fastparquet	2026.9.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+1187	pikepdf	10.16.0	abi3		>=3.11
+1188	aiohttp-cors	0.8.1	pure		>=3.9
+1189	locust	2.46.7	pure		>=3.11
+1190	pytest-base-url	2.1.0	pure		>=3.8
+1191	altgraph	0.17.5	pure		
+1192	pytest-json-report	1.5.0	pure		
+1193	launchdarkly-server-sdk	9.18.1	pure		>=3.10
+1194	azure-datalake-store	1.0.1	pure		
+1195	google-cloud-texttospeech	2.38.0	pure		>=3.10
+1196	types-boto3	1.43.111	pure		>=3.9
+1197	uritools	6.1.3	pure		>=3.10
+1198	python-levenshtein	0.27.5	pure		>=3.10
+1199	contextlib2	21.6.0	pure		>=3.6
+1200	azure-storage-file-share	12.27.0	pure		>=3.10
+1201	aiolimiter	1.3.0	pure		>=3.10
+1202	cronsim	2.7	pure		>=3.10
+1203	types-aiobotocore-s3	3.9.2	pure		>=3.9
+1204	simpleeval	1.0.8	pure		>=3.9
+1205	types-aiobotocore	3.9.2	pure		>=3.9
+1206	user-agents	2.2.0	pure		
+1207	junitparser	5.0.3	pure		>=3.10
+1208	types-tabulate	0.10.0.20261006	pure		>=3.10
+1209	sqlfluff	4.4.0	pure		>=3.10
+1210	opentelemetry-instrumentation-celery	0.66b1	pure		>=3.10
+1211	azure-mgmt-storage	25.2.0	pure		>=3.10
+1212	iso8601	2.1.0	pure		>=3.7,<4.0
+1213	rq	2.12.0	pure		>=3.10
+1214	statsd	4.0.1	pure		
+1215	pyclipper	1.4.0	older_only	cp310 cp311 cp312 cp313 cp314 pp311	>=3.10
+1216	deltalake	1.6.6	abi3		>=3.10
+1217	elevenlabs	2.71.0	pure		<4.0,>=3.8
+1218	pycrypto	2.6.1	sdist_only		
+1219	opentelemetry-instrumentation-asyncpg	0.66b1	pure		>=3.10
+1220	scp	0.16.2	pure		
+1221	mypy-boto3-lambda	1.43.110	pure		>=3.9
+1222	colorful	0.5.8	pure		
+1223	netaddr	1.3.0	pure		>=3.7
+1224	pymupdf4llm	1.28.2	pure		>=3.10
+1225	pytest-playwright	0.10.0	pure		>=3.10
+1226	minio	7.2.20	pure		>=3.9
+1227	azure-keyvault-certificates	4.11.3	pure		>=3.9
+1228	opentelemetry-instrumentation-system-metrics	0.66b1	pure		>=3.10
+1229	daytona-api-client-async	0.223.1	pure		>=3.10
+1230	faster-whisper	1.2.1	pure		>=3.9
+1231	azure-mgmt-compute	38.4.0	pure		>=3.10
+1232	daytona-toolbox-api-client-async	0.223.1	pure		>=3.10
+1233	daytona-api-client	0.223.1	pure		>=3.10
+1234	tree-sitter-c	0.24.2	abi3		>=3.10
+1235	databricks-cli	0.18.0	pure		>=3.7
+1236	protobuf3-to-dict	0.1.5	sdist_only		
+1237	asyncio	4.0.0	pure		>=3.4
+1238	daytona-toolbox-api-client	0.223.1	pure		>=3.10
+1239	tree-sitter-python	0.25.0	abi3		>=3.10
+1240	xmlsec	1.3.17	older_only	cp310 cp311 cp312 cp313 cp314 cp39	>=3.9
+1241	meson-python	0.22.1	pure		>=3.10
+1242	shap	0.53.0	abi3		>=3.12
+1243	trimesh	5.1.1	pure		>=3.10
+1244	primp	2.0.1	abi3		>=3.10
+1245	jellyfish	1.2.1	older_only	cp310 cp311 cp312 cp313 cp314 cp39 pp310 pp311 pp39	>=3.9
+1246	speechrecognition	3.17.0	pure		>=3.9
+1247	asgi-lifespan	2.1.0	pure		>=3.7
+1248	pickleshare	0.7.5	pure		
+1249	google-cloud-language	2.22.0	pure		>=3.10
+1250	rank-bm25	0.2.2	pure		
+1251	adlfs	2026.8.0	pure		>=3.10
+1252	icalendar	7.3.0	pure		>=3.10
+1253	looker-sdk	26.18.0	pure		>=3.6
+1254	tree-sitter-typescript	0.23.2	abi3		>=3.9
+1255	google-cloud-container	2.67.0	pure		>=3.10
+1256	pyxlsb	1.0.10	pure		
+1257	daytona	0.223.1	pure		<4.0,>=3.10
+1258	google-cloud-trace	1.21.0	pure		>=3.10
+1259	slicer	0.0.8	pure		>=3.6
+1260	roman-numerals	4.1.0	pure		>=3.10
+1261	pyppmd	1.3.1	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+1262	py7zr	1.1.3	pure		>=3.10
+1263	tritonclient	2.73.0	pure		>=3.9
+1264	pybcj	1.0.8	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+1265	jax	0.11.2	pure		>=3.12
+1266	django-debug-toolbar	8.0.0	pure		>=3.10
+1267	instructor	1.17.0	pure		<4.0,>=3.9
+1268	openinference-semantic-conventions	0.1.41	pure		<3.15,>=3.10
+1269	librosa	1.0.0	pure		>=3.12
+1270	google-cloud-build	3.40.0	pure		>=3.10
+1271	inflate64	1.0.4	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	>=3.9
+1272	google-cloud-videointelligence	2.21.0	pure		>=3.10
+1273	blessed	1.50.0	pure		>=3.8
+1274	screeninfo	0.8.1	pure		>=3.6.2,<4.0.0
+1275	svix	2.8.0	pure		>=3.10
+1276	azure-eventhub	5.15.1	pure		>=3.9
+1277	pyproject-metadata	0.12.1	pure		>=3.8
+1278	pandera	0.34.1	pure		>=3.10
+1279	tree-sitter-java	0.23.5	abi3		>=3.9
+1280	multivolumefile	0.2.3	pure		>=3.6
+1281	opentelemetry-exporter-gcp-trace	1.15.0	pure		>=3.9
+1282	pypika	0.51.1	pure		
+1283	astunparse	1.6.3	pure		
+1284	peft	0.21.2	pure		>=3.10.0
+1285	python-bidi	0.6.11	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp38 cp39 pp311	>=3.9
+1286	jaxlib	0.11.2	cp315		>=3.12
+1287	dagster-pipes	1.13.26	pure		<3.15,>=3.10
+1288	junit-xml	1.9	pure		
+1289	flask-limiter	4.1.1	pure		>=3.10
+1290	nvidia-cufile-cu12	1.14.1.1	pure	platform	>=3
+1291	kaleido	1.5.0	pure		>=3.9
+1292	dpath	2.2.0	pure		>=3.7
+1293	google-ai-generativelanguage	0.12.1	pure		>=3.10
+1294	apache-airflow-providers-snowflake	6.18.0	pure		>=3.10
+1295	pgpy	0.6.0	sdist_only		>=3.6
+1296	backcall	0.2.0	pure		
+1297	microsoft-kiota-http	1.14.2	pure		>=3.10
+1298	flower	2.2.0	pure		>=3.10
+1299	colorclass	2.2.2	pure		>=2.6
+1300	langgraph-checkpoint-postgres	3.1.2	pure		>=3.10
+1301	dependency-injector	4.49.1	abi3		>=3.8
+1302	mypy-boto3-rds	1.43.105	pure		>=3.9
+1303	marshmallow-enum	1.5.1	pure		
+1304	microsoft-kiota-authentication-azure	1.14.2	pure		>=3.10
+1305	opencv-contrib-python	5.0.0.93	abi3		>=3.6
+1306	azure-kusto-data	6.0.4	pure		>=3.9
+1307	cdp-use	1.4.5	pure		>=3.11
+1308	motor	3.7.1	pure		>=3.9
+1309	thefuzz	0.22.1	pure		>=3.8
+1310	microsoft-kiota-abstractions	1.14.2	pure		>=3.10
+1311	google-cloud-bigquery-datatransfer	3.24.0	pure		>=3.10
+1312	mypy-boto3-cloudformation	1.43.110	pure		>=3.9
+1313	types-pymysql	1.2.0.20260923	pure		>=3.10
+1314	openinference-instrumentation	0.1.71	pure		<3.15,>=3.10
+1315	autobahn	26.7.1	older_only	cp311 cp312 cp313 cp314 pp311	>=3.11
+1316	pydantic-evals	2.55.0	pure		>=3.11
+1317	django-timezone-field	7.2.2	pure		<4.0,>=3.8
+1318	dagster	1.13.26	pure		<3.15,>=3.10
+1319	agent-detector	2.0.0	pure		>=3.9
+1320	tree-sitter-c-sharp	0.23.5	abi3		>=3.9
+1321	apprise	2.0.1	pure		>=3.9
+1322	txaio	26.6.1	pure		>=3.11
+1323	crcmod	1.7	sdist_only		
+1324	osqp	1.1.3	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp38 cp39	>=3.8
+1325	rtree	1.4.1	pure	platform	>=3.9
+1326	aliyun-trace	1.0.3	pure		>=3.7
+1327	aliyun-semantic-conventions	1.2.0	pure		>=3.7
+1328	atlassian-python-api	5.0.5	pure		>=3.9
+1329	python-hcl2	8.1.4	pure		>=3.8.0
+1330	azure-monitor-query	2.0.0	pure		>=3.9
+1331	sgmllib3k	1.0.0	sdist_only		
+1332	cssutils	2.15.0	pure		>=3.10
+1333	tree-sitter-go	0.25.0	abi3		>=3.10
+1334	lancedb	0.40.0	abi3		>=3.10
+1335	python-crontab	3.4.0	pure		
+1336	cachelib	0.17.0	pure		>=3.11
+1337	configparser	7.2.0	pure		>=3.9
+1338	pyrefly	1.3.2	pure	platform	>=3.8
+1339	detect-secrets	1.5.0	pure		
+1340	c7n-org	0.6.52	pure		<4.0.0,>=3.9.2
+1341	google-cloud-dataform	0.11.4	pure		>=3.10
+1342	libclang	18.1.1	older_only	py2.py3	
+1343	langchain-aws	1.8.1	pure		>=3.10
+1344	opentelemetry-exporter-otlp-common	0.66b1	pure		>=3.10
+1345	num2words	0.5.14	pure		
+1346	bashlex	0.18	pure		>=2.7, !=3.0, !=3.1, !=3.2, !=3.3, !=3.4
+1347	tree-sitter-rust	0.24.2	abi3		>=3.9
+1348	google-cloud-workflows	1.24.0	pure		>=3.10
+1349	ffmpeg-python	0.2.0	pure		
+1350	ansible	14.5.0	pure		>=3.12
+1351	scikit-build-core	1.1.1	pure		>=3.9
+1352	paho-mqtt	2.1.0	pure		>=3.7
+1353	browser-use	0.13.11	pure		<4.0,>=3.11
+1354	pygtrie	2.6.2	pure		>=3.11
+1355	dagster-shared	1.13.26	pure		<3.15,>=3.10
+1356	amplitude-analytics	1.2.3	pure		<4,>=3.6
+1357	microsoft-kiota-serialization-text	1.14.2	pure		>=3.10
+1358	microsoft-kiota-serialization-json	1.14.2	pure		>=3.10
+1359	mypy-boto3-ec2	1.43.107	pure		>=3.9
+1360	mypy-boto3-secretsmanager	1.43.0	pure		>=3.9
+1361	msgraph-core	1.5.2	pure		>=3.10
+1362	xlwt	1.3.0	pure		
+1363	gcloud-aio-bigquery	7.2.0	pure		<4.0,>=3.10
+1364	zstd	1.5.7.2	older_only	p35 cp36 cp37 cp38 cp39 pp27 pp310 pp311 pp36 pp37 pp38 pp39	
+1365	dotenv	0.9.9	pure		
+1366	google-cloud-datacatalog	3.32.0	pure		>=3.10
+1367	google-cloud-redis	2.23.0	pure		>=3.10
+1368	azure-mgmt-cosmosdb	10.0.0	pure		>=3.10
+1369	easygui	0.98.3	pure		
+1370	pep517	0.13.1	pure		>=3.6
+1371	atpublic	8.0.1	pure		>=3.10
+1372	gepa	0.1.4	pure		<3.15,>=3.10
+1373	pyrate-limiter	4.5.0	pure		>=3.10
+1374	fabric	3.2.3	pure		
+1375	oletools	0.60.2	pure		
+1376	burner-redis	0.1.7	abi3		>=3.10
+1377	std-uritemplate	2.0.12	pure		<4.0,>=3.8
+1378	azure-ai-projects	2.8.0	pure		>=3.10
+1379	types-psutil	7.2.2.20260906	pure		>=3.10
+1380	google-cloud-storage-transfer	1.22.0	pure		>=3.10
+1381	striprtf	0.0.33	pure		>=3.8
+1382	pcodedmp	1.2.6	pure		
+1383	apache-airflow	3.3.2	pure		!=3.15,>=3.10
+1384	bazel-runfiles	2.4.1	pure		>=3.7
+1385	coolname	5.0.0	pure		>=3.10
+1386	bubus	1.5.6	pure		<4.0,>=3.11
+1387	asyncer	0.0.18	pure		>=3.10
+1388	browser-use-sdk	3.11.3	pure		>=3.9
+1389	bottleneck	1.6.0	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314	>=3.10
+1390	sentinels	1.1.1	pure		>=3.9
+1391	google-generativeai	0.8.6	pure		>=3.9
+1392	elementpath	5.1.4	pure		>=3.10
+1393	dj-database-url	3.1.2	pure		>=3.10
+1394	supervisor	4.3.0	pure		
+1395	feedparser-sgmllib	2.1.0	pure		>=3.10
+1396	apache-airflow-providers-mysql	6.7.0	pure		>=3.10
+1397	uvicorn-worker	0.4.0	pure		>=3.9
+1398	pyzipper	0.4.0	pure		>=3.4
+1399	cloudevents	2.2.0	pure		>=3.10
+1400	jsondiff	2.2.1	pure		>=3.8
+1401	aws-sam-translator	1.114.0	pure		!=4.0,<=4.0,>=3.10
+1402	bottle	0.13.4	pure		
+1403	pydash	8.1.0	pure		>=3.10
+1404	pywebpush	2.5.0	pure		>=3.10
+1405	smbprotocol	1.17.0	pure		>=3.10
+1406	google-cloud-automl	2.21.0	pure		>=3.10
+1407	urwid	4.2.5	pure		>=3.9.0
+1408	daytona-analytics-api-client-async	0.223.1	pure		>=3.10
+1409	daytona-analytics-api-client	0.223.1	pure		>=3.10
+1410	apache-airflow-providers-ssh	6.1.0	pure		>=3.10
+1411	mongomock	4.3.0	pure		
+1412	edge-tts	7.2.8	pure		>=3.7
+1413	ag-ui-protocol	1.0.0	pure		>=3.9
+1414	pprintpp	0.4.0	pure		
+1415	google-cloud-memcache	1.17.0	pure		>=3.10
+1416	hatch	1.18.1	pure		>=3.10
+1417	google-cloud-os-login	2.23.0	pure		>=3.10
+1418	markdown2	2.5.5	pure		<4,>=3.9
+1419	google-cloud-orchestration-airflow	1.23.0	pure		>=3.10
+1420	kaitaistruct	0.11	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7
+1421	deepmerge	3.0.1	pure		>=3.8
+1422	highspy	1.15.1	older_only	cp310 cp311 cp312 cp313 cp314 cp39	>=3.9
+1423	xmlschema	4.3.2	pure		>=3.10
+1424	arro3-core	0.9.0	abi3		>=3.11
+1425	cookiecutter	2.7.1	pure		>=3.10
+1426	backports-asyncio-runner	1.2.0	pure		<3.11,>=3.8
+1427	constructs	10.8.1	pure		>=3.10
+1428	sh	2.4.0	pure		<4.0,>=3.10
+1429	thriftpy2	0.7.1	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314 cp39	>=3.7
+1430	cytoolz	1.2.0	cp315		>=3.9
+1431	cloud-sql-python-connector	1.22.0	pure		>=3.9
+1432	aniso8601	10.0.1	pure		
+1433	py-vapid	1.9.4	pure		
+1434	azure-mgmt-containerregistry	15.0.0	pure		>=3.9
+1435	parse-type	0.6.6	pure		!=3.0.*,!=3.1.*,>=2.7
+1436	jsii	1.141.0	pure		>=3.10
+1437	google-cloud-dataproc-metastore	1.24.0	pure		>=3.10
+1438	pytest-sugar	1.1.1	pure		
+1439	restrictedpython	8.5	pure		<3.16,>=3.10
+1440	func-timeout	4.3.5	sdist_only		
+1441	protego	0.7.0	pure		>=3.10
+1442	w3lib	2.5.0	pure		>=3.10
+1443	url-normalize	3.0.1	pure		>=3.10
+1444	ebcdic	2.0.1	pure		>=3.9
+1445	prefect	3.8.8	pure		<3.15,>=3.10
+1446	requests-ntlm	1.3.0	pure		>=3.8
+1447	cvxpy	1.9.3	older_only	cp311 cp312 cp313 cp314 cp314	>=3.11
+1448	webauthn	3.0.1	pure		>=3.10
+1449	scs	3.3.1	cp315		>=3.9
+1450	mypy-protobuf	5.1.0	pure		>=3.8
+1451	starkbank-ecdsa	2.3.1	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7
+1452	python3-openid	3.2.0	pure		
+1453	django-environ	0.14.0	pure		<4,>=3.9
+1454	google-cloud-dataflow-client	0.14.1	pure		>=3.10
+1455	publication	0.0.3	pure		
+1456	asynctest	0.13.0	pure		>=3.5
+1457	clarabel	0.11.1	abi3		>=3.9
+1458	blobfile	3.3.0	pure		>=3.10
+1459	extract-msg	0.56.1	pure		>=3.8
+1460	mutagen	1.48.1	pure		<4,>=3.10
+1461	google-cloud-batch	0.22.4	pure		>=3.10
+1462	autopep8	2.3.2	pure		>=3.9
+1463	restructuredtext-lint	2.0.2	pure		
+1464	pamqp	4.0.1	pure		>=3.11
+1465	python-telegram-bot	22.8	pure		>=3.10
+1466	braintrust	0.45.0	pure		>=3.10.0
+1467	tensorflow-estimator	2.15.0	pure		>=3.7
+1468	korean-lunar-calendar	0.4.0	pure		>=3.6
+1469	grpcio-gcp	0.2.2	pure		
+1470	compressed-rtf	1.0.7	pure		
+1471	auth0-python	6.7.0	pure		>=3.10
+1472	llama-index-core	0.14.25	pure		<4.0,>=3.10
+1473	python-calamine	0.8.3	older_only	cp310 cp311 cp312 cp313 cp314 cp314 pp311	>=3.10
+1474	a2wsgi	1.10.10	pure		>=3.8.0
+1475	webdriver-manager	4.1.2	pure		>=3.7
+1476	avro-python3	1.10.2	sdist_only		>=3.5
+1477	opentelemetry-exporter-http-transport	0.66b1	pure		>=3.10
+1478	priority	2.0.0	pure		>=3.6.1
+1479	chromadb	1.5.9	abi3		>=3.9
+1480	dagster-graphql	1.13.26	pure		<3.15,>=3.10
+1481	xyzservices	2026.9.1	pure		>=3.8
+1482	workos	10.5.0	pure		>=3.10
+1483	firecrawl-anydoc	0.2.4	abi3		>=3.10
+1484	slackclient	2.9.4	pure		>=3.6.0
+1485	apispec	6.10.0	pure		>=3.10
+1486	opentelemetry-instrumentation-psycopg	0.66b1	pure		>=3.10
+1487	aiocache	0.12.3	pure		
+1488	pulumi	3.268.0	pure		>=3.10
+1489	funcy	2.1	pure		
+1490	types-psycopg2	2.9.21.20261008	pure		>=3.10
+1491	types-docutils	0.23.0.20260923	pure		>=3.10
+1492	aiormq	7.2.2	pure		<4,>=3.11
+1493	textual-speedups	0.2.1	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314 cp39 pp311	>=3.9
+1494	rtfde	0.1.2.2	pure		>=3.8
+1495	oldest-supported-numpy	2023.12.21	pure		>=3.7
+1496	aio-pika	10.1.1	pure		<4,>=3.11
+1497	lance-namespace-urllib3-client	0.13.0	pure		>=3.8
+1498	azure-storage-common	2.1.0	pure		
+1499	databricks-connect	19.2.0	pure		==3.12.*
+1500	lance-namespace	0.13.0	pure		>=3.8
+1501	dash	4.4.1	pure		>=3.9
+1502	aws-cdk-lib	2.273.0	pure		>=3.10
+1503	azure-mgmt-containerservice	41.7.0	pure		>=3.10
+1504	dirtyjson	1.0.8	pure		
+1505	django-phonenumber-field	8.5.0	pure		>=3.10
+1506	waitress	3.0.2	pure		>=3.9.0
+1507	dagster-webserver	1.13.26	pure		<3.15,>=3.10
+1508	dataclasses	0.8	pure		>=3.6, <3.7
+1509	nose	1.3.7	pure		
+1510	django-celery-beat	2.9.0	pure		>=3.8
+1511	rfc8785	0.1.4	pure		>=3.8
+1512	etils	1.14.0	pure		>=3.11
+1513	djangorestframework-simplejwt	5.5.1	pure		>=3.9
+1514	lru-dict	1.4.1	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39 pp310 pp311	>=3.9
+1515	partial-json-parser	0.2.1.1.post7	pure		>=3.6
+1516	pypng	0.20220715.0	pure		
+1517	apache-airflow-providers-common-compat	1.20.0	pure		>=3.10
+1518	python-decouple	3.8	pure		
+1519	databricks-labs-dqx	0.16.0	pure		>=3.10
+1520	azure-keyvault	4.2.0	pure		
+1521	metricflow	0.213.0	pure		<3.15,>=3.10
+1522	click-default-group	1.2.4	pure		>=2.7
+1523	google-cloud-discoveryengine	0.20.5	pure		>=3.10
+1524	azure-mgmt-authorization	4.0.0	pure		>=3.7
+1525	sphinx-rtd-theme	3.1.0	pure		>=3.8
+1526	hypercorn	0.18.0	pure		>=3.10
+1527	pyyaml-ft	8.0.0	older_only	cp313 cp313	>=3.13
+1528	audioop-lts	0.2.2	abi3		>=3.13
+1529	python3-saml	1.16.0	pure		
+1530	mixpanel	5.4.0	pure		>=3.9
+1531	pylatexenc	2.11	pure		
+1532	apache-airflow-providers-databricks	7.21.0	pure		>=3.10
+1533	parver	1.0.1.post0	pure		>=3.10
+1534	pyahocorasick	2.3.1	older_only	cp310 cp311 cp312 cp313 cp314	>=3.10
+1535	langchain-mcp-adapters	0.3.2	pure		>=3.10
+1536	optree	0.20.0	cp315		>=3.9
+1537	harbor-rewardkit	0.2.3	pure		>=3.12
+1538	publicsuffix2	2.20191221	pure		
+1539	fake-useragent	2.2.0	pure		>=3.9
+1540	apache-airflow-providers-google	22.6.0	pure		>=3.10
+1541	scantree	0.0.4	pure		>=3.8
+1542	dirhash	0.5.0	pure		>=3.8
+1543	python-on-whales	0.81.0	pure		<4,>=3.8
+1544	json-rpc	1.15.0	pure		
+1545	odfpy	1.4.1	sdist_only		
+1546	types-openpyxl	3.1.5.20260827	pure		>=3.10
+1547	circuitbreaker	2.1.3	pure		
+1548	livekit-protocol	1.1.27	pure		>=3.9.0
+1549	pyhive	0.7.0	sdist_only		
+1550	mypy-boto3-glue	1.43.110	pure		>=3.9
+1551	audioread	3.1.0	pure		>=3.9
+1552	types-html5lib	1.1.11.20260518	pure		>=3.10
+1553	ortools	9.15.6755	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314 cp39	>=3.9
+1554	mypy-boto3-sts	1.43.94	pure		>=3.9
+1555	azure-mgmt-datafactory	10.0.0	pure		>=3.10
+1556	allure-python-commons	2.16.2	pure		>=3.6
+1557	ciso8601	2.3.3	older_only	p310 cp311 cp312 cp313 cp314 cp38 cp39 pp310 pp311 pp38 pp39	
+1558	flask-babel	4.0.0	pure		>=3.8,<4.0
+1559	pyopengl	3.1.10	pure		
+1560	mkdocstrings-python	2.0.9	pure		>=3.10
+1561	mkdocstrings	1.0.7	pure		>=3.11
+1562	microsoft-kiota-serialization-multipart	1.14.2	pure		>=3.10
+1563	microsoft-kiota-serialization-form	1.14.2	pure		>=3.10
+1564	mkdocs-autorefs	1.4.4	pure		>=3.9
+1565	dictdiffer	0.10.0	pure		>=3.7
+1566	pympler	1.1	pure		>=3.6
+1567	azure-mgmt-containerinstance	10.1.0	pure		>=3.7
+1568	pywin32-ctypes	0.2.3	pure		>=3.6
+1569	pglast	8.5	cp315		
+1570	browser-harness	0.1.13	pure		>=3.11
+1571	stringcase	1.2.0	sdist_only		
+1572	livekit-api	1.2.1	pure		>=3.9.0
+1573	strawberry-graphql	0.333.0	pure		<4.0,>=3.10
+1574	eth-utils	6.0.0	pure		<4,>=3.10
+1575	dbt-core-experimental-parser	2.0.5	sdist_only		>=3.9
+1576	sphinxcontrib-jquery	4.1	pure		>=2.7
+1577	eth-hash	0.8.0	pure		<4,>=3.10
+1578	eth-abi	6.0.0	pure		<4,>=3.10
+1579	enum34	1.1.10	pure		
+1580	google-cloud-iam	2.26.0	pure		>=3.10
+1581	python-socks	3.1.1	pure		>=3.9.0
+1582	eth-typing	6.0.0	pure		<4,>=3.10
+1583	tokenize-rt	6.2.0	pure		>=3.9
+1584	google-analytics-admin	0.30.2	pure		>=3.10
+1585	rlp	5.0.0	pure		<4,>=3.10
+1586	hexbytes	2.0.0	pure		<4,>=3.10
+1587	pastel	0.2.1	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+1588	voluptuous	0.16.0	pure		>=3.9
+1589	tyro	1.0.16	pure		>=3.8
+1590	grpcio-reflection	1.84.0	pure		>=3.10
+1591	pyte	0.8.2	pure		>=3.8
+1592	schedule	1.2.2	pure		>=3.7
+1593	azure-mgmt-keyvault	14.1.0	pure		>=3.10
+1594	pyfiglet	1.0.4	pure		>=3.9
+1595	python-crfsuite	0.9.12	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+1596	cel-python	0.5.0	pure		>=3.10
+1597	addict	2.4.0	pure		
+1598	betterproto	1.2.5	sdist_only		>=3.6
+1599	parsimonious	0.11.0	pure		
+1600	msgraph-sdk	1.64.0	pure		>=3.10
+1601	fetch-use	0.4.0	pure		>=3.9
+1602	e2b	2.55.1	pure		>=3.10
+1603	docker-pycreds	0.4.0	pure		
+1604	nanoid	2.0.0	pure		
+1605	pymupdf-layout	1.28.2	abi3		>=3.10
+1606	libtmux	0.62.0	pure		<4.0,>=3.10
+1607	djangorestframework-stubs	3.18.1	pure		>=3.11
+1608	pyhcl	0.4.5	pure		
+1609	pytest-unordered	0.8.0	pure		
+1610	imbalanced-learn	0.14.2	pure		>=3.10
+1611	whenever	0.11.0	pure		>=3.10
+1612	pyzstd	0.20.0	pure		>=3.11
+1613	unicodecsv	0.14.1	sdist_only		
+1614	tree-sitter-ruby	0.23.1	abi3		>=3.9
+1615	codeowners	0.9.0	pure		>=3.10
+1616	types-tqdm	4.70.0.20260906	pure		>=3.10
+1617	jsonschema-rs	0.58.6	abi3		>=3.10
+1618	torchaudio	2.11.0	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314	
+1619	applicationinsights	0.11.10	pure		
+1620	types-python-slugify	8.0.2.20240310	pure		>=3.8
+1621	jq	1.12.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp38 cp39 pp311	>=3.8
+1622	flask-session	0.8.0	pure		>=3.8
+1623	red-black-tree-mod	1.22	sdist_only		
+1624	pynndescent	0.6.0	pure		
+1625	azure-appconfiguration	1.10.0	pure		>=3.10
+1626	rustworkx	0.18.1	abi3		>=3.10
+1627	aws-cdk-asset-node-proxy-agent-v6	2.1.3	pure		>=3.10
+1628	allure-pytest	2.16.2	pure		
+1629	umap-learn	0.5.12	pure		>=3.9
+1630	dbt-snowflake	1.12.1	pure		>=3.10.0
+1631	livekit	1.1.20	pure	platform	>=3.9.0
+1632	flit	4.1.0	pure		>=3.8
+1633	pydicom	3.0.2	pure		>=3.10
+1634	aioresponses	0.7.9	pure		
+1635	http-ece	1.2.1	sdist_only		
+1636	mutmut	3.8.0	pure		>=3.10
+1637	marko	2.2.4	pure		>=3.9
+1638	fastapi-sso	0.23.0	pure		<4.0,>=3.10
+1639	deepagents	0.7.23	pure		<4.0,>=3.11
+1640	poethepoet	0.48.0	pure		>=3.10
+1641	flask-jwt-extended	4.7.4	pure		<4,>=3.10
+1642	opentelemetry-sdk-extension-aws	2.1.0	pure		>=3.8
+1643	types-aioboto3	15.5.0	pure		>=3.8
+1644	firecrawl-py	4.50.0	pure		>=3.8
+1645	aws-cdk-cloud-assembly-schema	55.0.0	pure		>=3.10
+1646	lmnr	0.7.67	pure		<4,>=3.10
+1647	pulp	4.0.0	cp315		>=3.12
+1648	opentelemetry-exporter-gcp-monitoring	1.15.0a0	pure		>=3.9
+1649	pydantic-ai	2.55.0	pure		>=3.11
+1650	presidio-analyzer	2.2.364	pure		<3.15,>=3.10
+1651	gguf	0.19.0	pure		>=3.10
+1652	opentelemetry-exporter-gcp-logging	1.15.0a0	pure		>=3.9
+1653	azure-mgmt-monitor	7.0.0	pure		>=3.9
+1654	openai-harmony	0.0.8	abi3		>=3.8
+1655	mando	0.8.2	pure		
+1656	social-auth-core	6.1.1	pure		>=3.10
+1657	gradio-client	2.7.2	pure		>=3.10
+1658	flask-appbuilder	5.2.3	pure		~=3.7
+1659	setuptools-rust	1.13.0	pure		>=3.9
+1660	radon	6.0.1	pure		
+1661	construct	2.10.70	pure		>=3.6
+1662	z3-solver	5.1.0.0	pure	platform	
+1663	apache-tvm-ffi	0.1.14.post1	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	>=3.9
+1664	sqlite-vec	0.1.9	pure	platform	
+1665	databricks-agents	1.12.0	pure		>=3.10
+1666	pint	0.26.1	pure		>=3.12
+1667	types-boto3-s3	1.43.106	pure		>=3.9
+1668	eth-rlp	3.0.0	pure		<4,>=3.10
+1669	pyhocon	0.3.63	sdist_only		
+1670	github3-py	4.0.1	pure		>=3.7
+1671	numcodecs	0.17.0	older_only	cp312 cp313 cp314 cp314	>=3.12
+1672	tree-sitter-yaml	0.7.2	abi3		>=3.10
+1673	gradio	6.30.0	pure		>=3.10
+1674	unittest-xml-reporting	4.0.0	pure		>=3.10
+1675	ifaddr	0.2.0	pure		
+1676	dspy	3.4.0	pure		<3.15,>=3.10
+1677	celery-redbeat	2.4.2	pure		>=3.9
+1678	azure-mgmt-sql	4.0.0	pure		>=3.10
+1679	tree-sitter-php	0.25.1	abi3		>=3.10
+1680	asteval	1.0.10	pure		>=3.10
+1681	cerberus	1.3.8	pure		>=3.7
+1682	pytest-forked	1.7.5	pure		>=3.10
+1683	catboost	1.2.10	older_only	cp310 cp311 cp312 cp313 cp314 cp38 cp39	
+1684	eth-account	0.14.0	pure		<4,>=3.10
+1685	bokeh	3.10.0	pure		>=3.12
+1686	mangum	0.22.0	pure		>=3.10
+1687	eth-keys	0.8.0	pure		<4,>=3.10
+1688	oci	2.187.2	pure		
+1689	azure-mgmt-datalake-store	0.5.0	pure		
+1690	ndg-httpsclient	0.5.1	pure		
+1691	bedrock-agentcore	1.24.1	pure		>=3.10
+1692	myst-parser	5.1.0	pure		>=3.11
+1693	social-auth-app-django	7.1.0	pure		>=3.10
+1694	inputimeout	1.0.4	pure		>=3.4
+1695	zxcvbn	4.5.0	pure		
+1696	django-ipware	8.0.0	pure		>=3.10
+1697	imagehash	4.3.2	pure		
+1698	mitmproxy	12.2.3	pure		>=3.12
+1699	pefile	2024.8.26	pure		>=3.6.0
+1700	apache-airflow-providers-smtp	3.1.0	pure		>=3.10
+1701	icdiff	2.0.10	pure		
+1702	gprof2dot	2025.4.14	pure		>=3.8
+1703	lxml-stubs	0.5.1	pure		
+1704	exa-py	2.25.0	pure		>=3.9
+1705	dagster-postgres	0.29.26	pure		<3.15,>=3.10
+1706	lmnr-claude-code-proxy	0.1.24	older_only	cp310 cp311 cp312 cp313 cp314 cp314 pp311	>=3.10
+1707	openai-whisper	20250625	sdist_only		>=3.8
+1708	editorconfig	0.17.1	pure		>=3.9
+1709	pytest-order	1.5.0	pure		>=3.9
+1710	pyqwest	0.12.0	cp315		>=3.11
+1711	yapf	0.43.0	pure		>=3.7
+1712	teradatasql	20.0.0.71	pure		>=3.7
+1713	ddgs	9.16.0	pure		>=3.10
+1714	methodtools	0.4.7	pure		
+1715	opentelemetry-instrumentation-asyncio	0.66b1	pure		>=3.10
+1716	autoflake	2.4.0	pure		>=3.10
+1717	azure-mgmt-web	11.0.1	pure		>=3.10
+1718	pytest-icdiff	0.9	pure		>=3.7
+1719	wirerope	1.0.0	pure		
+1720	flexparser	0.4	pure		>=3.9
+1721	flexcache	0.3	pure		>=3.9
+1722	thrift-sasl	0.4.3	pure		
+1723	jinxed	2.1.0	pure		
+1724	nvidia-nvshmem-cu12	3.8.0	pure	platform	>=3
+1725	opencensus-ext-azure	1.1.15	pure		
+1726	cadwyn	7.4.0	pure		>=3.10
+1727	nemo-relay	0.10.0	abi3		>=3.11
+1728	pypandoc	1.17	pure		>=3.7
+1729	diffusers	0.41.0	pure		>=3.10.0
+1730	eth-keyfile	0.10.0	pure		<4,>=3.10
+1731	probableparsing	0.0.1	pure		
+1732	jsbeautifier	2.0.3	pure		
+1733	ckzg	2.1.8	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	
+1734	rasterio	1.5.2	cp315		>=3.12
+1735	timezonefinder	9.0.0	abi3		<4,>=3.11
+1736	affine	3.0.1	pure		>=3.9
+1737	segno	1.6.6	pure		>=3.5
+1738	pyhanko	0.37.0	pure		>=3.10
+1739	pytest-testmon	2.2.0	pure		>=3.10
+1740	python-stdnum	2.2	pure		>=3.8
+1741	fastembed	0.9.0	pure		>=3.10.0
+1742	selectolax	1.0.0	cp315		<3.16,>=3.9
+1743	cross-web	0.7.0	pure		>=3.9
+1744	orderedmultidict	1.0.2	pure		
+1745	py-rust-stemmers	0.1.8	older_only	cp310 cp311 cp312 cp313 cp314 pp311	>=3.10
+1746	atomicwrites	1.4.1	sdist_only		
+1747	curlify	3.0.0	pure		>=3.7
+1748	opentelemetry-instrumentation-kafka-python	0.66b1	pure		>=3.10
+1749	usaddress	0.5.16	pure		>=3.9
+1750	jinja2-humanize-extension	0.4.0	pure		>=3.0
+1751	pytest-recording	0.14.0	pure		>=3.10
+1752	azure-mgmt-redis	14.5.0	pure		>=3.8
+1753	azure-mgmt-network	33.0.0	pure		>=3.10
+1754	furl	2.1.4	pure		
+1755	magicattr	0.1.7	pure		
+1756	enum-compat	0.0.3	pure		
+1757	channels	4.3.2	pure		>=3.9
+1758	iso3166	3.0.0	pure		>=3.6
+1759	openhands-sdk	1.54.0	pure		>=3.12
+1760	tablib	3.10.0	pure		>=3.10
+1761	django-allauth	65.19.7	pure		>=3.10
+1762	banks	2.5.1	pure		>=3.9
+1763	tom-swe	1.0.3	pure		>=3.10
+1764	azure-mgmt-cognitiveservices	14.1.0	pure		>=3.9
+1765	acryl-datahub	1.7.0.14	pure		>=3.10
+1766	types-retry	0.9.9.20260408	pure		>=3.10
+1767	subprocess-tee	0.4.2	pure		>=3.8
+1768	opentelemetry-util-genai	1.2b0	pure		>=3.10
+1769	litellm-proxy-extras	0.4.108	pure		>=3.9
+1770	dlt	1.31.0	pure		<3.15,>=3.10
+1771	pyhanko-certvalidator	0.32.1	pure		>=3.10
+1772	pymsteams	0.2.5	pure		>=3.9
+1773	pathlib	1.0.1	pure		
+1774	zarr	3.4.1	pure		>=3.12
+1775	latex2mathml	3.81.1	pure		>=3.10
+1776	anytree	2.13.0	pure		<4.0,>=3.9.2
+1777	azure-ai-agents	1.1.0	pure		>=3.9
+1778	svglib	2.3.0	pure		>=3.9
+1779	numpy-financial	1.1.0	older_only	cp313 cp314	>=3.13
+1780	jieba	0.42.1	sdist_only		
+1781	namex	0.1.0	pure		
+1782	azure-mgmt-msi	7.1.0	pure		>=3.9
+1783	pulumi-aws	7.50.0	pure		>=3.9
+1784	openhands-tools	1.54.0	pure		>=3.12
+1785	pyhumps	3.8.0	pure		
+1786	litellm-enterprise	0.1.76	pure		>=3.9
+1787	harbor	0.24.0	pure		>=3.12
+1788	polib	1.2.0	pure		
+1789	llama-index-workflows	2.26.0	pure		>=3.10
+1790	configobj	5.0.9	pure		>=3.7
+1791	pyaml	26.7.0	pure		>=3.8
+1792	opentelemetry-instrumentation-starlette	0.66b1	pure		>=3.10
+1793	cligj	0.7.2	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4
+1794	discord-py	2.7.1	pure		>=3.8
+1795	functions-framework	3.10.2	pure		<4,>=3.5
+1796	standardwebhooks	1.1.0	pure		>=3.9
+1797	diff-match-patch	20241021	pure		>=3.7
+1798	codespell	2.4.3	pure		>=3.9
+1799	tree-sitter-cpp	0.23.4	abi3		>=3.9
+1800	marshmallow-sqlalchemy	1.5.0	pure		>=3.10
+1801	types-webencodings	0.6.0.20260907	pure		>=3.10
+1802	django-simple-history	3.13.0	pure		>=3.10
+1803	dynaconf	3.3.5	pure		<3.15,>=3.10
+1804	presto-python-client	0.8.4	pure		
+1805	mistral-common	1.12.0	pure		<3.15,>=3.10.0
+1806	cuda-python	13.4.1	pure		>=3.10
+1807	django-appconf	1.2.0	pure		>=3.9
+1808	python-ipware	4.1.1	pure		>=3.9
+1809	geomet	1.1.0	pure		>=3.7
+1810	premailer	3.10.0	pure		
+1811	arabic-reshaper	3.0.1	pure		>=3.10
+1812	turbopuffer	2.12.0	pure		>=3.9
+1813	llama-index-instrumentation	0.6.0	pure		<4.0,>=3.10
+1814	azure-nspkg	3.0.2	pure		
+1815	apache-airflow-providers-http	6.2.0	pure		>=3.10
+1816	pi-heif	1.4.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314 pp311	>=3.9
+1817	mistral-vibe	2.26.1	abi3		>=3.12
+1818	azure-synapse-artifacts	0.22.0	pure		>=3.9
+1819	rdkit	2026.9.1	cp315		
+1820	pyluach	2.3.0	pure		>=3.8
+1821	port-for	1.1.1	pure		>=3.10
+1822	django-oauth-toolkit	3.4.1	pure		>=3.10
+1823	flask-caching	2.5.1	pure		>=3.11
+1824	azure-mgmt-loganalytics	14.0.0	pure		>=3.10
+1825	plumbum	2.0.2	pure		>=3.9
+1826	aliyun-python-sdk-core	2.16.1	pure		>=3.7
+1827	disposable-email-domains	0.0.278	pure		
+1828	pygit2	1.20.1	older_only	cp311 cp312 cp313 cp314 cp314 pp311	>=3.11
+1829	django-model-utils	5.0.0	pure		>=3.8
+1830	bullmq	3.3.3	pure		>=3.10.0
+1831	html-to-markdown	3.17.2	abi3		>=3.10
+1832	httpx-aiohttp	0.2.0	pure		>=3.9
+1833	azure-mgmt-eventhub	12.0.0	pure		>=3.10
+1834	structlog-sentry	2.2.1	pure		<4.0,>=3.7
+1835	ezdxf	1.4.4	pure		>=3.10
+1836	phonenumberslite	9.0.41	pure		>=2.5
+1837	pytest-dotenv	0.5.2	pure		
+1838	azure-mgmt-applicationinsights	4.1.0	pure		>=3.8
+1839	opentelemetry-instrumentation-sqlite3	0.66b1	pure		>=3.10
+1840	tach	0.35.3	abi3		>=3.10
+1841	azure-mgmt-rdbms	10.1.1	pure		>=3.9
+1842	web3	8.0.0	pure		<4,>=3.10
+1843	distributed	2026.8.0	pure		>=3.10
+1844	valkey	6.1.1	pure		>=3.9
+1845	requests-cache	1.3.3	pure		>=3.8
+1846	pipdeptree	4.2.7	abi3		>=3.11
+1847	pytest-aiohttp	1.1.1	pure		>=3.10
+1848	nats-py	2.16.0	pure		>=3.7
+1849	xai-sdk	1.20.0	pure		>=3.10
+1850	opentelemetry-instrumentation-pymongo	0.66b1	pure		>=3.10
+1851	docx2txt	0.9	pure		
+1852	sqlparams	6.2.0	pure		>=3.8
+1853	uamqp	1.6.11	older_only	cp310 cp311 cp312 cp313 cp38 cp39	>=3.7
+1854	aws-msk-iam-sasl-signer-python	1.0.2	pure		>=3.8
+1855	pex	2.103.4	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,<3.16,>=2.7
+1856	greenback	1.3.0	pure		>=3.8
+1857	azure-mgmt-servicebus	10.0.0	pure		>=3.10
+1858	dependency-groups	1.3.2	pure		>=3.9
+1859	webob	1.8.11	pure		!=3.0.*,!=3.1.*,!=3.2.*,>=2.7
+1860	nvidia-cutlass-dsl-libs-base	4.8.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+1861	google-analytics-data	0.23.3	pure		>=3.10
+1862	ddtrace-internal	0.1.0	pure		>=3.9
+1863	azure-synapse-spark	0.7.0	pure		
+1864	yaspin	3.5.1	pure		<4.0,>=3.10
+1865	expression	5.7.0	pure		<4,>=3.10
+1866	appium-python-client	6.0.7	pure		>=3.10
+1867	svcs	26.2.0	pure		>=3.10
+1868	python-box	7.4.1	pure		>=3.9
+1869	azure-functions	2.3.0	pure		>=3.13
+1870	apache-airflow-providers-slack	9.11.0	pure		>=3.10
+1871	azure-search-documents	12.0.0	pure		>=3.9
+1872	azure-mgmt-cdn	14.0.0	pure		>=3.10
+1873	tensorflow-serving-api	2.21.0	pure		>=3.10
+1874	pure-sasl	0.6.2	pure		
+1875	xgrammar	0.2.8	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	<4,>=3.8
+1876	safety	3.8.1	pure		>=3.9
+1877	django-otp	1.7.4	pure		>=3.8
+1878	dbt-spark	1.11.0	pure		>=3.10.0
+1879	tensorflow-text	2.21.1	older_only	cp310 cp311 cp312 cp313	
+1880	marshmallow-dataclass	8.7.1	pure		>=3.8
+1881	sly	0.5	pure		
+1882	daphne	4.2.3	pure		>=3.9
+1883	environs	15.2.0	pure		>=3.10
+1884	azure-mgmt-eventgrid	10.4.0	pure		>=3.8
+1885	azure-mgmt-recoveryservices	4.2.0	pure		>=3.10
+1886	openlineage-python	1.53.0	pure		>=3.10
+1887	hdfs	2.7.3	sdist_only		
+1888	boto	2.49.0	pure		
+1889	moviepy	2.2.1	pure		
+1890	intervaltree	3.2.1	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7.18
+1891	ipython-genutils	0.2.0	pure		
+1892	apache-airflow-providers-fab	3.10.0	pure		>=3.10
+1893	azure-mgmt-search	9.2.0	pure		>=3.9
+1894	azure-mgmt-recoveryservicesbackup	11.1.0	pure		>=3.10
+1895	geoalchemy2	0.20.0	pure		>=3.10
+1896	pkgconfig	1.6.0	pure		<4.0.0,>=3.9.0
+1897	backports-zoneinfo	0.2.1	older_only	cp36 cp37 cp38	>=3.6
+1898	reductoai	0.24.0	pure		>=3.9
+1899	multipart	2.0.1	pure		>=3.10
+1900	apache-airflow-providers-cncf-kubernetes	10.23.0	pure		>=3.10
+1901	choreographer	1.4.0	pure		>=3.9
+1902	azure-mgmt-managementgroups	2.0.0	pure		>=3.10
+1903	aiohttp-socks	0.12.0	pure		>=3.9.0
+1904	elasticsearch-dsl	8.18.0	pure		>=3.8
+1905	scrapy	2.19.0	pure		>=3.10
+1906	pydantic-monty	1.1.0	pure		>=3.10
+1907	tinytag	2.3.2	pure		>=3.7
+1908	typing	3.10.0.0	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <3.5
+1909	stamina	26.1.0	pure		>=3.10
+1910	parsy	2.2	pure		>=3.9
+1911	memory-profiler	0.61.0	pure		>=3.5
+1912	prance	26.7.19.0	pure		>=3.10
+1913	azure-mgmt-batch	19.0.0	pure		>=3.9
+1914	json-merge-patch	0.3.0	pure		>=3.9
+1915	mpire	2.10.2	pure		
+1916	requests-futures	1.1.0	pure		>=3.10
+1917	logistro	2.0.1	pure		>=3.8
+1918	asyncstdlib	3.14.0	pure		~=3.8
+1919	docling-core	2.101.1	pure		<4.0,>=3.10
+1920	pylsqpack	1.0.0	abi3		>=3.11
+1921	hatch-fancy-pypi-readme	25.1.0	pure		>=3.8
+1922	tableauserverclient	0.41	pure		>=3.10
+1923	types-six	1.17.0.20261008	pure		>=3.10
+1924	ultralytics	8.4.175	pure		>=3.8
+1925	django-csp	4.0	pure		
+1926	python-keycloak	7.1.1	pure		<4,>=3.10
+1927	glfw	2.10.2	older_only	py2.py3	
+1928	reactivex	5.1.0	pure		<4.0,>=3.10
+1929	azure-mgmt-trafficmanager	2.0.0	pure		>=3.10
+1930	google-cloud-datastore	2.27.0	pure		>=3.10
+1931	zizmor	1.30.1	pure	platform	>=3.10
+1932	connexion	3.3.0	pure		<4.0,>=3.9
+1933	kgb	7.3	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,>=2.7
+1934	aioquic	1.5.0	abi3		>=3.11
+1935	azure-mgmt-iothub	4.0.0	pure		>=3.8
+1936	proglog	0.1.12	pure		
+1937	facebook-business	26.0.2	pure		
+1938	safehttpx	0.2.0	pure		>=3.10
+1939	llguidance	1.9.1	abi3		>=3.10
+1940	dbt-postgres	1.11.0	pure		>=3.10.0
+1941	cuda-core	1.2.1	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+1942	janus	2.0.0	pure		>=3.9
+1943	checkov	3.3.27	pure		>=3.9
+1944	google	3.0.0	pure		
+1945	portkey-ai	2.3.4	pure		>=3.8
+1946	editor	2.0.1	pure		>=3.10
+1947	biopython	1.88	cp315		>=3.10
+1948	autoevals	0.4.0	pure		>=3.10.0
+1949	tree-sitter-language-pack	1.21.3	abi3		>=3.10
+1950	azure-kusto-ingest	6.0.4	pure		>=3.9
+1951	azure-eventgrid	4.22.1	pure		>=3.10
+1952	apache-airflow-providers-common-io	1.10.0	pure		>=3.10
+1953	azure-mgmt-marketplaceordering	1.1.1	pure		>=3.9
+1954	xmod	1.10.0	pure		>=3.10
+1955	patch-ng	1.19.1	pure		>=3.6
+1956	cmdstanpy	1.3.0	pure		>=3.9
+1957	pyarrow-stubs	20.0.0.20260819	pure		<4,>=3.9
+1958	nvidia-cutlass-dsl	4.8.0	pure		>=3.10
+1959	dagster-cloud-cli	1.13.26	pure		<3.15,>=3.10
+1960	pyairtable	3.5.0.post1	pure		
+1961	mujoco	3.15.0	cp315		>=3.10
+1962	azure-mgmt-advisor	9.0.1	pure		>=3.9
+1963	polyleven	0.11.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp38 cp39	>=3.8
+1964	azure-devops	7.1.0b4	pure		>=3.7
+1965	knack	0.14.0	pure		
+1966	pydocstyle	6.3.0	pure		>=3.6
+1967	google-cloud-alloydb	0.11.3	pure		>=3.10
+1968	azure-mgmt-policyinsights	1.0.1	pure		>=3.9
+1969	python-tds	1.17.1	pure		
+1970	jaxtyping	0.3.11	pure		>=3.11
+1971	azure-mgmt-servicefabric	2.1.0	pure		>=3.7
+1972	python-oxmsg	0.0.2	pure		>=3.9
+1973	aiostream	0.8.1	pure		>=3.10
+1974	prophet	1.5.0	pure	platform	>=3.10
+1975	dagster-aws	0.29.26	pure		<3.15,>=3.10
+1976	logbook	1.10.1	cp315		>=3.9
+1977	robotframework	7.5	pure		>=3.8
+1978	compressed-tensors	0.19.0	pure		
+1979	keras-applications	1.0.8	pure		
+1980	unearth	0.18.3	pure		>=3.9
+1981	multipledispatch	1.0.0	pure		
+1982	arxiv	4.0.1	pure		>=3.10
+1983	azure-mgmt-signalr	1.2.0	pure		>=3.7
+1984	inquirer	3.4.1	pure		>=3.9.2
+1985	opentelemetry-instrumentation-aiokafka	0.66b1	pure		>=3.10
+1986	pystache	0.6.8	pure		>=3.8
+1987	channels-redis	4.3.0	pure		>=3.9
+1988	multimethod	2.1	pure		>=3.11
+1989	semchunk	4.1.1	pure		>=3.10
+1990	newrelic	14.0.0	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314	>=3.10
+1991	azure-mgmt-datamigration	10.1.0	pure		>=3.9
+1992	azure-ai-inference	1.0.0b9	pure		>=3.8
+1993	googlesearch-python	1.3.0	pure		>=3.6
+1994	pytest-httpserver	1.2.0	pure		>=3.10
+1995	spdx-tools	0.8.5	pure		>=3.10
+1996	azure-mgmt-billing	8.0.0	pure		>=3.10
+1997	snowflake-core	1.13.2	pure		>=3.10
+1998	azure-mgmt-media	10.2.1	pure		>=3.7
+1999	azure-mgmt-maps	2.1.0	pure		>=3.7
+2000	pycurl	7.48.0	cp315		>=3.10
+2001	asgi-correlation-id	5.0.1	pure		>=3.10
+2002	azure-mgmt-iothubprovisioningservices	2.0.0	pure		>=3.10
+2003	runs	1.3.0	pure		>=3.10
+2004	azure-mgmt-batchai	7.0.0	pure		>=3.7
+2005	azure-mgmt-iotcentral	9.0.1	pure		>=3.9
+2006	lightning	2.6.6	pure		>=3.10
+2007	donfig	0.8.1.post1	pure		>=3.8
+2008	pytest-postgresql	9.1.1	pure		>=3.10
+2009	pycomposefile	0.0.34	pure		>=3.9
+2010	pinecone	10.0.0	abi3		>=3.10
+2011	py-key-value-shared	0.3.0	pure		>=3.10
+2012	pdm	2.29.2	pure		>=3.10
+2013	sql-metadata	3.0.1	pure		<4.0,>=3.10
+2014	shellcheck-py	0.11.0.1	older_only	py2.py3	>=3.9
+2015	datasketch	2.0.0	pure		>=3.9
+2016	llama-index-llms-openai	0.8.2	pure		<4.0,>=3.10
+2017	pyleak	0.2.0	pure		>=3.9
+2018	pyaes	1.6.1	sdist_only		
+2019	opentelemetry-processor-baggage	0.66b1	pure		>=3.10
+2020	multi-key-dict	2.0.3	sdist_only		
+2021	ultralytics-thop	2.2.2	pure		>=3.8
+2022	timeout-decorator	0.5.0	sdist_only		
+2023	opentelemetry-instrumentation-boto3sqs	0.66b1	pure		>=3.10
+2024	bitstring	5.0.0	pure		>=3.11
+2025	llama-index-embeddings-openai	0.7.0	pure		<4.0,>=3.10
+2026	encutils	1.0.0	pure		>=3.10
+2027	ua-parser-rs	0.1.5	abi3		>=3.10
+2028	rapidocr	3.10.0	pure		<4,>=3.8
+2029	azure-mgmt-appcontainers	5.1.0	pure		>=3.10
+2030	arq	0.28.0	pure		>=3.9
+2031	patchright	1.63.0	pure	platform	>=3.10
+2032	dbt-databricks	1.12.6	pure		>=3.10
+2033	mirakuru	3.0.4	pure		>=3.10
+2034	types-pillow	10.2.0.20240822	pure		>=3.8
+2035	wadler-lindig	0.1.7	pure		>=3.10
+2036	nox	2026.8.17	pure		>=3.10
+2037	exchange-calendars	4.13.2	pure		<4,>=3.10
+2038	python-barcode	0.16.1	pure		>=3.9
+2039	opentelemetry-instrumentation-jinja2	0.66b1	pure		>=3.10
+2040	hjson	3.1.0	pure		
+2041	clang-format	23.1.3	older_only	py2.py3	
+2042	ansible-compat	26.9.0	pure		>=3.10
+2043	sagemaker-core	2.24.0	pure		>=3.10
+2044	behave	1.3.3	pure		!=3.0.*,!=3.1.*,!=3.2.*,>=2.7
+2045	djangorestframework-csv	3.0.2	pure		
+2046	simple-gcp-object-downloader	0.1.0	pure		>=3.7,<4.0
+2047	fastapi-pagination	0.16.1	pure		>=3.10
+2048	presidio-anonymizer	2.2.364	pure		<3.15,>=3.10
+2049	interegular	0.3.3	pure		>=3.7
+2050	django-prometheus	2.5.0	pure		
+2051	pymilvus	3.0.2	pure		>=3.9
+2052	pytest-custom-exit-code	0.3.0	pure		>2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+2053	dep-logic	0.7.2	pure		>=3.10
+2054	detect-test-pollution	1.2.0	pure		>=3.8
+2055	pipx	1.17.13	pure		>=3.11
+2056	voyageai	0.5.0	pure		<3.15,>=3.9
+2057	problog	2.3.0	pure	platform	>=3.8
+2058	cassandra-driver	3.30.1	older_only	cp310 cp311 cp312 cp313 cp314	>=3.10
+2059	aiomultiprocess	0.9.1	pure		>=3.8
+2060	pytest-subtests	0.15.0	pure		>=3.9
+2061	commonmark	0.9.2	pure		
+2062	django-axes	8.3.1	pure		>=3.10
+2063	xhtml2pdf	0.2.23	pure		>=3.10
+2064	statsig	0.72.1	pure		>=3.7
+2065	pyiceberg-core	0.10.1	abi3		<4,>=3.10
+2066	dbt-bigquery	1.12.1	pure		>=3.10.0
+2067	statsig-python-core	0.23.1	abi3		>=3.10
+2068	blockbuster	1.5.29	pure		>=3.8
+2069	bc-detect-secrets	1.5.52	pure		>=3.8
+2070	hatch-requirements-txt	0.4.1	pure		>=3.6.1
+2071	celery-types	0.26.0	pure		<4,>=3.10
+2072	outlines-core	0.2.14	older_only	cp310 cp311 cp312 cp313 cp314 cp39	>=3.8
+2073	terminaltables	3.1.10	pure		>=2.6
+2074	pathlib2	2.3.7.post1	pure		
+2075	tzfpy	2.1.1	abi3		>=3.10
+2076	groovy	0.1.2	pure		>3.9
+2077	python-rapidjson	1.25	cp315		>=3.10
+2078	jiwer	4.0.0	pure		>=3.8
+2079	django-celery-results	2.6.0	pure		
+2080	gymnasium	1.4.0	pure		>=3.10
+2081	azure-graphrbac	0.61.2	pure		
+2082	types-defusedxml	0.7.0.20260504	pure		>=3.10
+2083	types-simplejson	4.2.0.20261006	pure		>=3.10
+2084	pdbr	0.9.8	pure		<4.0,>=3.10
+2085	torch-c-dlpack-ext	0.1.5	older_only	cp310 cp311 cp312 cp313 cp314 cp39	>=3.9
+2086	stanio	0.5.1	pure		>=3.8
+2087	rfc3987	1.3.8	pure		
+2088	click-log	0.4.0	pure		
+2089	modelscope	1.40.2	pure		>=3.10
+2090	aliyun-python-sdk-kms	2.16.5	pure		
+2091	flask-migrate	4.1.0	pure		>=3.6
+2092	promise	2.3	sdist_only		
+2093	azure-mgmt-privatedns	2.0.0	pure		>=3.10
+2094	mitmproxy-rs	0.12.11	abi3		>=3.12
+2095	apache-beam	2.77.0	older_only	cp310 cp311 cp312 cp313 cp314	>=3.10
+2096	django-ninja	1.7.1	pure		>=3.7
+2097	anyascii	0.3.3	pure		>=3.3
+2098	bluetooth-data-tools	1.29.24	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+2099	sqlglotrs	0.13.0	pure		>=3.9
+2100	freetype-py	2.5.1	pure	platform	>=3.7
+2101	pyusb	1.3.1	pure		>=3.9.0
+2102	prison	0.2.1	pure		
+2103	segment-analytics-python	2.4.0	pure		>=3.9
+2104	zipstream-ng	1.9.3	pure		>=3.5
+2105	regress	2026.9.1	cp315		>=3.11
+2106	google-cloud-vectorsearch	0.11.5	pure		>=3.10
+2107	python-ldap	3.4.8	sdist_only		>=3.6
+2108	ibm-db	3.3.0	older_only	cp310 cp311 cp312 cp313 cp314 cp39	
+2109	haversine	2.9.0	pure		>=3.5
+2110	types-beautifulsoup4	4.12.0.20250516	pure		>=3.9
+2111	farama-notifications	0.0.6	pure		
+2112	lark-parser	0.12.0	pure		
+2113	tensorboardx	2.6.5	pure		>=3.9
+2114	ibis-framework	12.0.0	pure		>=3.10
+2115	policy-sentry	0.15.2	pure		>=3.10
+2116	livekit-agents	1.8.6	pure		<3.15,>=3.10
+2117	checkdigit	0.5.0	pure		>=3.7,<4.0
+2118	bitsandbytes	0.50.2	pure	platform	>=3.10
+2119	opentelemetry-instrumentation-aws-lambda	0.66b1	pure		>=3.10
+2120	convertdate	2.5.1	pure		<4,>=3.7
+2121	docling-parse	7.22.2	older_only	cp310 cp311 cp312 cp313 cp314	>=3.10
+2122	intelhex	2.3.0	pure		
+2123	hf-transfer	0.1.9	abi3		>=3.7
+2124	influxdb-client	1.50.0	pure		>=3.7
+2125	apache-airflow-providers-amazon	9.37.0	pure		>=3.10
+2126	fastapi-mcp	0.4.0	pure		>=3.10
+2127	docxtpl	0.20.2	pure		>=3.7
+2128	cloudsplaining	0.9.1	pure		>=3.10
+2129	legacy-cgi	2.6.4	pure		>=3.8
+2130	decli	0.6.3	pure		>=3.9
+2131	django-structlog	10.1.0	pure		>=3.10
+2132	azure-mgmt-apimanagement	5.0.0	pure		>=3.8
+2133	backports-strenum	1.3.1	pure		>=3.8.6,<3.11
+2134	opentelemetry-instrumentation-tortoiseorm	0.66b1	pure		>=3.10
+2135	pylance	13.0.0	abi3		>=3.10
+2136	jaconv	0.5.0	pure		
+2137	accessible-pygments	0.0.5	pure		>=3.9
+2138	injector	0.24.0	pure		
+2139	pycep-parser	0.7.1	pure		>=3.10
+2140	datacompy	1.1.0	pure		>=3.10.0
+2141	hubspot-api-client	12.0.0	pure		>=3.7
+2142	tensorflow-io-gcs-filesystem	0.37.1	older_only	cp310 cp311 cp312 cp39	<3.13,>=3.7
+2143	conan	2.33.0	pure		>=3.8
+2144	parsel	1.12.1	pure		>=3.10
+2145	flatten-dict	0.5.0	pure		<4.0,>=3.10
+2146	bc-python-hcl2	0.4.3	pure		>=3.8
+2147	pysbd	0.3.4	pure		>=3
+2148	django-health-check	4.10.0	pure		>=3.14
+2149	munch	4.0.0	pure		>=3.6
+2150	schedula	1.6.15	pure		
+2151	pwdlib	0.3.1	pure		>=3.10
+2152	marshmallow-oneofschema	3.2.0	pure		>=3.9
+2153	opentelemetry-propagator-b3	1.45.1	pure		>=3.10
+2154	apache-airflow-providers-imap	3.13.0	pure		>=3.10
+2155	notion-client	3.1.0	pure		<4,>=3.8
+2156	dagster-k8s	0.29.26	pure		<3.15,>=3.10
+2157	dagster-cloud	1.13.26	pure		<3.15,>=3.10
+2158	jdcal	1.4.1	pure		
+2159	pip-licenses	5.5.5	pure		>=3.9
+2160	hijridate	2.6.0	pure		>=3.10
+2161	django-migration-linter	6.0.0	pure		>=3.9
+2162	django-formtools	2.7	pure		>=3.10
+2163	base58	2.1.1	pure		>=3.5
+2164	formulas	1.3.4	pure		
+2165	javaproperties	0.8.2	pure		>=3.8
+2166	livekit-blingfire	1.1.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	>=3.9.0
+2167	tinydb	4.9.0	pure		<4,>=3.10
+2168	pysmb	1.2.15	pure		
+2169	apache-airflow-providers-ftp	3.16.0	pure		>=3.10
+2170	protobuf-py-ext	0.6.0	abi3		>=3.10
+2171	cftime	1.6.6	abi3		>=3.11
+2172	ddsketch	3.0.1	pure		>=3.7
+2173	dparse	0.6.4	pure		>=3.7
+2174	bc-jsonpath-ng	1.6.1	pure		>=3.8
+2175	cloudscraper	1.2.71	pure		
+2176	typed-ast	1.5.5	older_only	cp310 cp311 cp36 cp37 cp38 cp39	>=3.6
+2177	shtab	1.12.1	pure		>=3.9
+2178	geojson	3.3.0	pure		>=3.10
+2179	jupytext	1.19.6	pure		>=3.9
+2180	protobuf-py	0.6.0	pure		>=3.10
+2181	sphinx-copybutton	0.5.2	pure		>=3.7
+2182	wget	3.2	sdist_only		
+2183	vercel-runtime	0.23.2	pure		>=3.12
+2184	nvidia-cudnn-frontend	1.31.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+2185	databricks-sqlalchemy	2.0.10	pure		<4.0.0,>=3.8.0
+2186	duckduckgo-search	8.1.1	pure		>=3.9
+2187	types-boto3-ses	1.43.0	pure		>=3.9
+2188	scipy-stubs	1.18.1.1	pure		>=3.12
+2189	async-generator	1.10	pure		>=3.5
+2190	opentelemetry-instrumentation-tornado	0.66b1	pure		>=3.10
+2191	minimal-snowplow-tracker	0.0.2	sdist_only		
+2192	chdb	4.4.0	pure		>=3.9
+2193	scapy	2.8.0	pure		<4,>=3.7
+2194	google-cloud-managedkafka	0.4.2	pure		>=3.10
+2195	latex2sympy2-extended	1.11.0	pure		>=3.10
+2196	httpx-retries	0.6.0	pure		>=3.10
+2197	pytest-instafail	0.5.0	pure		>=3.7
+2198	pymeeus	0.5.12	sdist_only		
+2199	pdfrw	0.4	pure		
+2200	simsimd	6.5.16	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314 cp38 cp39	
+2201	unstructured-client	0.46.2	pure		>=3.11
+2202	zict	3.0.0	pure		>=3.8
+2203	sqlalchemy-redshift	1.0.0	pure		>=3.10
+2204	ansible-lint	26.9.0	pure		>=3.10
+2205	azure-cli-core	2.91.0	pure		>=3.10.0
+2206	autograd	1.9.1	pure		>=3.10
+2207	azure-mgmt-postgresqlflexibleservers	2.0.0	pure		>=3.9
+2208	alibabacloud-tea-openapi	0.4.6	pure		>=3.7
+2209	fixedint	0.2.0	pure		
+2210	ipaddress	1.0.23	pure		
+2211	algoliasearch	4.47.0	pure		>=3.8.1
+2212	azure-mgmt-security	7.0.0	pure		>=3.8
+2213	pydantic-monty-runtime	1.1.0	pure	platform	>=3.10
+2214	typepy	2.0.0	pure		>=3.9
+2215	mbstrdecoder	1.1.5	pure		>=3.10
+2216	pyfakefs	6.2.0	pure		>=3.10
+2217	sphinxcontrib-mermaid	2.1.1	pure		>=3.10
+2218	pyshp	3.1.6	pure		>=3.9
+2219	pdpyras	5.4.1	pure		>=3.6
+2220	pulumi-command	1.2.1	pure		>=3.9
+2221	llama-cloud	2.18.0	pure		>=3.9
+2222	optype	0.19.0	pure		>=3.12
+2223	py-cpuinfo2	10.1.1	pure		>=3.9
+2224	apache-airflow-providers-sqlite	4.3.3	pure		>=3.10
+2225	quack-kernels	0.6.5	pure		>=3.10
+2226	deepgram-sdk	7.12.0	pure		<4.0,>=3.10
+2227	django-js-asset	4.2.0	pure		>=3.10
+2228	aiologic	0.17.1	pure		>=3.8
+2229	nameparser	2.3.0	pure		>=3.11
+2230	click-aliases	1.0.7	pure		>=3.10
+2231	vtk	9.7.1	older_only	cp310 cp311 cp312 cp313 cp314 cp314	
+2232	opentracing	2.4.0	sdist_only		
+2233	google-cloud-documentai	3.16.0	pure		>=3.10
+2234	sacrebleu	2.6.0	pure		>=3.9
+2235	python-can	4.6.1	pure		>=3.9
+2236	azure-mgmt-appconfiguration	5.0.0	pure		>=3.9
+2237	onepassword-sdk	0.4.1	older_only	cp310 cp311 cp312 cp313 cp39	>=3.9
+2238	connectrpc	0.12.1	pure		>=3.10
+2239	torchcodec	0.17.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+2240	mypy-boto3-ssm	1.43.104	pure		>=3.9
+2241	azure-mgmt-hdinsight	9.0.1	pure		>=3.9
+2242	math-verify	0.9.0	pure		>=3.10
+2243	zenpy	2.0.57	pure		
+2244	mypy-boto3-bedrock-runtime	1.43.62	pure		>=3.9
+2245	rjsmin	1.3.0	cp315		
+2246	grpc-stubs	1.53.0.6	pure		>=3.6
+2247	googlemaps	4.10.0	sdist_only		>=3.5
+2248	pyside6-essentials	6.12.0	abi3		<3.16,>=3.10
+2249	aws-encryption-sdk	4.0.7	pure		
+2250	mail-parser	4.8.0	pure		>=3.9
+2251	spake2	0.9	pure		
+2252	openapi-python-client	0.29.1	pure		<4.0,>=3.11
+2253	docling-ibm-models	4.0.3	pure		<4.0,>=3.10
+2254	pdm-backend	2.5.0	pure		>=3.9
+2255	pytest-bdd	9.0.0	pure		>=3.10
+2256	txtorcon	26.6.0	pure		>=3.8
+2257	gdown	6.4.2	pure		>=3.10
+2258	quart	0.23.1	pure		>=3.13
+2259	magic-wormhole	0.24.0	pure		>=3.10
+2260	pusher	3.3.4	pure		
+2261	opentelemetry-instrumentation-pymysql	0.66b1	pure		>=3.10
+2262	pyyaml-include	2.2	pure		>=3.8
+2263	fiona	1.10.1	older_only	cp310 cp311 cp312 cp313 cp38 cp39	>=3.8
+2264	pylint-plugin-utils	0.9.0	pure		<4.0,>=3.9
+2265	databricks-labs-lsql	0.17.0	pure		<3.15,>=3.10
+2266	hypothesis-graphql	0.13.2	pure		>=3.10
+2267	nulltype	2.3.1	pure		
+2268	iterable-io	1.0.4	pure		>=3.5
+2269	netcdf4	1.7.4	abi3		>=3.10
+2270	html-for-docx	1.2.0	pure		>=3.7
+2271	opentelemetry-instrumentation-pika	0.66b1	pure		>=3.10
+2272	azure-mgmt-synapse	2.0.0	pure		
+2273	pyzbar	0.1.9	pure		
+2274	alibabacloud-credentials	1.0.12	pure		>=3.7
+2275	check-jsonschema	0.38.2	pure		>=3.10
+2276	azure-mgmt-mysqlflexibleservers	1.0.0	pure		>=3.9
+2277	django-anymail	15.2	pure		>=3.10
+2278	crcmod-plus	2.3.6	abi3		>=3.9
+2279	pydispatcher	2.0.7	pure		
+2280	opentelemetry-instrumentation-vertexai	0.62.4	pure		<4,>=3.10
+2281	llama-index	0.14.25	pure		<4.0,>=3.10
+2282	microsoft-security-utilities-secret-masker	1.0.0b4	pure		
+2283	schemathesis	4.30.1	pure		>=3.10
+2284	google-cloud-artifact-registry	1.23.0	pure		>=3.10
+2285	browserbase	1.20.0	pure		>=3.9
+2286	pytest-factoryboy	2.8.1	pure		>=3.9
+2287	dm-tree	0.1.10	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314	>=3.10
+2288	kazoo	2.11.0	pure		
+2289	flashinfer-python	0.7.1	pure		<4.0,>=3.10
+2290	yq	4.4.5	pure		>=3.8
+2291	python-jenkins	1.8.3	pure		
+2292	opentelemetry-instrumentation-falcon	0.66b1	pure		>=3.10
+2293	alibabacloud-oss-v2	1.4.0	pure		>=3.8
+2294	parallel-web	1.3.5	pure		>=3.9
+2295	djlint	1.46.4	pure		>=3.10
+2296	pyunormalize	18.0.0	pure		>=3.9
+2297	vertica-python	1.4.0	pure		>=3.7
+2298	shiboken6	6.12.0	abi3		<3.16,>=3.10
+2299	opentelemetry-instrumentation-aio-pika	0.66b1	pure		>=3.10
+2300	opentelemetry-instrumentation-anthropic	0.62.4	pure		<4,>=3.10
+2301	azure-cli-telemetry	1.1.0	pure		
+2302	cssbeautifier	2.0.3	pure		
+2303	yappi	1.7.6	older_only	cp310 cp311 cp312 cp313 cp314 cp38 cp39	>=3.6
+2304	sqlalchemy-jsonfield	1.0.3	pure		>=3.9.0
+2305	mdformat	1.0.0	pure		>=3.10
+2306	commitizen	4.19.2	pure		<4.0,>=3.10
+2307	pdfkit	1.0.0	pure		
+2308	azure-mgmt-redhatopenshift	4.0.0	pure		>=3.10
+2309	pytest-random-order	1.2.0	pure		>=3.9
+2310	azure-cli	2.91.0	pure		>=3.10.0
+2311	types-mock	5.2.0.20260518	pure		>=3.10
+2312	pymongo-auth-aws	1.3.0	pure		>=3.8
+2313	openlineage-sql	1.53.0	abi3		>=3.10
+2314	rcssmin	1.3.0	cp315		
+2315	opentelemetry-instrumentation-confluent-kafka	0.66b1	pure		>=3.10
+2316	azure-keyvault-administration	4.7.2	pure		>=3.9
+2317	libsass	0.23.0	abi3		>=3.8
+2318	asyncpg-stubs	0.32.0	pure		<4.0,>=3.9
+2319	pyjson5	2.0.1	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314 cp38 cp39	~=3.8
+2320	gensim	4.4.0	older_only	cp310 cp311 cp312 cp313 cp39	>=3.9
+2321	azure-mgmt-netapp	17.1.0	pure		>=3.10
+2322	tweepy	4.17.0	pure		>=3.9
+2323	fastexcel	0.21.0	abi3		>=3.10
+2324	tox-uv	1.37.0	pure		>=3.11
+2325	azure-mgmt-sqlvirtualmachine	1.0.0	pure		>=3.10
+2326	numpy-typing-compat	20260602.2.5	pure		>=3.12
+2327	versioneer	0.29	pure		>=3.7
+2328	asana	5.4.0	pure		
+2329	suds-community	1.2.0	pure		>=3.7
+2330	azure-mgmt-servicefabricmanagedclusters	3.0.0	pure		>=3.9
+2331	json-log-formatter	1.2.1	pure		>=3.9
+2332	openlineage-integration-common	1.53.0	pure		>=3.10
+2333	flatten-json	0.1.14	pure		
+2334	harfile	0.5.0	pure		>=3.8
+2335	pynamodb	6.1.0	pure		>=3.7
+2336	azure-synapse-accesscontrol	0.7.0	pure		
+2337	opentelemetry-instrumentation-pyramid	0.66b1	pure		>=3.10
+2338	evaluate	0.4.6	pure		>=3.8.0
+2339	wikipedia-api	0.16.0	pure		>=3.10
+2340	sphinx-design	0.7.0	pure		>=3.11
+2341	tilelang	0.1.15	abi3		>=3.10
+2342	culsans	0.11.0	pure		>=3.8
+2343	azure-mgmt-resource-deployments	2.0.0	pure		>=3.10
+2344	dagster-dg-cli	1.13.26	pure		<3.15,>=3.10
+2345	dagster-slack	0.29.26	pure		<3.15,>=3.10
+2346	pinecone-plugin-interface	0.0.7	pure		<4.0,>=3.8
+2347	dagster-dg-core	1.13.26	pure		<3.15,>=3.10
+2348	azure-mgmt-botservice	2.0.0	pure		>=3.7
+2349	clickclick	20.10.2	pure		
+2350	doclang	0.7.3	pure		>=3.10
+2351	azure-communication-email	1.1.0	pure		>=3.9
+2352	azure-mgmt-imagebuilder	2.0.0	pure		>=3.10
+2353	telethon	1.45.0	pure		>=3.5
+2354	azure-mgmt-extendedlocation	2.0.0	pure		>=3.8
+2355	azure-synapse-managedprivateendpoints	0.4.0	pure		
+2356	opentelemetry-instrumentation-mysqlclient	0.66b1	pure		>=3.10
+2357	pyside6-addons	6.12.0	abi3		<3.16,>=3.10
+2358	configupdater	3.2	pure		>=3.6
+2359	azure-mgmt-servicelinker	1.1.0	pure		>=3.6
+2360	ip3country	0.4.0	pure		>=2.0
+2361	docling	2.137.0	pure		<4.0,>=3.10
+2362	plaid-python	45.0.0	sdist_only		>=3.6
+2363	types-regex	2026.9.29.20261005	pure		>=3.10
+2364	hf-gradio	0.4.1	pure		>=3.10
+2365	sglang	0.5.21	older_only	cp310 cp311 cp312 cp313	>=3.10
+2366	ast-grep-cli	0.50.0	pure	platform	
+2367	tree-sitter-powershell	0.26.4	abi3		>=3.10
+2368	ffmpy	1.0.0	pure		>=3.9
+2369	css-inline	0.22.0	abi3		>=3.10
+2370	lingua-language-detector	2.2.0	older_only	cp312 cp313 cp314	>=3.12
+2371	pypandoc-binary	1.17	pure	platform	>=3.7
+2372	azure-mgmt-nspkg	3.0.2	pure		
+2373	pydantic-ai-harness	0.55.0	pure		>=3.11
+2374	types-httplib2	0.32.0.20260720	pure		>=3.10
+2375	textblob	0.20.1	pure		>=3.10
+2376	mypy-boto3-iam	1.43.70	pure		>=3.9
+2377	hijri-converter	2.3.2.post1	pure		>=3.7
+2378	alembic-postgresql-enum	1.10.0	pure		>=3.7.0
+2379	opentelemetry-instrumentation-langchain	0.62.4	pure		<4,>=3.10
+2380	pycocotools	2.0.11	abi3		>=3.9
+2381	pytest-check	3.0.0	pure		>=3.9
+2382	salesforce-bulk	2.2.0	sdist_only		
+2383	gherkin-official	42.0.1	pure		>=3.10
+2384	opentelemetry-instrumentation-openai	0.62.4	pure		<4,>=3.10
+2385	py-deviceid	0.1.1	pure		>=3.8
+2386	hishel	1.4.0	pure		>=3.10
+2387	albumentations	2.0.8	pure		>=3.9
+2388	result	0.17.0	pure		>=3.8
+2389	fhir-resources	8.3.0	pure		>=3.8
+2390	toons	0.9.0	abi3		>=3.10
+2391	python-iso639	2026.7.23	pure		>=3.10
+2392	xsdata	26.2	pure		>=3.10
+2393	h5netcdf	1.8.1	pure		>=3.9
+2394	pymemcache	4.0.0	pure		>=3.7
+2395	zipfile-zstd	0.0.4	pure		>=3.6
+2396	boxsdk	10.17.1	pure		
+2397	fal-client	1.0.3	pure		>=3.8
+2398	flake8-bugbear	26.9.30	pure		>=3.10
+2399	pytimeparse2	1.7.1	pure		>=3.6
+2400	pulumi-tls	5.6.1	pure		>=3.9
+2401	aws-psycopg2	1.3.8	pure		
+2402	optax	0.2.8	pure		>=3.10
+2403	concurrent-log-handler	0.9.30	pure		>=3.6
+2404	publicsuffixlist	1.1.0.20261010	pure		>=3.8
+2405	google-cloud	0.34.0	pure		
+2406	mypy-boto3-ecs	1.43.106	pure		>=3.9
+2407	mssql-python	1.15.0	older_only	cp310 cp311 cp312 cp313 cp314	>=3.10
+2408	flaky	3.8.1	pure		>=3.5
+2409	asciinema	2.4.0	pure		
+2410	forbiddenfruit	0.1.4	sdist_only		
+2411	astropy	8.0.1	abi3		>=3.11
+2412	pyloudnorm	0.2.0	pure		>=3.9
+2413	pyod	3.6.6	pure		>=3.9
+2414	pytest-github-actions-annotate-failures	0.4.2	pure		>=3.10
+2415	inspect-ai	0.3.278	pure		>=3.10
+2416	playwright-stealth	2.0.3	pure		>=3.9
+2417	pyhamcrest	2.1.0	pure		>=3.6
+2418	types-aiobotocore-sqs	3.9.2	pure		>=3.9
+2419	snakeviz	2.2.2	pure		>=3.9
+2420	tree-sitter-embedded-template	0.25.0	abi3		>=3.10
+2421	resampy	0.4.3	pure		
+2422	python-arango	8.3.6	pure		>=3.10
+2423	django-two-factor-auth	1.18.1	pure		>=3.9
+2424	assemblyai	1.6.1	pure		>=3.8
+2425	modelscope-hub	0.4.6	pure		>=3.10
+2426	llama-parse	0.6.94	pure		<4.0,>=3.9
+2427	pyside6	6.12.0	abi3		<3.16,>=3.10
+2428	types-ujson	5.10.0.20250822	pure		>=3.9
+2429	pydantic-monty-client	1.1.0	cp315		>=3.10
+2430	gcovr	8.6	pure		>=3.10
+2431	swesmith	0.0.9	pure		>=3.10
+2432	tree-sitter-json	0.24.8	abi3		>=3.9
+2433	django-hijack	3.8.0	pure		>=3.14
+2434	opentelemetry-instrumentation-mysql	0.66b1	pure		>=3.10
+2435	docling-slim	2.137.0	pure		<4.0,>=3.10
+2436	igraph	1.0.0	abi3		>=3.9
+2437	py-ecc	8.0.0	pure		<4,>=3.8
+2438	sagemaker-studio	1.1.35	pure		>=3.10
+2439	openfeature-sdk	0.10.0	pure		>=3.10
+2440	django-linear-migrations	2.19.0	pure		>=3.9
+2441	langgraph-checkpoint-sqlite	3.1.1	pure		>=3.10
+2442	dbos	3.2.0	pure		>=3.10
+2443	databricks-pypi1	0.2	pure		
+2444	django-polymorphic	4.11.7	pure		<4.0,>=3.10
+2445	apache-airflow-core	3.3.2	pure		!=3.15,>=3.10
+2446	pytest-retry	1.7.0	pure		>=3.9
+2447	pyerfa	2.0.1.5	abi3		>=3.9
+2448	sparklines	1.0.0	pure		>=3.9
+2449	clerk-backend-api	7.0.0	pure		>=3.10
+2450	gspread-dataframe	4.0.0	pure		
+2451	pytest-durations	1.9.0	pure		<4.0,>=3.10
+2452	flask-compress	1.25	pure		>=3.9
+2453	alibabacloud-tea	0.4.3	sdist_only		>=3.7
+2454	futures	3.4.0	pure		>=2.6, <3
+2455	pytest-memray	1.11.0	pure		>=3.8
+2456	jwt	1.4.0	pure		>=3.9
+2457	aiogram	3.31.0	pure		<3.15,>=3.10
+2458	djangorestframework-api-key	3.1.0	pure		>=3.8
+2459	cloudinary	1.46.3	pure		
+2460	opentelemetry-instrumentation-pymemcache	0.66b1	pure		>=3.10
+2461	azure-keyvault-securitydomain	1.0.0b4	pure		>=3.10
+2462	requests-unixsocket	0.4.1	pure		>=3.9
+2463	uuid	1.30	sdist_only		
+2464	llama-index-readers-file	0.7.0	pure		<4.0,>=3.10
+2465	pyglet	2.1.17	pure		>=3.8
+2466	editdistance	0.8.1	older_only	cp310 cp311 cp312 cp38 cp39 pp310 pp38 pp39	>=3.8
+2467	querystring-parser	1.2.4	pure		
+2468	azure-mgmt-resource-deploymentstacks	1.0.0	pure		>=3.9
+2469	easydict	1.13	pure		
+2470	funcsigs	1.0.2	pure		
+2471	psygnal	0.16.1	pure		>=3.10
+2472	nvidia-cuda-cccl	13.3.4.3.1	pure	platform	>=3
+2473	awslambdaric	4.2.0	cp315		>=3.10
+2474	influxdb	5.3.2	pure		
+2475	apache-airflow-providers-standard	1.20.0	pure		>=3.10
+2476	google-api-python-client-stubs	1.40.0	pure		>=3.10
+2477	pystac	1.15.2	pure		>=3.10
+2478	azure-mgmt-datalake-nspkg	3.0.1	pure		
+2479	lmdb	3.0.0	older_only	cp310 cp311 cp312 cp313 cp314 cp39 pp310	>=3.9
+2480	fido2	2.2.1	pure		<4,>=3.10
+2481	mypy-boto3-sns	1.43.97	pure		>=3.9
+2482	markdown-to-mrkdwn	0.3.3	pure		>=3.6
+2483	pytest-vcr	1.0.2	pure		
+2484	gotrue	2.12.4	pure		<4.0,>=3.9
+2485	pykwalify	1.8.0	pure		
+2486	opentelemetry-instrumentation-cassandra	0.66b1	pure		>=3.10
+2487	trl	1.15.0	pure		>=3.11
+2488	kfp-pipeline-spec	2.17.0	pure		>=3.9.0
+2489	opentelemetry-instrumentation-aiopg	0.66b1	pure		>=3.10
+2490	pydantic-xml	2.21.1	pure		>=3.8
+2491	alive-progress	3.3.0	pure		<4,>=3.9
+2492	marisa-trie	1.4.1	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314 cp39	>=3.9
+2493	azure-ai-ml	1.35.1	pure		>=3.9
+2494	nvidia-cutlass-dsl-libs-cu13	4.8.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+2495	opentelemetry-instrumentation-remoulade	0.66b1	pure		>=3.10
+2496	scrapy-playwright	0.0.48	pure		>=3.10
+2497	mypy-boto3-ecr	1.43.73	pure		>=3.9
+2498	lm-format-enforcer	0.11.3	pure		<4.0,>=3.8
+2499	django-compressor	4.6.0	pure		>=3.10
+2500	livekit-local-inference	0.2.7	older_only	cp310 cp311 cp312 cp313 cp314	>=3.10
+2501	redis-py-cluster	2.1.3	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4
+2502	loro	1.16.2	older_only	310 cp311 cp312 cp313 cp314 cp314 cp38 cp39 pp310 pp311 pp39	>=3.8
+2503	commentjson	0.9.0	sdist_only		
+2504	eventlet	0.41.2	pure		>=3.10
+2505	orbax-checkpoint	0.12.7	pure		>=3.11
+2506	azure-mgmt-resource-templatespecs	1.0.0	pure		>=3.10
+2507	arviz	1.3.0	pure		>=3.12
+2508	azure-mgmt-resource-deploymentscripts	1.0.0b1	pure		>=3.9
+2509	portpicker	1.6.0	pure		>=3.6
+2510	zeroconf	0.151.5	cp315		>=3.10
+2511	capstone	5.0.9	pure	platform	>=3.8
+2512	snowflake-legacy	1.0.3	pure		<3.15,>=3.10
+2513	bitstruct	8.23.0	cp315		>=3.9
+2514	deepeval	4.2.8	pure		<4.0,>=3.9
+2515	langgraph-cli	0.4.33	pure		>=3.10
+2516	about-time	4.2.2	pure		<4,>=3.8
+2517	mypy-boto3-stepfunctions	1.43.88	pure		>=3.9
+2518	marimo	0.25.1	pure		>=3.10
+2519	o365	2.1.10	pure		>=3.10
+2520	browser-cookie3	0.20.1	pure		
+2521	kfp-server-api	2.17.0	sdist_only		
+2522	import-deps	0.5.1	pure		>=3.10
+2523	scandir	1.10.0	no_linux_x86_wheel	scandir-1.10.0-cp27-cp27m-win32.whl	
+2524	sarif-om	1.0.4	pure		>= 2.7
+2525	openapi-core	0.23.1	pure		<4.0.0,>=3.10.0
+2526	google-cloud-pubsublite	1.13.0	pure		>=3.8
+2527	magic-filter	1.0.12	pure		>=3.7
+2528	unstructured	0.27.25	pure		<3.14,>=3.11
+2529	dashscope	1.27.7	pure		>=3.9
+2530	pymsgbox	2.0.1	pure		>=3.4
+2531	jinja2-simple-tags	0.6.1	pure		>=3.6
+2532	snowflake	1.13.2	pure		<3.15,>=3.10
+2533	python-xlib	0.33	pure		
+2534	pyautogui	0.9.54	sdist_only		
+2535	e2b-code-interpreter	2.10.5	pure		>=3.10
+2536	pygetwindow	0.0.9	sdist_only		
+2537	pytweening	1.2.0	sdist_only		
+2538	pytest-timeouts	1.2.1	sdist_only		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+2539	repoze-lru	0.8	pure		>=3.10
+2540	tensorstore	0.1.85	older_only	cp311 cp312 cp313 cp314 cp314	>=3.11
+2541	opentelemetry-instrumentation-google-genai	1.2b0	pure		>=3.10
+2542	pyscreeze	1.0.1	sdist_only		
+2543	cuda-tile	1.6.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	<3.15,>=3.10
+2544	standard-aifc	3.13.0	pure		
+2545	pandasql	0.7.3	sdist_only		
+2546	pyrect	0.2.0	sdist_only		
+2547	standard-chunk	3.13.0	pure		
+2548	julius	0.2.8	pure		>=3.9.0
+2549	transitions	0.9.3	pure		
+2550	types-pygments	2.21.0.20260819	pure		>=3.10
+2551	yaml-config	0.1.5	pure		
+2552	usaddress-scourgify	0.7.1	pure		
+2553	flupy	1.2.5	pure		>=3.10
+2554	astropy-iers-data	0.2026.10.5.1.0.7	pure		>=3.10
+2555	pysaml2	7.5.5	pure		>=3.9.2
+2556	nvidia-cutlass-dsl-libs-cu12	4.8.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+2557	braintrust-core	0.0.59	pure		>=3.8.0
+2558	tibs	2.0.2	abi3		>=3.11
+2559	rapidocr-onnxruntime	1.4.4	pure		<3.13,>=3.6
+2560	types-freezegun	1.1.10	pure		
+2561	depyf	0.20.0	pure		>=3.7
+2562	img2pdf	0.6.3	pure		>=3.5
+2563	sparkmeasure	0.28.0	pure		>=3.9
+2564	gitignore-parser	0.1.13	sdist_only		
+2565	azure-cognitiveservices-speech	1.52.0	pure	platform	>=3.7
+2566	sqlfluff-templater-dbt	4.4.0	pure		
+2567	livekit-plugins-openai	1.8.6	pure		>=3.10.0
+2568	djangorestframework-dataclasses	1.4.0	pure		>=3.7
+2569	gnupg	2.3.1	sdist_only		
+2570	nvidia-nvvm	13.4.92	pure	platform	>=3
+2571	mouseinfo	0.1.3	sdist_only		
+2572	crewai	1.15.27	pure		<3.14,>=3.10
+2573	azure-mgmt-subscription	3.1.1	pure		>=3.7
+2574	pymatting	1.1.16	pure		>=3
+2575	tree-sitter-kotlin	1.1.0	abi3		>=3.9
+2576	docker-image-py	0.2.0	pure		>=3.10
+2577	dataproperty	1.1.1	pure		>=3.9
+2578	nanobind	3.1.0	pure		>=3.10
+2579	comfyui-workflow-templates	0.11.78	pure		>=3.9
+2580	pycrdt	0.14.8	older_only	cp310 cp311 cp312 cp313 cp314 pp311	>=3.10
+2581	rstr	3.2.2	pure		>=3.7
+2582	chroma-hnswlib	0.7.6	older_only	cp310 cp311 cp312 cp37 cp38 cp39	
+2583	braceexpand	0.1.7	pure		
+2584	rembg	2.0.85	pure		<4.0,>=3.11
+2585	sphinx-autodoc-typehints	3.13.9	pure		>=3.12
+2586	nvidia-cuda-nvcc	13.4.92	pure	platform	>=3
+2587	appnope	1.0.0	pure		>=3.9
+2588	click-spinner	0.2.0	pure		<4,>=3.8
+2589	flake8-pyproject	1.2.4	pure		>=3.6
+2590	tree-sitter-swift	0.7.4	abi3		>=3.8
+2591	cucumber-tag-expressions	11.0.1	pure		>=3.10
+2592	llama-cloud-services	0.6.94	pure		<4.0,>=3.9
+2593	flashtext	2.7	sdist_only		
+2594	openinference-instrumentation-langchain	0.1.79	pure		<3.15,>=3.10
+2595	sqlalchemy2-stubs	0.0.2a38	pure		>=3.6
+2596	mizani	0.14.6	pure		>=3.10
+2597	queuelib	1.10.0	pure		>=3.10
+2598	anywidget	0.11.0	pure		>=3.10
+2599	livekit-plugins-silero	1.8.6	pure		>=3.10.0
+2600	cx-oracle	8.3.0	older_only	cp310 cp36 cp37 cp38 cp39	
+2601	tabledata	1.3.5	pure		>=3.10
+2602	devtools	0.13.0	pure		>=3.10
+2603	jaraco-text	4.3.0	pure		>=3.10
+2604	supafunc	0.10.2	pure		<4.0,>=3.9
+2605	opentelemetry-propagator-jaeger	1.45.1	pure		>=3.10
+2606	ibm-cloud-sdk-core	3.28.0	pure		>=3.10
+2607	pycairo	1.29.2	no_linux_x86_wheel	pycairo-1.29.2-cp310-cp310-win32.whl	>=3.10
+2608	oras	0.2.43	pure		
+2609	pywinrm	0.5.0	pure		>=3.8
+2610	django-import-export	4.4.1	pure		>=3.9
+2611	tox-uv-bare	1.37.0	pure		>=3.11
+2612	pytablewriter	1.2.1	pure		>=3.9
+2613	qtpy	2.4.3	pure		>=3.7
+2614	plotnine	0.15.8	pure		>=3.10
+2615	arpeggio	2.0.3	pure		
+2616	dirty-equals	0.11	pure		>=3.9
+2617	zlib-ng	1.0.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	>=3.9
+2618	pastedeploy	3.1.0	pure		>=3.7
+2619	casbin	1.43.0	pure		>=3.3
+2620	apache-airflow-task-sdk	1.3.2	pure		!=3.15,>=3.10
+2621	free-email-domains	1.0.2	pure		
+2622	blosc2	4.14.1	abi3		>=3.11
+2623	tbb	2023.1.0	older_only	py2.py3	
+2624	pip-system-certs	5.3	pure		>=3.10
+2625	inject	5.5.0	pure		>=3.10
+2626	comfyui-workflow-templates-core	0.3.369	pure		>=3.9
+2627	ccxt	4.5.85	pure		>=3.10
+2628	dotty-dict	1.3.1	pure		>=3.5,<4.0
+2629	types-boto3-sqs	1.43.0	pure		>=3.9
+2630	hdbcli	2.30.27	abi3		
+2631	aws-secretsmanager-caching	1.2.0	pure		>=3.8
+2632	requests-aws-sign	0.1.6	pure		
+2633	comfyui-workflow-templates-media-assets-01	0.1.48	pure		>=3.9
+2634	stringzilla	5.2.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+2635	pydruid	0.6.9	sdist_only		
+2636	snapshot-restore-py	1.0.0	pure		>=3.9
+2637	albucore	0.2.21	pure		>=3.11
+2638	mypy-boto3-athena	1.43.0	pure		>=3.9
+2639	nvidia-cuda-crt	13.4.92	pure	platform	>=3
+2640	types-grpcio	1.84.0.20260928	pure		>=3.10
+2641	pydantic-yaml	1.7.0	pure		<3.15,>=3.10
+2642	fhir-core	1.1.11	pure		>=3.8
+2643	zc-lockfile	4.0	pure		>=3.9
+2644	iterative-telemetry	0.0.10	pure		>=3.8
+2645	coincurve	21.0.0	older_only	cp310 cp311 cp312 cp313 cp39	>=3.9
+2646	appier	1.46.0	pure		
+2647	async-property	0.2.2	pure		
+2648	nvidia-cutlass-dsl-libs-core	4.8.0	pure		>=3.10
+2649	comfyui-workflow-templates-json	0.1.104	pure		>=3.9
+2650	expandvars	1.1.2	pure		>=3.6.2
+2651	dataclass-wizard	1.0.0	pure		>=3.9
+2652	resvg-py	0.5.0	abi3		>=3.10
+2653	capi-param-builder-python	1.3.2	pure		
+2654	yamale	6.1.0	pure		>=3.8
+2655	opentelemetry-propagator-ot-trace	0.66b1	pure		>=3.10
+2656	aws-bedrock-token-generator	1.1.0	pure		>=3.7
+2657	pulumi-random	4.21.2	pure		>=3.9
+2658	pygame	2.6.1	older_only	cp310 cp311 cp312 cp313 cp36 cp37 cp38 cp39 pp39	>=3.6
+2659	venusian	3.1.1	pure		>=3.7
+2660	ecs-logging	2.3.0	pure		>=3.8
+2661	cloudflare	5.9.0	pure		>=3.9
+2662	apify-client	3.3.0	pure		>=3.11
+2663	dify-plugin	0.10.2	pure		>=3.12
+2664	pytest-profiling	1.8.1	pure		>=3.6
+2665	django-silk	5.6.0	pure		>=3.10
+2666	language-data	1.4.0	pure		
+2667	langgraph-runtime-inmem	0.36.0	pure		>=3.11.0
+2668	wordfreq	3.1.1	pure		>=3.8,<4
+2669	alembic-utils	0.8.8	pure		>=3.9
+2670	pytest-dependency	0.6.1	sdist_only		>=3.4
+2671	pytest-lazy-fixtures	1.4.1	pure		>=3.8
+2672	honcho	2.0.0	pure		
+2673	cheroot	11.1.2	pure		>=3.8
+2674	cucumber-expressions	20.1.0	pure		>=3.10
+2675	django-pydantic-field	0.5.4	pure		>=3.10
+2676	netifaces	0.11.0	older_only	cp27 cp27 cp35 cp36 cp37 cp38 cp39	
+2677	alibabacloud-endpoint-util	0.0.4	sdist_only		
+2678	itemadapter	0.13.1	pure		>=3.9
+2679	mss	10.2.0	pure		>=3.9
+2680	pycron	3.3.0	pure		>=3.9
+2681	pytube	15.0.0	pure		>=3.7
+2682	azure-mgmt-containerregistrytasks	1.0.0b1	pure		>=3.9
+2683	types-markupsafe	1.1.10	pure		
+2684	casefy	1.1.0	pure		>=3.6
+2685	pagerduty	7.0.1	pure		>=3.10
+2686	django-reversion	6.3.0	pure		>=3.9
+2687	types-jinja2	2.11.9	pure		
+2688	model-hosting-container-standards	0.1.16	pure		>=3.10
+2689	openinference-instrumentation-openai	0.1.65	pure		<3.15,>=3.10
+2690	datadog-lambda	8.128.0	pure		<3.15,>=3.8.0
+2691	webargs	8.7.1	pure		>=3.9
+2692	locate	1.1.1	pure		>=3.4
+2693	langgraph-api	0.16.0	pure		>=3.11
+2694	itemloaders	1.5.0	pure		>=3.10
+2695	hashids	1.3.1	pure		>=2.7
+2696	grandalf	0.8	pure		
+2697	google-api	0.1.12	pure		
+2698	flask-admin	2.2.1	pure		>=3.10
+2699	django-crispy-forms	2.7	pure		>=3.10
+2700	cron-converter	2.0.2	pure		>=3.8
+2701	types-boto3-dynamodb	1.43.106	pure		>=3.9
+2702	pytest-codspeed	5.0.3	pure		>=3.9
+2703	flask-socketio	5.7.0	pure		>=3.8
+2704	django-ratelimit	4.1.0	pure		>=3.7
+2705	comfy-kitchen	0.2.37	pure		>=3.10
+2706	azure-mgmt-resourcegraph	8.0.1	pure		>=3.9
+2707	mdutils	1.8.1	pure		
+2708	hupper	1.12.1	pure		>=3.7
+2709	chess	1.11.2	sdist_only		>=3.8
+2710	inline-snapshot	0.36.0	pure		>=3.9
+2711	tree-sitter-elixir	0.3.5	abi3		>=3.9
+2712	types-boto3-rds	1.43.105	pure		>=3.9
+2713	pytest-docker	3.2.5	pure		>=3.8
+2714	starlette-testclient	0.4.1	pure		>=3.7
+2715	databricks-pypi2	0.2	pure		
+2716	json-logic	0.6.3	pure		
+2717	ebooklib	0.20	pure		>=2.7
+2718	django-object-actions	5.1.2	pure		>=3.9
+2719	pygeohash	3.5.1	cp315		>=3.10
+2720	types-boto3-ec2	1.43.107	pure		>=3.9
+2721	hypothesis-jsonschema	0.23.1	pure		>=3.8
+2722	kornia	0.8.3	pure		>=3.11
+2723	python-nvd3	0.16.0	sdist_only		
+2724	pymediainfo	7.0.1	pure	platform	>=3.9
+2725	jproperties	2.1.2	pure		>=2.7
+2726	tokenspeed-triton	3.9.10.post20261008	abi3		<3.16,>=3.11
+2727	tcmlib	1.5.0	older_only	py2.py3	
+2728	scim2-filter-parser	0.7.0	pure		>=3.8
+2729	better-profanity	0.7.0	pure		==3.*
+2730	aws-lambda-typing	2.20.0	pure		<4.0,>=3.6
+2731	dbutils	3.2.0	pure		>=3.7
+2732	types-boto3-lambda	1.43.110	pure		>=3.9
+2733	aws-opentelemetry-distro	0.21.0	pure		>=3.10
+2734	pydantic-handlebars	0.2.1	pure		>=3.10
+2735	python-baseconv	1.2.2	sdist_only		
+2736	piexif	1.1.3	pure		>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+2737	types-colorama	0.4.15.20260508	pure		>=3.10
+2738	sgqlc	18	pure		<4,>=3.8
+2739	types-werkzeug	1.0.9	pure		
+2740	json-schema-to-pydantic	0.4.11	pure		>=3.9
+2741	types-lxml	2026.2.16	pure		>=3.9
+2742	zope-deprecation	6.0	pure		>=3.9
+2743	mcap	1.5.0	pure		>=3.7
+2744	flax	0.12.10	pure		>=3.12
+2745	flask-talisman	1.1.0	pure		
+2746	branca	0.8.2	pure		>=3.7
+2747	webvtt-py	0.5.1	pure		>=3.7
+2748	torchao	0.18.0	pure		
+2749	drf-extensions	0.8.0	pure		
+2750	leb128	1.0.9	pure		
+2751	ossdata	0.3.7	pure		>=3.8
+2752	adbc-driver-manager	1.12.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+2753	oyaml	1.0	pure		
+2754	quickjs	1.19.4	older_only	cp310 cp311 cp312 cp38 cp39	
+2755	clickhouse-sqlalchemy	0.3.2	sdist_only		<4,>=3.7
+2756	casadi	3.8.1	abi3		
+2757	filterpy	1.4.5	sdist_only		
+2758	django-admin-sortable2	2.3.1	pure		
+2759	hdbscan	0.8.44	older_only	cp310 cp311 cp312 cp313 cp314	>=3.10
+2760	pyspellchecker	0.9.1	pure		>=3.10
+2761	flask-restful	0.3.10	pure		
+2762	rarfile	4.5	pure		>=3.10
+2763	testfixtures	12.4.0	pure		>=3.11
+2764	furo	2025.12.19	pure		>=3.8
+2765	signxml	5.1.0	pure		>=3.9
+2766	asynch	0.4.0	older_only	cp311 cp312 cp313 cp314 cp314	<4.0,>=3.11
+2767	safety-schemas	0.0.21	pure		>=3.8
+2768	folium	0.20.0	pure		>=3.9
+2769	pkce	1.0.3	pure		>=3
+2770	onnxscript	0.7.2	pure		>=3.9
+2771	dominate	2.9.1	pure		>=3.4
+2772	fasttext-wheel	0.9.2	older_only	cp27 cp27 cp310 cp311 cp312 cp35 cp36 cp37 cp38 cp39	
+2773	line-profiler	5.0.2	older_only	cp310 cp311 cp312 cp313 cp314 cp38 cp39	>=3.8
+2774	tokenspeed-mla	2.0.0	pure		>=3.10
+2775	poetry-dynamic-versioning	1.10.0	pure		<4.0,>=3.7
+2776	vllm	0.31.0	abi3		<3.15,>=3.10
+2777	dagster-docker	0.29.26	pure		<3.15,>=3.10
+2778	azure-monitor-ingestion	1.1.0	pure		>=3.9
+2779	cvss	3.6	pure		
+2780	dynamodb-json	1.4.2	pure		
+2781	taskiq	0.13.0	pure		<4,>=3.10
+2782	borb	3.0.9	pure		>=3.6
+2783	x-wr-timezone	2.0.1	pure		
+2784	pystac-core	1.15.2	pure		>=3.10
+2785	pystac-ext-raster	1.1.1	pure		>=3.10
+2786	pystac-ext-file	2.1.1	pure		>=3.10
+2787	pystac-ext-eo	1.1.1	pure		>=3.10
+2788	pystac-ext-classification	2.0.1	pure		>=3.10
+2789	pystac-ext-projection	2.0.1	pure		>=3.10
+2790	pystac-ext-sar	1.0.1	pure		>=3.10
+2791	pystac-ext-version	1.2.1	pure		>=3.10
+2792	pystac-ext-sat	1.0.1	pure		>=3.10
+2793	pystac-ext-view	1.0.1	pure		>=3.10
+2794	pystac-ext-xarray-assets	1.0.1	pure		>=3.10
+2795	pystac-ext-item-assets	1.0.1	pure		>=3.10
+2796	pystac-ext-timestamps	1.1.1	pure		>=3.10
+2797	pystac-ext-table	1.2.1	pure		>=3.10
+2798	pystac-ext-scientific	1.0.1	pure		>=3.10
+2799	pystac-ext-pointcloud	1.0.1	pure		>=3.10
+2800	pystac-ext-mgrs	1.0.1	pure		>=3.10
+2801	pystac-ext-grid	1.1.1	pure		>=3.10
+2802	pystac-ext-storage	2.0.1	pure		>=3.10
+2803	pystac-ext-mlm	1.4.1	pure		>=3.10
+2804	pystac-ext-label	1.0.2	pure		>=3.10
+2805	pystac-ext-datacube	2.2.1	pure		>=3.10
+2806	recurring-ical-events	3.8.2	pure		>=3.8
+2807	pystac-ext-render	2.0.0	pure		>=3.10
+2808	comfyui-frontend-package	1.55.16	pure		>=3.9
+2809	sphinx-basic-ng	1.0.0b2	pure		>=3.7
+2810	pytest-celery	1.3.0	pure		<4.0,>=3.9
+2811	manifold3d	3.5.4	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	>=3.9
+2812	onnxruntime-gpu	1.31.0	older_only	cp311 cp312 cp313 cp313 cp314 cp314	>=3.11
+2813	aws-embedded-metrics	3.5.0	pure		>=3.6
+2814	flufl-lock	9.2.0	pure		>=3.10
+2815	taskiq-dependencies	1.5.7	pure		<4.0,>=3.9
+2816	azure-mgmt-domainregistration	1.0.0	pure		>=3.10
+2817	astronomer-cosmos	1.15.1	pure		>=3.10
+2818	wasmtime	49.0.0	pure		>=3.9
+2819	onnx-ir	1.0.0	pure		>=3.9
+2820	mem0ai	2.2.1	pure		<4.0,>=3.10
+2821	prometheus-flask-exporter	0.23.2	pure		
+2822	roman-numerals-py	4.1.0	pure		>=3.10
+2823	types-boto3-cloudformation	1.43.110	pure		>=3.9
+2824	puccinialin	0.1.14	pure		>=3.9
+2825	emr-notebooks-magics	0.2.4	sdist_only		
+2826	sacremoses	0.2.0	pure		>=3.9
+2827	pyqt5	5.15.11	abi3		>=3.8
+2828	prefect-aws	0.7.12	pure		>=3.10
+2829	mimesis	22.2.0	pure		>=3.10
+2830	keyrings-alt	5.0.2	pure		>=3.8
+2831	isal	1.8.0	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	>=3.9
+2832	types-bleach	6.4.0.20260728	pure		>=3.10
+2833	webdataset	1.0.2	pure		>=3.10
+2834	rx	3.2.0	pure		>=3.6.0
+2835	kornia-rs	0.2.0	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314 cp38 cp39	>=3.8
+2836	expecttest	0.3.0	pure		<4.0.0,>=3.8.1
+2837	translationstring	1.4	pure		
+2838	django-pgactivity	1.8.0	pure		<4,>=3.10.0
+2839	pykakasi	2.3.0	pure		>=3.8
+2840	undetected-chromedriver	3.5.5	sdist_only		
+2841	singer-sdk	0.54.7	pure		>=3.10
+2842	word2number	1.1	sdist_only		
+2843	configcat-client	10.0.1	pure		
+2844	uwsgi	2.0.31	sdist_only		
+2845	mypy-boto3-kms	1.43.12	pure		>=3.9
+2846	mssql-python-odbc	18.6.2.1	pure	platform	>=3.10
+2847	pyscaffold	4.6	pure		>=3.7
+2848	drf-yasg	1.21.18	pure		>=3.10
+2849	tcolorpy	0.1.7	pure		>=3.9
+2850	nbclassic	1.3.3	pure		>=3.9
+2851	humming-kernels	0.1.16	abi3		>=3.10
+2852	django-cacheops	7.2	pure		>=3.7
+2853	textdistance	4.6.3	pure		>=3.5
+2854	ntplib	0.4.0	pure		
+2855	opentelemetry-instrumentation-google-generativeai	0.62.4	pure		<4,>=3.10
+2856	django-pglock	1.8.0	pure		<4,>=3.10.0
+2857	chispa	0.12.0	pure		<4.0,>=3.10
+2858	mediapipe	1.1.0	pure	platform	
+2859	marshmallow-union	0.1.15.post1	pure		
+2860	langchain-ollama	1.1.0	pure		<4.0.0,>=3.10.0
+2861	pyramid	2.1	pure		>=3.10
+2862	ndindex	1.10.1	older_only	cp310 cp311 cp312 cp313 cp313 cp314 cp314 cp39	>=3.9
+2863	pydata-sphinx-theme	0.23.0	pure		>=3.11
+2864	azure-mgmt-dns	9.0.0	pure		>=3.9
+2865	browserforge	1.2.4	pure		<4.0,>=3.8
+2866	lsprotocol	2025.0.0	pure		>=3.8
+2867	lark-oapi	1.7.3	pure		>=3.8
+2868	pylint-django	2.8.0	pure		<4.0,>=3.9
+2869	opentelemetry-instrumentation-bedrock	0.62.4	pure		<4,>=3.10
+2870	strawberry-graphql-django	0.93.0	pure		<4.0,>=3.10
+2871	us	4.0.0	pure		>=3.8
+2872	patito	0.8.6	pure		>=3.9
+2873	easyocr	1.7.2	pure		
+2874	impit	0.14.1	older_only	cp310 cp311 cp312 cp313 cp314 cp314	>=3.10
+2875	svgwrite	1.4.3	pure		>=3.6
+2876	pillow-avif-plugin	1.6.0	older_only	p27 cp310 cp311 cp312 cp313 cp313 cp314 cp314 cp37 cp38 cp39	
+2877	tree-sitter-scala	0.26.2	abi3		>=3.9
+2878	apify-fingerprint-datapoints	0.15.0	pure		>=3.8
+2879	silero-vad	6.2.3	pure		>=3.8
+2880	pyqt5-sip	12.20.0	cp315		>=3.10
+2881	pymupdfb	1.24.10	pure	platform	>=3.8
+2882	fasttext	0.9.3	no_linux_x86_wheel	fasttext-0.9.3-cp39-cp39-macosx_14_0_arm64.whl	
+2883	nvidia-cuda-nvdisasm	13.4.92	pure	platform	>=3
+2884	cleanco	2.3	pure		
+2885	sqlacodegen	4.0.4	pure		>=3.10
+2886	django-scim2	0.23.0	pure		>=3.10
+2887	dash-bootstrap-components	2.0.4	pure		>=3.9
+2888	django-admin-list-filter-dropdown	1.0.3	pure		
+2889	dicttoxml	1.7.16	pure		>=3.6
+2890	argparse-addons	0.12.0	pure		>=3.6
+2891	vercel	0.11.6	pure		>=3.10
+2892	pytz-deprecation-shim	0.1.0.post0	pure		!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,>=2.7
+2893	simple-term-menu	1.6.6	pure		~=3.5
+2894	tuspy	1.1.0	pure		>=3.5.3
+2895	pandas-market-calendars	5.5.0	pure		>=3.10
+2896	opentelemetry-instrumentation-crewai	0.62.4	pure		<4,>=3.10
+2897	scrubadub	2.0.1	pure		
+2898	pytest-docker-tools	3.1.10	pure		<4.0.0,>=3.9.0
+2899	uptime-kuma-api	1.2.1	sdist_only		>=3.7, <4
+2900	pywinpty	3.0.5	no_linux_x86_wheel	pywinpty-3.0.5-cp310-cp310-win_amd64.whl	>=3.10
+2901	sqlalchemy-stubs	0.4	pure		
+2902	types-tzlocal	5.1.0.1	pure		>=3.7
+2903	django-safedelete	1.5.0	pure		
+2904	pydantic-avro	0.13.0	pure		<4.0,>=3.11
+2905	pyqt5-qt5	5.15.19	pure	platform	
+2906	uncertainties	3.2.3	pure		>=3.8
+2907	avro-gen3	0.7.16	pure		
+2908	clr-loader	0.3.1	pure		>=3.10
+2909	azure-mgmt-reservations	3.0.0	pure		>=3.10
+2910	pytorch-metric-learning	2.9.0	pure		>=3.0
+2911	qh3	2.0.4	abi3		>=3.7
+2912	mistletoe	1.6.0	pure		~=3.5
+2913	docopt-ng	0.9.0	pure		>=3.7
+2914	opentelemetry-instrumentation-cohere	0.62.4	pure		<4,>=3.10
+2915	findspark	2.0.1	pure		
+2916	docusign-esign	6.1.0	pure		
+2917	treescope	0.1.10	pure		>=3.10
+2918	strands-agents-tools	0.8.9	pure		>=3.10
+2919	pathlib-mate	1.3.2	pure		>=3.7
+2920	pythonnet	3.2.1	pure		<3.16,>=3.11
+2921	email-reply-parser	0.5.12	pure		
+2922	opentelemetry-instrumentation-qdrant	0.62.4	pure		<4,>=3.10
+2923	plaster	1.1.2	pure		>=3.7
+2924	plaster-pastedeploy	1.0.1	pure		>=3.7
+2925	python-whois	0.9.6	pure		
+2926	dogpile-cache	1.5.0	pure		>=3.10
+2927	types-pyasn1	0.6.0.20260724	pure		>=3.10
+2928	python-vagrant	1.0.0	pure		>=3.8
+2929	jschema-to-python	1.2.3	pure		>= 2.7
+2930	enum-tools	0.13.0	pure		>=3.7
+2931	opentelemetry-instrumentation-llamaindex	0.62.4	pure		<4,>=3.10
+2932	fastsafetensors	0.4.0	older_only	cp310 cp311 cp312 cp313 cp314	<3.15,>=3.10
+2933	update-checker	1.0.0	pure		>=3.10
+2934	django-admin-inline-paginator	0.4.0	pure		>=3.3
+2935	opentelemetry-instrumentation-ollama	0.62.4	pure		<4,>=3.10
+2936	llama-index-indices-managed-llama-cloud	0.12.0	pure		<4.0,>=3.10
+2937	agno	3.1.2	pure		<4,>=3.9
+2938	progress	1.6.1	pure		>=3.6
+2939	comfyui-embedded-docs	0.5.13	pure		>=3.9
+2940	google-cloud-recommendations-ai	0.13.2	pure		>=3.10
+2941	opentelemetry-instrumentation-transformers	0.62.4	pure		<4,>=3.10
+2942	secure	2.0.1	pure		>=3.10
+2943	apache-airflow-providers-microsoft-mssql	4.7.1	pure		>=3.10
+2944	opentelemetry-instrumentation-replicate	0.62.4	pure		<4,>=3.10
+2945	opentelemetry-instrumentation-watsonx	0.62.4	pure		<4,>=3.10
+2946	opentelemetry-instrumentation-mistralai	0.62.4	pure		<4,>=3.10
+2947	opentelemetry-instrumentation-together	0.62.4	pure		<4,>=3.10
+2948	opentelemetry-instrumentation-weaviate	0.62.4	pure		<4,>=3.10
+2949	country-converter	1.3.2	pure		<4.0,>=3.9
+2950	asn1	3.3.0	pure		
+2951	crewai-core	1.15.27	pure		<3.14,>=3.10
+2952	crewai-cli	1.15.27	pure		<3.14,>=3.10
+2953	simple-parsing	0.1.9	pure		>=3.9
+2954	retry2	0.9.5	pure		>=2.6
+2955	opsgenie-sdk	2.1.5	pure		
+2956	opentelemetry-instrumentation-chromadb	0.62.4	pure		<4,>=3.10
+2957	opentelemetry-instrumentation-milvus	0.62.4	pure		<4,>=3.10
+2958	opentelemetry-instrumentation-alephalpha	0.62.4	pure		<4,>=3.10
+2959	evergreen-py	3.22.0	pure		<3.14,>=3.9
+2960	opentelemetry-instrumentation-pinecone	0.62.4	pure		<4,>=3.10
+2961	pytest-ordering	0.6	pure		
+2962	dbl-tempo	0.1.30	pure		>=3.9
+2963	opentelemetry-instrumentation-sagemaker	0.62.4	pure		<4,>=3.10
+2964	unleashclient	6.9.0	pure		>=3.8
+2965	llama-index-cli	0.5.7	pure		<4.0,>=3.10
+2966	comfy-aimdo	0.5.6	pure		>=3.9
+2967	fcache	0.6.0	pure		>=3.9
+2968	oai-statsig-python-core	0.35.0	abi3		>=3.10
+2969	dbt-duckdb	1.11.0	pure		>=3.10
+2970	duckdb-engine	0.17.0	pure		<4,>=3.9
+2971	opentelemetry-instrumentation-marqo	0.62.4	pure		<4,>=3.10
+2972	mypy-boto3-ses	1.43.0	pure		>=3.9
+2973	django-rest-polymorphic	0.1.10	pure		
+2974	opentelemetry-instrumentation-lancedb	0.62.4	pure		<4,>=3.10
+2975	starlette-context	0.5.1	pure		>=3.10
+2976	opentelemetry-instrumentation-haystack	0.62.4	pure		<4,>=3.10
+2977	columnar	1.4.1	pure		
+2978	dbt-redshift	1.11.1	pure		>=3.10.0
+2979	boostedblob	1.1.0	pure		>=3.10
+2980	django-countries	9.1.0	pure		>=3.10
+2981	crewai-tools	1.15.27	pure		<3.14,>=3.10
+2982	open-clip-torch	3.3.0	pure		>=3.9
+2983	tantivy	0.26.2	older_only	cp310 cp311 cp312 cp313 cp314	>=3.10
+2984	braintree	4.47.0	pure		
+2985	dagster-celery	0.29.26	pure		<3.15,>=3.10
+2986	nibabel	5.4.2	pure		>=3.10
+2987	openmed	3.0.0	pure		>=3.10
+2988	nvtx	0.2.16	older_only	cp310 cp311 cp312 cp313 cp314 cp314 cp39	>=3.9
+2989	opencc-python-reimplemented	0.1.7	pure		
+2990	readerwriterlock	1.0.9	pure		>=3.6
+2991	crontab	1.0.5	sdist_only		
+2992	livekit-plugins-deepgram	1.8.6	pure		>=3.10.0
+2993	opentelemetry-instrumentation-elasticsearch	0.64b0	pure		>=3.10
+2994	tree-sitter-lua	0.5.0	abi3		>=3.10
+2995	immutables	0.21	older_only	cp310 cp311 cp312 cp313 cp38 cp39	>=3.8.0
+2996	opentelemetry-instrumentation-mcp	0.62.4	pure		<4,>=3.10
+2997	fpdf	1.7.2	sdist_only		
+2998	llama-index-readers-llama-parse	0.7.0	pure		<4.0,>=3.10
+2999	opentelemetry-instrumentation-groq	0.62.4	pure		<4,>=3.10
+3000	pulumi-gcp	10.1.0	pure		>=3.9

@@ -1,0 +1,230 @@
+# Reusable workflow: run the caller's own install/test commands under each upcoming dated
+# condition (conditions.json) next to a same-day baseline, and write a "what breaks and when"
+# report to the job summary. Report-only by default: a BREAK fails the run only with fail-on: break.
+#
+#   jobs:
+#     future:
+#       uses: CyberNative-AI/future-ci/.github/workflows/future-ci.yml@<commit SHA> # v0
+#       with:
+#         tool-ref: <the same commit SHA>
+#         install: python -m pip install -e .[test]
+#         test: python -m pytest -q
+#
+# tool-ref has no default: the tool code runs at the ref the caller names. The plan job resolves it
+# to one commit, and every later job checks out that commit.
+name: future-ci
+on:
+  workflow_call:
+    inputs:
+      test:
+        description: Command that runs the tests (bash)
+        type: string
+        required: true
+      install:
+        description: Command that installs dependencies (bash), run before the test command
+        type: string
+        default: ""
+      apt:
+        description: Extra apt packages, space separated
+        type: string
+        default: ""
+      env:
+        description: Extra environment for install and test, one NAME=value per line
+        type: string
+        default: ""
+      language:
+        description: python, ruby or node (default - the root manifest)
+        type: string
+        default: ""
+      conditions:
+        description: "Condition ids to check, space separated. Default: the default set. 'default canada-tz-2026-11-01' adds an experimental one"
+        type: string
+        default: ""
+      fail-on:
+        description: "none: report only; break: fail the run when a condition breaks"
+        type: string
+        default: none
+      timeout-minutes:
+        description: Per phase (install, test) timeout
+        type: number
+        default: 30
+      tool-repo:
+        description: Repository the tool code is checked out from
+        type: string
+        default: CyberNative-AI/future-ci
+      tool-ref:
+        description: Commit SHA (or tag or branch) the tool code is checked out at. Pass the SHA this workflow is pinned to
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      tool-sha: ${{ steps.tool.outputs.sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ inputs.tool-repo }}
+          ref: ${{ inputs.tool-ref }}
+          path: .future-ci
+          persist-credentials: false
+      - id: tool
+        env:
+          TOOL_REF: ${{ inputs.tool-ref }}
+        run: |
+          [ -n "$TOOL_REF" ] || { echo "::error::tool-ref is empty; pass the commit SHA this workflow is pinned to"; exit 1; }
+          sha=$(git -C .future-ci rev-parse HEAD)
+          echo "tool ref $TOOL_REF is commit $sha; every job runs the tool at this commit"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+      - id: plan
+        env:
+          FCI_LANG: ${{ inputs.language }}
+          FCI_ONLY: ${{ inputs.conditions }}
+        run: |
+          python3 -m venv "$RUNNER_TEMP/fci-venv"
+          "$RUNNER_TEMP/fci-venv/bin/pip" install --quiet 'PyYAML==6.0.3'
+          args=(plan --repo . --out "$RUNNER_TEMP/plan.json" --github-output)
+          [ -n "$FCI_LANG" ] && args+=(--lang "$FCI_LANG")
+          read -ra only <<< "$FCI_ONLY"
+          [ ${#only[@]} -gt 0 ] && args+=(--only "${only[@]}")
+          "$RUNNER_TEMP/fci-venv/bin/python" .future-ci/futureci.py "${args[@]}"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: futureci-plan
+          path: ${{ runner.temp }}/plan.json
+
+  run:
+    needs: plan
+    if: needs.plan.outputs.matrix != '[]'
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    name: ${{ matrix.id }}
+    runs-on: ${{ matrix.runsOn }}
+    env:
+      FCI_ID: ${{ matrix.id }}
+      FCI_COND: ${{ matrix.condition }}
+      FCI_TIMEOUT: ${{ inputs.timeout-minutes }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ inputs.tool-repo }}
+          ref: ${{ needs.plan.outputs.tool-sha }}
+          path: .future-ci
+          persist-credentials: false
+      - run: printf 'FCI_OUT=%s\nFUTURECI_CACHE=%s\n' "$RUNNER_TEMP/futureci-results" "$RUNNER_TEMP/futureci-cache" >> "$GITHUB_ENV"
+      - id: setup-python
+        if: matrix.lang == 'python'
+        continue-on-error: true
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.version }}
+      - id: setup-ruby
+        if: matrix.lang == 'ruby'
+        continue-on-error: true
+        uses: ruby/setup-ruby@651ff0d62c5c79bed6d53ec518387aae20e72c1a # v1.329.0
+        with:
+          ruby-version: ${{ matrix.version }}
+      - id: setup-node
+        if: matrix.lang == 'node'
+        continue-on-error: true
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ matrix.version }}
+      - name: Record setup
+        env:
+          OUTCOME: ${{ matrix.lang == 'python' && steps.setup-python.outcome || matrix.lang == 'ruby' && steps.setup-ruby.outcome || steps.setup-node.outcome }}
+          META: ${{ toJSON(matrix) }}
+          WHAT: setup-${{ matrix.lang }} ${{ matrix.version }} on ${{ matrix.runsOn }}
+        run: |
+          detail="$WHAT: $OUTCOME"
+          [ "$OUTCOME" = success ] || detail="$WHAT failed; its error is in the log of job $FCI_ID, $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          /usr/bin/python3 .future-ci/futureci.py record --id "$FCI_ID" --phase setup --outcome "$OUTCOME" \
+            --detail "$detail" --out "$FCI_OUT" --meta "$META"
+      - name: Environment
+        if: steps.setup-python.outcome == 'success' || steps.setup-ruby.outcome == 'success' || steps.setup-node.outcome == 'success'
+        env:
+          APT: ${{ inputs.apt }}
+          EXTRA_ENV: ${{ inputs.env }}
+        run: |
+          read -ra pkgs <<< "$APT"
+          if [ ${#pkgs[@]} -gt 0 ]; then
+            { sudo apt-get update -qq && sudo apt-get install -y -qq "${pkgs[@]}"; } > "$RUNNER_TEMP/apt.log" 2>&1 \
+              || { cat "$RUNNER_TEMP/apt.log"; /usr/bin/python3 .future-ci/futureci.py record --id "$FCI_ID" --phase apt \
+                     --outcome failure --detail "$(tail -5 "$RUNNER_TEMP/apt.log")" --out "$FCI_OUT"
+                   echo "::warning::apt install failed; install and test are skipped and this run is reported UNKNOWN"; exit 0; }
+          fi
+          printf '%s\n' "$EXTRA_ENV" | grep -E '^[A-Za-z_][A-Za-z0-9_]*=' >> "$GITHUB_ENV" || true
+          case "$FCI_COND" in
+            *:zone-only|"") ;;
+            canada-tz-*)
+              if /usr/bin/python3 .future-ci/futureci.py tz > "$RUNNER_TEMP/tz.log" 2>&1; then
+                cat "$RUNNER_TEMP/tz.log"
+              else
+                cat "$RUNNER_TEMP/tz.log"
+                /usr/bin/python3 .future-ci/futureci.py record --id "$FCI_ID" --phase tz --outcome failure \
+                  --detail "$(tail -3 "$RUNNER_TEMP/tz.log")" --out "$FCI_OUT"
+                echo "::warning::the tz condition could not be applied; this run is reported UNKNOWN"
+                exit 0
+              fi ;;
+          esac
+      - name: Install
+        if: steps.setup-python.outcome == 'success' || steps.setup-ruby.outcome == 'success' || steps.setup-node.outcome == 'success'
+        env:
+          CMD: ${{ inputs.install }}
+        run: /usr/bin/python3 .future-ci/futureci.py exec --id "$FCI_ID" --phase install --out "$FCI_OUT" --timeout $((FCI_TIMEOUT * 60)) -- "${CMD:-true}"
+      - name: Test
+        if: steps.setup-python.outcome == 'success' || steps.setup-ruby.outcome == 'success' || steps.setup-node.outcome == 'success'
+        env:
+          CMD: ${{ inputs.test }}
+        run: /usr/bin/python3 .future-ci/futureci.py exec --id "$FCI_ID" --phase test --condition "$FCI_COND" --out "$FCI_OUT" --timeout $((FCI_TIMEOUT * 60)) -- "$CMD"
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: futureci-run-${{ matrix.id }}
+          path: ${{ runner.temp }}/futureci-results/${{ matrix.id }}.json
+
+  report:
+    needs: [plan, run]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ inputs.tool-repo }}
+          ref: ${{ needs.plan.outputs.tool-sha }}
+          path: .future-ci
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          pattern: futureci-*
+          merge-multiple: true
+          path: results
+      - name: Report
+        env:
+          FAIL_ON: ${{ inputs.fail-on }}
+          TOOL: ${{ inputs.tool-repo }}@${{ needs.plan.outputs.tool-sha }}
+        run: |
+          python3 .future-ci/futureci.py report --plan results/plan.json --results results --json report.json --tool "$TOOL" | tee report.md >> "$GITHUB_STEP_SUMMARY"
+          if [ "$FAIL_ON" = break ] && python3 -c 'import json,sys; sys.exit(0 if any(r["status"].startswith("BREAK") for r in json.load(open("report.json"))["rows"]) else 1)'; then
+            echo "::error::An upcoming change breaks this repository (see the job summary)"; exit 1
+          fi
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: futureci-report
+          path: |
+            report.md
+            report.json
