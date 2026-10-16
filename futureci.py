@@ -12,6 +12,7 @@ which upcoming change breaks it, and when.
   local   execute a plan in local Docker containers with the real setup-* actions (no Actions minutes)
 
 Conditions live in conditions.json next to this file. Only `plan` needs PyYAML.
+`plan` re-reads PyPI for the dependencies the Python 3.15 snapshot flags; FUTURECI_PYPI=off keeps it offline.
 """
 import argparse, ast, datetime as dt, json, os, re, shutil, signal, subprocess, sys, tempfile, threading
 import time, urllib.request, xml.etree.ElementTree as ET
@@ -160,6 +161,131 @@ def declared_deps(root):
         for c in cands:
             names.setdefault(re.sub(r"[-_.]+", "-", c.lower()), rel)
     return names
+
+
+# data/top3000-*.tsv: Python 3.15 installability of PyPI's most downloaded projects, as of this date.
+# Projects keep shipping cp315 wheels and lifting caps, so plan re-reads PyPI for the ones a repo declares
+# and the snapshot flags. Only those public names are sent to PyPI, never the repo's other dependencies.
+PY315_SNAPSHOT = "2026-10-11"
+PY315_RISK_CLASSES = ("older_only", "sdist_only", "no_linux_x86_wheel")
+PYPI_JSON = "https://pypi.org/pypi/{}/json"
+PYPI_MAX, PYPI_TIMEOUT, PYPI_BYTES = 40, 10, 64 << 20  # the largest flagged answer (ddtrace) is 39 MB
+
+
+def pypi_json(name):
+    req = urllib.request.Request(PYPI_JSON.format(name), headers={"Accept": "application/json", "User-Agent": "future-ci"})
+    with urllib.request.urlopen(req, timeout=PYPI_TIMEOUT) as r:
+        body = r.read(PYPI_BYTES + 1)
+    if len(body) > PYPI_BYTES:
+        raise ValueError("PyPI answer too large")
+    return json.loads(body)
+
+
+def py3_tag_ok(py):
+    """pip accepts an abi-none wheel on CPython 3.15 if its Python tag is py3 or py3X with X <= 15."""
+    m = re.fullmatch(r"py3(\d*)", py)
+    return bool(m) and (not m[1] or int(m[1]) <= 15)
+
+
+def wheel_class(files):
+    """What CPython 3.15 on Linux x86_64 can install from a release's files without a build
+    (the classes of data/top3000-wheels.tsv)."""
+    if not files:
+        return "no_files"
+    whl = [f["filename"] for f in files if str(f.get("filename", "")).endswith(".whl")]
+    tags = set()
+    for w in whl:
+        m = re.match(r".+-(?P<py>[^-]+)-(?P<abi>[^-]+)-(?P<plat>[^-]+)\.whl$", w)
+        if not m:
+            continue
+        if m["plat"] == "any" and m["abi"] == "none" and any(py3_tag_ok(t) for t in m["py"].split(".")):
+            return "pure"
+        if "x86_64" in m["plat"] and "linux" in m["plat"]:
+            tags |= {(py, abi) for py in m["py"].split(".") for abi in m["abi"].split(".")}
+    if any(py == "cp315" and abi in ("cp315", "none") for py, abi in tags):
+        return "cp315"
+    if any(abi == "abi3" for _, abi in tags):
+        return "abi3"
+    if any(abi == "none" and py3_tag_ok(py) for py, abi in tags):
+        return "pure"
+    if tags:
+        return "older_only"
+    return "no_linux_x86_wheel" if whl else "sdist_only"
+
+
+def fallback_315(releases):
+    """The release an unpinned install picks on CPython 3.15.0: the newest final release with unyanked
+    files whose requires-python admits 3.15.0 (missing or unparsable admits, as pip does)."""
+    best = None
+    for v, files in releases.items():
+        if not re.fullmatch(r"\d+(\.\d+)*(\.post\d+)?", v):
+            continue
+        live = [f for f in files if not f.get("yanked")]
+        if not live:
+            continue
+        rp = live[0].get("requires_python")
+        if rp and spec_allows(rp, "3.15.0") is False:
+            continue
+        key = tuple(int(x) for x in re.findall(r"\d+", v))
+        if best is None or key > best[0]:
+            best = (key, v)
+    return best[1] if best else None
+
+
+def py315_now(name, fetch=pypi_json):
+    """PyPI's current latest release of `name` as CPython 3.15 sees it, or None if PyPI cannot be read."""
+    try:
+        d = fetch(name)
+        info = d["info"]
+        version, rp = str(info["version"]), str(info.get("requires_python") or "")
+        state = {"version": version, "requires_python": rp, "class": wheel_class(d.get("urls") or [])}
+        state["allows"] = not rp or spec_allows(rp, "3.15.0") is not False
+        if not state["allows"]:
+            state["fallback"] = fallback_315(d.get("releases") or {})
+        return state
+    except Exception:
+        return None
+
+
+def recheck_pypi(names, fetch=pypi_json):
+    """{name: py315_now state or None}; None for every name when FUTURECI_PYPI=off and past PYPI_MAX."""
+    names = list(names)
+    if os.environ.get("FUTURECI_PYPI", "").lower() in ("0", "off", "no", "false") or not names:
+        return {n: None for n in names}
+    from concurrent.futures import ThreadPoolExecutor
+    head = names[:PYPI_MAX]
+    with ThreadPoolExecutor(max_workers=min(8, len(head))) as ex:
+        got = dict(zip(head, ex.map(lambda n: py315_now(n, fetch), head)))
+    return {n: got.get(n) for n in names}
+
+
+def py315_dep_findings(deps, capped, wheels, fetch=pypi_json):
+    """RISK findings for declared dependencies the snapshot flags, re-read from PyPI. A dependency that
+    has since lifted its cap or shipped an installable wheel is dropped; if PyPI cannot be read, the
+    snapshot finding stays and says so."""
+    flagged = [(n, rel) for n, rel in sorted(deps.items())
+               if n in capped or (n in wheels and wheels[n]["class"] in PY315_RISK_CLASSES)]
+    live = recheck_pypi([n for n, _ in flagged], fetch)
+    out = []
+    for name, rel in flagged:
+        s = live.get(name)
+        if s is None:
+            if name in capped:
+                r = capped[name]
+                cause = (f"{name} {r['latest']} requires-python {r['latest_requires_python']}: "
+                         f"pip falls back to {r['fallback_on_3.15'] or 'nothing'} on 3.15")
+            else:
+                cause = f"{name} {wheels[name]['version']} has no cp315 wheel: builds from source on 3.15"
+            cause += f" (PyPI not read; snapshot of {PY315_SNAPSHOT})"
+        elif not s["allows"]:
+            cause = (f"{name} {s['version']} requires-python {s['requires_python']}: "
+                     f"pip falls back to {s['fallback'] or 'nothing'} on 3.15")
+        elif s["class"] in PY315_RISK_CLASSES or s["class"] == "no_files":
+            cause = f"{name} {s['version']} has no cp315 wheel: builds from source on 3.15"
+        else:
+            continue
+        out.append({"condition": "python-3.15", "status": "RISK", "where": rel, "cause": cause})
+    return out
 
 
 def load_tsv(name):
@@ -321,17 +447,7 @@ def plan(root, conds, data_dir, only=None, test_lang=None):
             static.append({"condition": "python-3.15", "status": "RISK" if guarded else "BREAK",
                            "where": f"{rel}:{line}", "cause": f"imports {mod}, removed in Python 3.15"
                            + (" (inside try/except ImportError)" if guarded else "")})
-        deps = declared_deps(root)
-        capped, wheels = load_tsv("top3000-capped.tsv"), load_tsv("top3000-wheels.tsv")
-        for name, rel in sorted(deps.items()):
-            if name in capped:
-                r = capped[name]
-                static.append({"condition": "python-3.15", "status": "RISK", "where": rel,
-                               "cause": f"{name} {r['latest']} requires-python {r['latest_requires_python']}: "
-                                        f"pip falls back to {r['fallback_on_3.15'] or 'nothing'} on 3.15"})
-            elif name in wheels and wheels[name]["class"] in ("older_only", "sdist_only", "no_linux_x86_wheel"):
-                static.append({"condition": "python-3.15", "status": "RISK", "where": rel,
-                               "cause": f"{name} {wheels[name]['version']} has no cp315 wheel: builds from source on 3.15"})
+        static += py315_dep_findings(declared_deps(root), load_tsv("top3000-capped.tsv"), load_tsv("top3000-wheels.tsv"))
 
     if want("macos-14-retired"):
         for w in scan_macos14(c26, docs):

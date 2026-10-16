@@ -73,6 +73,9 @@ class StaticTests(unittest.TestCase):
             write(d, "pyproject.toml", '[project]\nname="x"\nrequires-python = ">=3.9,<3.15"\ndependencies=["modal>=1", "pyyaml"]\n')
             write(d, "tests/test_t.py", "TZ = 'America/Winnipeg'\n")
             data = os.path.join(os.path.dirname(HERE), "vendor", "data")
+            offline = unittest.mock.patch.dict(os.environ, {"FUTURECI_PYPI": "off"})  # the snapshot, not today's PyPI
+            offline.start()
+            self.addCleanup(offline.stop)
             p = F.plan(d, CONDS, data)  # the default set leaves out the experimental opt-in conditions
             self.assertEqual(p["conditions"], ["ubuntu-26.04", "python-3.15", "macos-14-retired", "node24-actions"])
             self.assertFalse(any(r["condition"] and r["condition"].startswith("canada-tz") for r in p["runs"]))
@@ -84,6 +87,8 @@ class StaticTests(unittest.TestCase):
             self.assertIn(("macos-14-retired", "BREAK", "job runs on macos-14, which stops running on the retirement date"), st)
             self.assertTrue(any(c == "python-3.15" and s == "BREAK" and "requires-python" in w for c, s, w in st))
             self.assertTrue(any(c == "python-3.15" and s == "RISK" and w.startswith("modal") for c, s, w in st))
+            self.assertTrue(all(s["cause"].endswith(f"(PyPI not read; snapshot of {F.PY315_SNAPSHOT})")
+                                for s in p["static"] if s["condition"] == "python-3.15" and s["status"] == "RISK"))
             self.assertTrue(any(c == "python-3.15" and s == "RISK" and w.startswith("pyyaml") for c, s, w in st))
             self.assertIn(("canada-tz-2026-11-01", "INFO", "code or tests name an affected Canadian zone"), st)
             ids = {r["id"]: r for r in p["runs"]}
@@ -442,6 +447,150 @@ class FaketimeTests(unittest.TestCase):
              unittest.mock.patch.object(F, "faketime_probe", lambda *a: calls.append("probe")):
             F.main(["tz", "--workdir", self.tmp.name])
         self.assertEqual(calls, ["tz", "build", "probe"])
+
+
+def whl(name, py, abi, plat):
+    return {"filename": f"{name}-1.0-{py}-{abi}-{plat}.whl"}
+
+
+def pypi_doc(version, files, requires_python=None, releases=None):
+    return {"info": {"version": version, "requires_python": requires_python}, "urls": files,
+            "releases": releases if releases is not None else {version: files}}
+
+
+class PyPIRecheckTests(unittest.TestCase):
+    """Snapshot findings for Python 3.15 are re-read from PyPI; only flagged public names are looked up."""
+    CAPPED = {"capd": {"project": "capd", "latest": "2.0", "latest_requires_python": "<3.15,>=3.10",
+                       "fallback_on_3.15": "1.0"}}
+    WHEELS = {"nowhl": {"project": "nowhl", "version": "3.0", "class": "older_only"},
+              "srconly": {"project": "srconly", "version": "1.0", "class": "sdist_only"},
+              "fine": {"project": "fine", "version": "1.0", "class": "pure"}}
+    DEPS = {"capd": "pyproject.toml", "nowhl": "requirements.txt", "srconly": "requirements.txt",
+            "fine": "requirements.txt", "private-internal-pkg": "requirements.txt"}
+
+    def setUp(self):
+        env = unittest.mock.patch.dict(os.environ, {"FUTURECI_PYPI": ""})
+        env.start()
+        self.addCleanup(env.stop)
+
+    def findings(self, docs):
+        asked = []
+
+        def fetch(name):
+            asked.append(name)
+            d = docs[name]
+            if isinstance(d, Exception):
+                raise d
+            return d
+        out = F.py315_dep_findings(self.DEPS, self.CAPPED, self.WHEELS, fetch)
+        return {f["cause"].split(" ")[0]: f for f in out}, sorted(asked)
+
+    def test_wheel_class(self):
+        lin = "manylinux_2_17_x86_64.manylinux2014_x86_64"
+        self.assertEqual(F.wheel_class([]), "no_files")
+        self.assertEqual(F.wheel_class([{"filename": "x-1.0.tar.gz"}]), "sdist_only")
+        self.assertEqual(F.wheel_class([whl("x", "py3", "none", "any")]), "pure")
+        self.assertEqual(F.wheel_class([whl("x", "py2.py3", "none", "any")]), "pure")
+        self.assertEqual(F.wheel_class([whl("x", "cp315", "cp315", lin)]), "cp315")
+        self.assertEqual(F.wheel_class([whl("x", "cp310", "abi3", lin)]), "abi3")
+        self.assertEqual(F.wheel_class([whl("x", "cp313", "cp313", lin), whl("x", "cp314", "cp314", lin)]), "older_only")
+        self.assertEqual(F.wheel_class([whl("x", "cp315", "cp315", "macosx_11_0_arm64"),
+                                        whl("x", "cp315", "cp315", "win_amd64")]), "no_linux_x86_wheel")
+        self.assertEqual(F.wheel_class([whl("x", "cp315", "cp315t", lin)]), "older_only")  # free-threaded only
+        # pip on 3.15 takes py3X-none wheels for X <= 15 (semgrep 1.180.0, checked with pip download --python-version 3.15)
+        self.assertEqual(F.wheel_class([whl("x", "cp310.cp314.py310.py314", "none", "manylinux_2_34_x86_64")]), "pure")
+        self.assertEqual(F.wheel_class([whl("x", "py2.py3", "none", lin)]), "pure")
+        self.assertEqual(F.wheel_class([whl("x", "py316", "none", lin)]), "older_only")
+        self.assertEqual(F.wheel_class([whl("x", "py316", "none", "any")]), "no_linux_x86_wheel")
+
+    def test_snapshot_has_no_py3_platform_wheel_as_older_only(self):
+        # py2.py3-none-<linux> wheels install on any CPython 3; the 2026-10-11 scan split no tags and called them older_only
+        rows = F.load_tsv("top3000-wheels.tsv")
+        bad = [n for n, r in rows.items() if r["class"] == "older_only"
+               and any(F.py3_tag_ok(t) for tag in r["detail"].split() for t in tag.split("."))]
+        self.assertEqual(bad, [])
+        self.assertEqual((rows["tbb"]["class"], rows["semgrep"]["class"]), ("pure", "pure"))
+
+    def test_fallback_skips_yanked_prerelease_and_capped(self):
+        rel = {"1.0": [{"requires_python": ">=3.8"}], "1.5": [{"requires_python": ">=3.8", "yanked": True}],
+               "1.9rc1": [{"requires_python": ">=3.8"}], "1.2": [{"requires_python": None}],
+               "1.10": [{"requires_python": ">=3.9, !=3.15.*"}], "2.0": [{"requires_python": "<3.15"}], "2.1": []}
+        self.assertEqual(F.fallback_315(rel), "1.2")
+        self.assertIsNone(F.fallback_315({"2.0": [{"requires_python": "<3.15"}]}))
+
+    def test_fixed_since_snapshot_are_dropped(self):
+        lin = "manylinux_2_28_x86_64"
+        got, asked = self.findings({
+            "capd": pypi_doc("2.1", [whl("capd", "py3", "none", "any")], "<3.16,>=3.10"),
+            "nowhl": pypi_doc("3.1", [whl("nowhl", "cp315", "cp315", lin)]),
+            "srconly": pypi_doc("1.1", [whl("srconly", "cp39", "abi3", lin)])})
+        self.assertEqual(got, {})
+        self.assertEqual(asked, ["capd", "nowhl", "srconly"])  # never "fine", never the private name
+
+    def test_still_flagged_uses_pypi_today(self):
+        lin = "manylinux_2_28_x86_64"
+        rel = {"1.0": [{"requires_python": ">=3.8"}], "1.1": [{"requires_python": ">=3.8"}],
+               "2.2": [{"requires_python": "<3.15,>=3.10"}]}
+        got, _ = self.findings({
+            "capd": pypi_doc("2.2", [whl("capd", "py3", "none", "any")], "<3.15,>=3.10", rel),
+            "nowhl": pypi_doc("3.2", [whl("nowhl", "cp314", "cp314", lin)]),
+            "srconly": pypi_doc("1.3", [{"filename": "srconly-1.3.tar.gz"}])})
+        self.assertEqual(got["capd"]["cause"], "capd 2.2 requires-python <3.15,>=3.10: pip falls back to 1.1 on 3.15")
+        self.assertEqual(got["capd"]["where"], "pyproject.toml")
+        self.assertEqual(got["nowhl"]["cause"], "nowhl 3.2 has no cp315 wheel: builds from source on 3.15")
+        self.assertEqual(got["srconly"]["cause"], "srconly 1.3 has no cp315 wheel: builds from source on 3.15")
+        self.assertTrue(all(f["status"] == "RISK" and f["condition"] == "python-3.15" for f in got.values()))
+
+    def test_unreadable_pypi_keeps_dated_snapshot(self):
+        import urllib.error
+        got, _ = self.findings({"capd": urllib.error.URLError("down"), "nowhl": {"unexpected": 1},
+                                "srconly": ValueError("PyPI answer too large")})
+        tail = f" (PyPI not read; snapshot of {F.PY315_SNAPSHOT})"
+        self.assertEqual(got["capd"]["cause"], "capd 2.0 requires-python <3.15,>=3.10: pip falls back to 1.0 on 3.15" + tail)
+        self.assertEqual(got["nowhl"]["cause"], "nowhl 3.0 has no cp315 wheel: builds from source on 3.15" + tail)
+        self.assertEqual(got["srconly"]["cause"], "srconly 1.0 has no cp315 wheel: builds from source on 3.15" + tail)
+
+    def test_offline_and_cap_never_fetch(self):
+        def boom(name):
+            raise AssertionError(f"fetched {name}")
+        with unittest.mock.patch.dict(os.environ, {"FUTURECI_PYPI": "off"}):
+            out = F.py315_dep_findings(self.DEPS, self.CAPPED, self.WHEELS, boom)
+        self.assertEqual(len(out), 3)
+        with unittest.mock.patch.object(F, "PYPI_MAX", 1):
+            res = F.recheck_pypi(["a", "b", "c"], lambda n: pypi_doc("1", [whl(n, "py3", "none", "any")]))
+        self.assertIsNotNone(res["a"])
+        self.assertEqual((res["b"], res["c"]), (None, None))
+
+    def test_pypi_json_refuses_oversize_answer(self):
+        class Resp:
+            def __init__(self, body):
+                self.body = body
+            def read(self, n):
+                return self.body[:n]
+            def __enter__(self):
+                return self
+            def __exit__(self, *a):
+                return False
+        seen = []
+        def fake(req, timeout):
+            seen.append((req.full_url, timeout))
+            return Resp(b'{"info": {"version": "1"}}' + b" " * 64)
+        with unittest.mock.patch.object(F.urllib.request, "urlopen", fake), unittest.mock.patch.object(F, "PYPI_BYTES", 32):
+            with self.assertRaises(ValueError):
+                F.pypi_json("zope-interface")
+        self.assertEqual(seen, [("https://pypi.org/pypi/zope-interface/json", F.PYPI_TIMEOUT)])
+
+    def test_hostile_pypi_text_renders_inert(self):
+        got, _ = self.findings({
+            "capd": pypi_doc("9<img src=x>|[a](b)", [whl("capd", "py3", "none", "any")], "<3.15"),
+            "nowhl": pypi_doc("1", [whl("nowhl", "py3", "none", "any")]),
+            "srconly": pypi_doc("1", [whl("srconly", "py3", "none", "any")])})
+        rep = {"repo": "r", "rows": [{"condition": "python-3.15", "title": "t", "when": "w", "status": "RISK",
+                                      "static": list(got.values()), "runs": [], "fix": "f", "source": "s"}]}
+        md = F.markdown(rep)
+        line = next(l for l in md.splitlines() if l.startswith("- RISK: capd"))
+        self.assertIsNone(re.search(r"(?<!\\)[<>\[\]|]", line.split(" — ")[0]))  # every active character escaped
+        self.assertIn("capd 9\\<img src=x\\>\\|\\[a\\](b)", line)
 
 
 class WorkflowTests(unittest.TestCase):
