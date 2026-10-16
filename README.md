@@ -34,7 +34,7 @@ This is an excerpt of the job summary; the run link is a placeholder.
 | Date | Change | How it is checked |
 |---|---|---|
 | 2026-10-19, rollout to 11-19 | `ubuntu-latest` moves to Ubuntu 26.04 | Your tests run on `ubuntu-26.04` next to `ubuntu-24.04`, for the oldest and newest Python/Ruby in your matrix. A static read of every matrix entry flags versions with no 26.04 build. |
-| 2026-10-09 (in effect) | Python 3.15 is the newest Python | Your tests run on 3.15 next to your newest Python. Static checks: a `requires-python` cap that excludes 3.15, imports of the removed `sre_*` modules, and dependencies with a 3.15 cap or no cp315 wheel. Those dependencies come from a dated snapshot and are re-read from PyPI when the plan runs, using pip's rules for CPython 3.15 on Ubuntu 24.04 x86_64; only the snapshot's public package names are looked up. |
+| 2026-10-09 (in effect) | Python 3.15 is the newest Python | Your tests run on 3.15 next to your newest Python. Static checks: a `requires-python` cap that excludes 3.15, imports of the removed `sre_*` modules, and dependencies with a 3.15 cap or no cp315 wheel. Those dependencies come from a dated snapshot and are re-read from PyPI when the plan runs, with pip's wheel-tag, yanking and version rules for CPython 3.15 on Ubuntu 24.04 x86_64; only the snapshot's public package names are looked up. |
 | 2026-11-02 | GitHub retires `macos-14` | Static: jobs that run on `macos-14`, `-large` or `-xlarge`. |
 | 2026-09-23 (in effect) | JavaScript actions run on Node 24 | Report line only. |
 
@@ -179,7 +179,8 @@ MIT (`LICENSE`). `vendor/check2604.py` is our Ubuntu 26.04 setup checker (MIT, s
 PyPI's 3,000 most downloaded projects (2026-10-11; corrected on 2026-10-16: nine rows whose `py3`-tagged
 Linux wheels install on 3.15, and four that had been counted as installable but only offer musllinux, PyPy
 or Python 2 wheels to it). `plan` re-reads PyPI for each flagged dependency the repository declares
-(set `FUTURECI_PYPI=off` to skip); if PyPI cannot be read, the finding is marked as from the snapshot. `vendor/data/versions-manifest.json` (from actions/python-versions, MIT) and
+(set `FUTURECI_PYPI=off` to skip); if PyPI cannot be read, the finding is marked as from the snapshot. A
+`requires-python` the check cannot decide (such as an invalid specifier) never drops a finding. `vendor/data/versions-manifest.json` (from actions/python-versions, MIT) and
 `vendor/data/ruby-builder-versions.json` (from ruby/setup-ruby, MIT) are copied unchanged; their
 notices are in `vendor/data/NOTICE`.
 libfaketime (GPL-2.0) is not vendored: the tz condition downloads and builds it on the runner.

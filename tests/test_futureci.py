@@ -36,6 +36,18 @@ class SpecTests(unittest.TestCase):
         for spec, v, want in cases:
             self.assertEqual(F.spec_allows(spec, v), want, (spec, v))
 
+    def test_full_pep440_versions_in_specifiers(self):
+        # pip compares whole PEP 440 versions: 3.15.0 is above 3.15rc1 and below 3.15.0.1
+        cases = [("<3.15rc1", False), (">=3.15.0.1", False), ("<3.15.0.1", True), (">3.15.0.dev1", True),
+                 ("<3.15.0.post1", True), (">3.15.0", False), ("==3.15.0.0", True), ("==3.15.0.*", True),
+                 ("==1!3.15.*", False), ("===3.15.0", True), ("===3.15", False), ("==3.15.0+local", False),
+                 ("!=3.15.0+local", True), ("~=3.15", True), ("~=3.14.0", False), (">=3.10,", True), (">= 3.10 , < 4", True)]
+        for spec, want in cases:
+            self.assertEqual(F.spec_allows(spec, "3.15.0"), want, spec)
+        # invalid for pip, or a ~= whose prefix pip takes from the spelling: undecided, never a guess
+        for spec in (">=3.5.*", "<=3.15+local", "<3.15;", "=3.15", "~=3", "~=3.15rc1", "~=V3.4", ">=3.\u0661\u0665"):
+            self.assertIsNone(F.spec_allows(spec, "3.15.0"), spec)
+
 
 class StaticTests(unittest.TestCase):
     def test_removed_imports(self):
@@ -524,6 +536,11 @@ class PyPIRecheckTests(unittest.TestCase):
             with self.subTest(files=files):
                 self.assertIn(F.wheel_class(files), F.PY315_RISK_CLASSES)
         self.assertEqual(F.wheel_class([cp315, whl("x", "cp315", "cp315", "musllinux_1_2_x86_64")]), "cp315")
+        for rp in ("<3.15rc1", ">=3.15.0.1"):
+            self.assertEqual(F.wheel_class([dict(cp315, requires_python=rp)]), "no_files", rp)
+        self.assertEqual(F.wheel_class([dict(cp315, requires_python="<3.15.0.1")]), "cp315")
+        self.assertEqual(F.wheel_class([dict(cp315, requires_python=">=3.5.*")]), "undecided")
+        self.assertEqual(F.wheel_class([dict(cp315, requires_python=">=3.5.*"), cp315]), "cp315")
         self.assertEqual(F.wheel_class([dict(cp315, yanked=True), sd("1.0")]), "sdist_only")
         self.assertEqual(F.wheel_class([dict(whl("x", "py3", "none", "any"), yanked=True)]), "no_files")
 
@@ -538,6 +555,36 @@ class PyPIRecheckTests(unittest.TestCase):
                                         "srconly": pypi_doc("1.1", [whl("srconly", "py3", "none", "any")])})
                 self.assertEqual(list(got), ["nowhl"])
                 self.assertEqual(got["nowhl"]["cause"], "nowhl 3.1 has no cp315 wheel: builds from source on 3.15")
+
+    def test_per_file_python_exclusions_keep_the_finding(self):
+        lin = "manylinux_2_17_x86_64"
+        for rp in ("<3.15rc1", ">=3.15.0.1"):
+            with self.subTest(rp=rp):
+                got, _ = self.findings({"capd": pypi_doc("2.1", [whl("capd", "py3", "none", "any")]),
+                                        "nowhl": pypi_doc("3.1", [dict(whl("nowhl", "cp315", "cp315", lin), requires_python=rp)]),
+                                        "srconly": pypi_doc("1.1", [whl("srconly", "py3", "none", "any")])})
+                self.assertEqual(list(got), ["nowhl"])
+        got, _ = self.findings({"capd": pypi_doc("2.1", [whl("capd", "py3", "none", "any")]),
+                                "nowhl": pypi_doc("3.1", [dict(whl("nowhl", "cp315", "cp315", lin), requires_python="<3.15.0.1")]),
+                                "srconly": pypi_doc("1.1", [whl("srconly", "py3", "none", "any")])})
+        self.assertEqual(got, {})
+
+    def test_undecidable_requires_python_keeps_the_snapshot_finding(self):
+        lin = "manylinux_2_17_x86_64"
+        got, _ = self.findings({"capd": pypi_doc("2.1", [whl("capd", "py3", "none", "any")], ">=3.5.*"),
+                                "nowhl": pypi_doc("3.1", [dict(whl("nowhl", "cp315", "cp315", lin), requires_python=">=3.5.*")]),
+                                "srconly": pypi_doc("1.1", [dict(sd("1.1"), requires_python="~=3.15rc1")])})
+        self.assertEqual(sorted(got), ["capd", "nowhl", "srconly"])
+        for f in got.values():
+            self.assertTrue(f["cause"].endswith("(PyPI's requires-python not decidable; snapshot of 2026-10-11)"), f["cause"])
+        self.assertTrue(got["capd"]["cause"].startswith("capd 2.0 requires-python <3.15,>=3.10: pip falls back to 1.0"))
+        # a capped latest release whose fallback rests on an undecidable file says so instead of naming one
+        rel = {"2.1": [sd("2.1", "<3.15")], "2.0": [sd("2.0", ">=3.5.*")], "1.0": [sd("1.0")]}
+        got, _ = self.findings({"capd": pypi_doc("2.1", rel["2.1"], "<3.15", releases=rel),
+                                "nowhl": pypi_doc("3.1", [whl("nowhl", "cp315", "cp315", lin)]),
+                                "srconly": pypi_doc("1.1", [whl("srconly", "py3", "none", "any")])})
+        self.assertEqual(got["capd"]["cause"], "capd 2.1 requires-python <3.15: pip's fallback on 3.15 is not "
+                                               "decidable (a requires-python on PyPI cannot be read)")
 
     def test_no_wheel_and_no_source_names_pips_fallback(self):
         rel = {"3.0": [whl("nowhl", "cp315", "cp315", "manylinux_2_28_x86_64")], "3.1": [whl("nowhl", "cp315", "cp315", "win_amd64")]}
@@ -577,9 +624,24 @@ class PyPIRecheckTests(unittest.TestCase):
         self.assertEqual(F.fallback_315({"1.0": [sd("1.0")], "1.5": [whl("x", "cp315", "cp315", "win_amd64")],
                                          "1.6": [whl("x", "cp315", "cp315", "musllinux_1_2_x86_64")]}), "1.0")
         self.assertEqual(F.fallback_315({"1.0": [sd("1.0")], "1.5": [whl("x", "py3", "none", "any")]}), "1.5")
-        # pip takes a pre-release only when no final release qualifies, and a yanked file only when nothing else does
+        # pip takes a pre-release only when no final release qualifies (yanked finals count for that) and,
+        # unpinned, never a yanked file (checked with pip 26.2.1 install --dry-run on offline indexes)
         self.assertEqual(F.fallback_315({"2.0b1": [sd("2.0b1")], "2.0a3": [sd("2.0a3")], "1.9": [sd("1.9", "<3.15")]}), "2.0b1")
-        self.assertEqual(F.fallback_315({"1.0": [sd("1.0", yanked=True)], "0.9": [sd("0.9", yanked=True)]}), "1.0 (yanked)")
+        self.assertIsNone(F.fallback_315({"1.0": [sd("1.0", yanked=True)], "0.9": [sd("0.9", yanked=True)]}))
+        self.assertIsNone(F.fallback_315({"1.0": [dict(whl("x", "cp315", "cp315", lin), yanked=True)]}))
+        self.assertEqual(F.fallback_315({"1.0": [dict(whl("x", "cp315", "cp315", lin), yanked=True)], "0.9": [sd("0.9")]}), "0.9")
+        self.assertEqual(F.fallback_315({"1.0": [sd("1.0", yanked=True), sd("1.0.zip")]}), "1.0")
+        self.assertIsNone(F.fallback_315({"1.0": [sd("1.0", yanked=True)], "2.0b1": [sd("2.0b1")]}))
+        # per-file requires-python with full PEP 440 versions
+        self.assertEqual(F.fallback_315({"1.0": [sd("1.0", "<3.15rc1")], "0.9": [sd("0.9")]}), "0.9")
+        self.assertEqual(F.fallback_315({"1.0": [sd("1.0", ">=3.15.0.1")], "0.9": [sd("0.9")]}), "0.9")
+        self.assertEqual(F.fallback_315({"1.0": [sd("1.0", "<3.15.0.1")], "0.9": [sd("0.9")]}), "1.0")
+        # an undecidable requires-python makes the answer undecided only where it could change it
+        self.assertEqual(F.fallback_315({"1.0": [sd("1.0", ">=3.5.*")], "0.9": [sd("0.9")]}), F.UNDECIDED)
+        self.assertEqual(F.fallback_315({"2.0": [sd("2.0")], "1.0": [sd("1.0", ">=3.5.*")]}), "2.0")
+        self.assertEqual(F.fallback_315({"2.0": [sd("2.0", ">=3.5.*", yanked=True)], "1.0": [sd("1.0")]}), "1.0")
+        self.assertEqual(F.fallback_315({"2.0": [sd("2.0", ">=3.5.*", yanked=True)], "3.0b1": [sd("3.0b1")]}), F.UNDECIDED)
+        self.assertEqual(F.fallback_315({"3.0b1": [sd("3.0b1", ">=3.5.*")], "1.0": [sd("1.0")]}), "1.0")
         self.assertEqual(F.fallback_315({"1.0": [sd("1.0")], "not a version": [sd("9")]}), "1.0")
 
     def test_pep440_key_orders_like_the_spec(self):

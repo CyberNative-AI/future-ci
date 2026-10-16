@@ -39,37 +39,79 @@ def load_conditions(path=None):
         return {c["id"]: c for c in json.load(f)["conditions"]}
 
 
-# ------------------------------------------------------------------ PEP 440 subset
-def _vt(s):
-    return tuple(int(x) for x in re.findall(r"\d+", s)[:3]) + (0,) * (3 - len(re.findall(r"\d+", s)[:3]))
+# ------------------------------------------------------------------ PEP 440
+_PEP440 = re.compile(r"""v?(?:(?P<epoch>[0-9]+)!)?(?P<release>[0-9]+(?:\.[0-9]+)*)
+    (?:[-_.]?(?P<pre_l>alpha|a|beta|b|preview|pre|c|rc)[-_.]?(?P<pre_n>[0-9]+)?)?
+    (?:-(?P<post_n1>[0-9]+)|[-_.]?(?P<post_l>post|rev|r)[-_.]?(?P<post_n2>[0-9]+)?)?
+    (?:[-_.]?(?P<dev_l>dev)[-_.]?(?P<dev_n>[0-9]+)?)?""", re.VERBOSE | re.IGNORECASE | re.ASCII)
+_LOCAL = re.compile(r"[a-z0-9]+(?:[-_.][a-z0-9]+)*", re.IGNORECASE | re.ASCII)
+_PREFIX = re.compile(r"v?(?:(?P<epoch>[0-9]+)!)?(?P<release>[0-9]+(?:\.[0-9]+)*)\.\*", re.IGNORECASE | re.ASCII)
+_CLAUSE = re.compile(r"(===|~=|==|!=|<=|>=|<|>)\s*(.*)", re.DOTALL)
+
+
+def _key(m):
+    rel = [int(x) for x in m["release"].split(".")]
+    while len(rel) > 1 and rel[-1] == 0:
+        rel.pop()
+    pre_l = (m["pre_l"] or "").lower()
+    pre = None if not pre_l else ({"alpha": 0, "a": 0, "beta": 1, "b": 1}.get(pre_l, 2), int(m["pre_n"] or 0))
+    post = m["post_n1"] or (m["post_n2"] or "0" if m["post_l"] else None)
+    dev = None if not m["dev_l"] else int(m["dev_n"] or 0)
+    key = (int(m["epoch"] or 0), tuple(rel),
+           (-1,) if pre is None and post is None and dev is not None else (2,) if pre is None else (0,) + pre,
+           (-1,) if post is None else (0, int(post)),
+           (1,) if dev is None else (0, dev))
+    return pre is not None or dev is not None, key
+
+
+def pep440_key(v):
+    """(is_prerelease, sort key) in PEP 440 order, or None if `v` is not a public PEP 440 version (pip skips it)."""
+    m = _PEP440.fullmatch(v.strip())
+    return _key(m) if m else None
 
 
 def spec_allows(spec, version):
-    """True/False if requires-python `spec` allows `version` (X.Y.Z); None if unparsable."""
-    v = _vt(version)
+    """True/False if the requires-python `spec` admits the final release `version` (X.Y.Z) by the PEP 440
+    rules pip applies; None if `spec` is not a valid specifier set (pip ignores it; callers treat it as undecided)."""
+    v = pep440_key(version)[1]
+    rel = [0] + [int(x) for x in version.split(".")]  # epoch 0, release unstripped (prefix matching pads it)
+
+    def prefix(epoch, release):
+        want = [int(epoch or 0)] + [int(x) for x in release.split(".")]
+        return (rel + [0] * len(want))[:len(want)] == want
+
+    ok = True
     for clause in [c.strip() for c in spec.split(",") if c.strip()]:
-        m = re.fullmatch(r"(~=|===|==|!=|<=|>=|<|>)\s*([0-9][0-9.]*)(\.\*)?", clause)
+        m = _CLAUSE.fullmatch(clause)
         if not m:
             return None
-        op, ver, wild = m.groups()
-        if wild:
-            parts = tuple(int(x) for x in ver.split("."))
-            same = v[:len(parts)] == parts
-            if (op == "==" and not same) or (op == "!=" and same):
-                return False
-            if op not in ("==", "!="):
+        op, ver = m.groups()
+        if op == "===":
+            if re.search(r"[\s;)]", ver):
                 return None
+            ok = ok and ver.lower() == version
             continue
-        w = _vt(ver)
+        if op in ("==", "!=") and ver.endswith(".*"):
+            p = _PREFIX.fullmatch(ver)
+            if not p:
+                return None
+            ok = ok and prefix(p["epoch"], p["release"]) == (op == "==")
+            continue
+        pub, plus, local = ver.partition("+")
+        pm = _PEP440.fullmatch(pub)
+        if not pm or (plus and (op not in ("==", "!=") or not _LOCAL.fullmatch(local))):
+            return None
+        w = _key(pm)[1]
         if op == "~=":
-            n = len(ver.split("."))
-            ok = v >= w and v[:max(n - 1, 1)] == w[:max(n - 1, 1)]
-        else:
-            ok = {"==": v == w, "===": v == w, "!=": v != w, "<=": v <= w, ">=": v >= w,
-                  "<": v < w, ">": v > w}[op]
-        if not ok:
-            return False
-    return True
+            if not re.fullmatch(r"(?:[0-9]+!)?[0-9]+(?:\.[0-9]+)+", ver):
+                return None  # pip derives ~='s prefix from the spelling (~=V3.4, ~=3.1c0): not decided here
+            hit = v >= w and prefix(pm["epoch"], pm["release"].rsplit(".", 1)[0])
+        elif op in ("==", "!="):
+            hit = (v == w and not plus) == (op == "==")  # `version` has no local label
+        else:  # `version` is final: <V's pre-release and >V's post-release exclusions cannot apply
+            hit = {"<=": v <= w, ">=": v >= w, "<": v < w, ">": v > w}[op]
+        ok = ok and hit
+    return ok
 
 
 # ------------------------------------------------------------------ static scans
@@ -213,10 +255,15 @@ def tag_ok(py, abi, plat):
     return abi == "abi3" and bool(m) and 2 <= int(m[1]) <= 15
 
 
-def file_live(f):
-    """An unyanked file whose own requires-python admits 3.15.0 (missing or unparsable admits, as pip does)."""
+def admits_315(f):
+    """True/False if this file's own requires-python admits 3.15.0 (none admits); None if it cannot be decided."""
     rp = f.get("requires_python")
-    return not f.get("yanked") and not (rp and spec_allows(str(rp), "3.15.0") is False)
+    return spec_allows(str(rp), "3.15.0") if rp else True
+
+
+def file_live(f):
+    """True for an unyanked file that admits 3.15.0, False if yanked or excluded, None if undecided."""
+    return False if f.get("yanked") else admits_315(f)
 
 
 def wheel_tags(filename):
@@ -229,7 +276,8 @@ def wheel_tags(filename):
 def wheel_class(files):
     """What CPython 3.15 on Linux x86_64 (glibc) can install from a release's files without a build
     (the classes of data/top3000-wheels.tsv). Only unyanked files that admit 3.15 and carry a tag pip
-    accepts there count; anything else leaves the release at a risk class."""
+    accepts there count; anything else leaves the release at a risk class, or "undecided" if the answer
+    rests on a requires-python that cannot be decided."""
     if not files:
         return "no_files"
     live = [str(f.get("filename", "")) for f in files if file_live(f)]
@@ -243,6 +291,8 @@ def wheel_class(files):
         return "abi3"
     if ok:
         return "pure"
+    if any(tag_ok(*t) for f in files if file_live(f) is None for t in wheel_tags(str(f.get("filename", "")))):
+        return "undecided"  # an installable wheel whose requires-python cannot be read: neither dropped nor asserted
     if any(re.fullmatch(r"(many)?linux(\w*)_x86_64", plat) for w in whl for _, _, plat in wheel_tags(w)):
         return "older_only"
     if whl:
@@ -250,71 +300,57 @@ def wheel_class(files):
     return "sdist_only" if any(w.endswith(SDIST_EXTS) for w in live) else "no_files"
 
 
-_PEP440 = re.compile(r"""v?(?:(?P<epoch>\d+)!)?(?P<release>\d+(?:\.\d+)*)
-    (?:[-_.]?(?P<pre_l>alpha|a|beta|b|preview|pre|c|rc)[-_.]?(?P<pre_n>\d+)?)?
-    (?:-(?P<post_n1>\d+)|[-_.]?(?P<post_l>post|rev|r)[-_.]?(?P<post_n2>\d+)?)?
-    (?:[-_.]?(?P<dev_l>dev)[-_.]?(?P<dev_n>\d+)?)?""", re.VERBOSE | re.IGNORECASE)
-
-
-def pep440_key(v):
-    """(is_prerelease, sort key) in PEP 440 order, or None if `v` is not a public PEP 440 version (pip skips it)."""
-    m = _PEP440.fullmatch(v.strip())
-    if not m:
-        return None
-    rel = [int(x) for x in m["release"].split(".")]
-    while len(rel) > 1 and rel[-1] == 0:
-        rel.pop()
-    pre_l = (m["pre_l"] or "").lower()
-    pre = None if not pre_l else ({"alpha": 0, "a": 0, "beta": 1, "b": 1}.get(pre_l, 2), int(m["pre_n"] or 0))
-    post = m["post_n1"] or (m["post_n2"] or "0" if m["post_l"] else None)
-    dev = None if not m["dev_l"] else int(m["dev_n"] or 0)
-    key = (int(m["epoch"] or 0), tuple(rel),
-           (-1,) if pre is None and post is None and dev is not None else (2,) if pre is None else (0,) + pre,
-           (-1,) if post is None else (0, int(post)),
-           (1,) if dev is None else (0, dev))
-    return pre is not None or dev is not None, key
-
-
 def file_usable(f):
-    """pip on CPython 3.15 / Linux x86_64 can use this file: it admits 3.15.0 and is a compatible wheel or an sdist."""
+    """pip on CPython 3.15 / Linux x86_64 can use this file (yanked or not): a compatible wheel or an sdist
+    that admits 3.15.0. None if it is one of those but its requires-python cannot be decided."""
     name = str(f.get("filename", ""))
-    rp = f.get("requires_python")
-    if rp and spec_allows(str(rp), "3.15.0") is False:
+    if not (any(tag_ok(*t) for t in wheel_tags(name)) if name.endswith(".whl") else name.endswith(SDIST_EXTS)):
         return False
-    if name.endswith(".whl"):
-        return any(tag_ok(*t) for t in wheel_tags(name))
-    return name.endswith(SDIST_EXTS)
+    return admits_315(f)
+
+
+UNDECIDED = "undecided"
 
 
 def fallback_315(releases):
-    """The release an unpinned `pip install` picks on CPython 3.15.0 / Linux x86_64, as pip's finder does:
-    PEP 440 versions with a usable file (file_usable, per file); final releases unless only pre-releases
-    remain; unyanked files before yanked ones, then the highest version. A yanked pick says so."""
-    cands = []
+    """The release an unpinned `pip install` takes on CPython 3.15.0 / Linux x86_64. pip's finder keeps PEP 440
+    versions with a usable file (per file, yanked files included) and only final ones unless no final one
+    qualifies; its resolver then skips yanked files (PEP 592) and takes the highest version left.
+    None if nothing is left; UNDECIDED if a file whose requires-python cannot be decided could change the answer."""
+    sure, unsure = {}, {}  # version key -> [is_prerelease, version, has an unyanked usable file]
     for v, files in releases.items():
         k = pep440_key(str(v))
-        usable = [f for f in files or [] if file_usable(f)] if k else []
-        if usable:
-            cands.append((not all(f.get("yanked") for f in usable), k[1], k[0], str(v)))
-    finals = [c for c in cands if not c[2]]
-    if not (finals or cands):
-        return None
-    best = max(finals or cands)
-    return best[3] if best[0] else best[3] + " (yanked)"
+        for f in (files or []) if k else []:
+            u = file_usable(f)
+            if u is not False:
+                r = (sure if u else unsure).setdefault(k[1], [k[0], str(v), False])
+                r[2] = r[2] or not f.get("yanked")
+    finals = any(not pre for pre, _, _ in sure.values())
+    best = max(((key, v) for key, (pre, v, live) in sure.items() if live and not (pre and finals)), default=None)
+    for key, (pre, v, live) in unsure.items():
+        if (not pre and not finals) or (live and not (pre and finals) and (best is None or key > best[0])):
+            return UNDECIDED
+    return best[1] if best else None
 
 
 def py315_now(name, fetch=pypi_json):
-    """PyPI's current latest release of `name` as CPython 3.15 sees it, or None if PyPI cannot be read."""
+    """PyPI's current latest release of `name` as CPython 3.15 sees it, or None if PyPI cannot be read.
+    "undecided" is set when the answer rests on a requires-python that cannot be decided."""
     try:
         d = fetch(name)
         info = d["info"]
         version, rp = str(info["version"]), str(info.get("requires_python") or "")
         state = {"version": version, "requires_python": rp, "class": wheel_class(d.get("urls") or [])}
-        state["allows"] = not rp or spec_allows(rp, "3.15.0") is not False
-        if not state["allows"]:
+        state["allows"] = spec_allows(rp, "3.15.0") if rp else True
+        source = {file_live(f) for f in d.get("urls") or [] if str(f.get("filename", "")).endswith(SDIST_EXTS)}
+        if state["allows"] is None or state["class"] == "undecided":
+            state["undecided"] = True
+        elif not state["allows"]:
             state["fallback"] = fallback_315(d.get("releases") or {})
-        elif state["class"] in PY315_RISK_CLASSES + ("no_files",):
-            if not any(file_live(f) and str(f.get("filename", "")).endswith(SDIST_EXTS) for f in d.get("urls") or []):
+        elif state["class"] in PY315_RISK_CLASSES + ("no_files",) and True not in source:
+            if None in source:
+                state["undecided"] = True
+            else:
                 state["no_source"] = True
                 state["fallback"] = fallback_315(d.get("releases") or {})
         return state
@@ -334,30 +370,35 @@ def recheck_pypi(names, fetch=pypi_json):
     return {n: got.get(n) for n in names}
 
 
+def falls_back(fallback):
+    if fallback == UNDECIDED:
+        return "pip's fallback on 3.15 is not decidable (a requires-python on PyPI cannot be read)"
+    return f"pip falls back to {fallback or 'nothing'} on 3.15"
+
+
 def py315_dep_findings(deps, capped, wheels, fetch=pypi_json):
     """RISK findings for declared dependencies the snapshot flags, re-read from PyPI. A dependency that
-    has since lifted its cap or shipped an installable wheel is dropped; if PyPI cannot be read, the
-    snapshot finding stays and says so."""
+    has since lifted its cap or shipped an installable wheel is dropped; if PyPI cannot be read, or its
+    answer rests on a requires-python that cannot be decided, the snapshot finding stays and says so."""
     flagged = [(n, rel) for n, rel in sorted(deps.items())
                if n in capped or (n in wheels and wheels[n]["class"] in PY315_RISK_CLASSES)]
     live = recheck_pypi([n for n, _ in flagged], fetch)
     out = []
     for name, rel in flagged:
         s = live.get(name)
-        if s is None:
+        if s is None or s.get("undecided"):
             if name in capped:
                 r = capped[name]
                 cause = (f"{name} {r['latest']} requires-python {r['latest_requires_python']}: "
                          f"pip falls back to {r['fallback_on_3.15'] or 'nothing'} on 3.15")
             else:
                 cause = f"{name} {wheels[name]['version']} has no cp315 wheel: builds from source on 3.15"
-            cause += f" (PyPI not read; snapshot of {PY315_SNAPSHOT})"
+            cause += (f" (PyPI not read; snapshot of {PY315_SNAPSHOT})" if s is None else
+                      f" (PyPI's requires-python not decidable; snapshot of {PY315_SNAPSHOT})")
         elif not s["allows"]:
-            cause = (f"{name} {s['version']} requires-python {s['requires_python']}: "
-                     f"pip falls back to {s['fallback'] or 'nothing'} on 3.15")
+            cause = f"{name} {s['version']} requires-python {s['requires_python']}: {falls_back(s['fallback'])}"
         elif s.get("no_source"):
-            cause = (f"{name} {s['version']} has no cp315 wheel and no source release: "
-                     f"pip falls back to {s['fallback'] or 'nothing'} on 3.15")
+            cause = f"{name} {s['version']} has no cp315 wheel and no source release: {falls_back(s['fallback'])}"
         elif s["class"] in PY315_RISK_CLASSES or s["class"] == "no_files":
             cause = f"{name} {s['version']} has no cp315 wheel: builds from source on 3.15"
         else:
