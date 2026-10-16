@@ -453,6 +453,10 @@ def whl(name, py, abi, plat):
     return {"filename": f"{name}-1.0-{py}-{abi}-{plat}.whl"}
 
 
+def sd(version, requires_python=None, yanked=False):
+    return {"filename": f"x-{version}.tar.gz", "requires_python": requires_python, "yanked": yanked}
+
+
 def pypi_doc(version, files, requires_python=None, releases=None):
     return {"info": {"version": version, "requires_python": requires_python}, "urls": files,
             "releases": releases if releases is not None else {version: files}}
@@ -502,6 +506,45 @@ class PyPIRecheckTests(unittest.TestCase):
         self.assertEqual(F.wheel_class([whl("x", "py2.py3", "none", lin)]), "pure")
         self.assertEqual(F.wheel_class([whl("x", "py316", "none", lin)]), "older_only")
         self.assertEqual(F.wheel_class([whl("x", "py316", "none", "any")]), "no_linux_x86_wheel")
+        self.assertEqual(F.wheel_class([whl("x", "cp315", "none", "manylinux1_x86_64")]), "cp315")
+        self.assertEqual(F.wheel_class([whl("x", "cp312", "abi3", "linux_x86_64")]), "abi3")
+
+    def test_wheel_class_needs_an_installable_unyanked_wheel(self):
+        # Ubuntu 24.04 CPython 3.15 (glibc 2.39): musllinux, a newer interpreter's abi3, a yanked file,
+        # a file whose own requires-python excludes 3.15 or a newer glibc does not install
+        lin = "manylinux_2_17_x86_64"
+        cp315 = dict(whl("x", "cp315", "cp315", lin))
+        for files in ([whl("x", "cp315", "cp315", "musllinux_1_2_x86_64")],
+                      [whl("x", "cp316", "abi3", lin)],
+                      [dict(cp315, yanked=True), whl("x", "cp314", "cp314", lin)],
+                      [dict(cp315, requires_python="<3.15"), whl("x", "cp314", "cp314", lin)],
+                      [whl("x", "cp315", "cp315", "manylinux_2_40_x86_64")],
+                      [whl("x", "cp315", "abi3", "any")],
+                      [whl("x", "cp314", "none", lin)]):
+            with self.subTest(files=files):
+                self.assertIn(F.wheel_class(files), F.PY315_RISK_CLASSES)
+        self.assertEqual(F.wheel_class([cp315, whl("x", "cp315", "cp315", "musllinux_1_2_x86_64")]), "cp315")
+        self.assertEqual(F.wheel_class([dict(cp315, yanked=True), sd("1.0")]), "sdist_only")
+        self.assertEqual(F.wheel_class([dict(whl("x", "py3", "none", "any"), yanked=True)]), "no_files")
+
+    def test_uninstallable_wheels_keep_the_finding(self):
+        lin = "manylinux_2_17_x86_64"
+        for files in ([whl("nowhl", "cp315", "cp315", "musllinux_1_2_x86_64"), sd("3.1")],
+                      [whl("nowhl", "cp316", "abi3", lin), sd("3.1")],
+                      [dict(whl("nowhl", "cp315", "cp315", lin), yanked=True), whl("nowhl", "cp314", "cp314", lin), sd("3.1")]):
+            with self.subTest(files=files):
+                got, _ = self.findings({"capd": pypi_doc("2.1", [whl("capd", "py3", "none", "any")]),
+                                        "nowhl": pypi_doc("3.1", files),
+                                        "srconly": pypi_doc("1.1", [whl("srconly", "py3", "none", "any")])})
+                self.assertEqual(list(got), ["nowhl"])
+                self.assertEqual(got["nowhl"]["cause"], "nowhl 3.1 has no cp315 wheel: builds from source on 3.15")
+
+    def test_no_wheel_and_no_source_names_pips_fallback(self):
+        rel = {"3.0": [whl("nowhl", "cp315", "cp315", "manylinux_2_28_x86_64")], "3.1": [whl("nowhl", "cp315", "cp315", "win_amd64")]}
+        got, _ = self.findings({"capd": pypi_doc("2.1", [whl("capd", "py3", "none", "any")]),
+                                "nowhl": pypi_doc("3.1", rel["3.1"], releases=rel),
+                                "srconly": pypi_doc("1.1", [whl("srconly", "py3", "none", "any")])})
+        self.assertEqual(got["nowhl"]["cause"], "nowhl 3.1 has no cp315 wheel and no source release: pip falls back to 3.0 on 3.15")
 
     def test_snapshot_has_no_py3_platform_wheel_as_older_only(self):
         # py2.py3-none-<linux> wheels install on any CPython 3; the 2026-10-11 scan split no tags and called them older_only
@@ -510,13 +553,45 @@ class PyPIRecheckTests(unittest.TestCase):
                and any(F.py3_tag_ok(t) for tag in r["detail"].split() for t in tag.split("."))]
         self.assertEqual(bad, [])
         self.assertEqual((rows["tbb"]["class"], rows["semgrep"]["class"]), ("pure", "pure"))
+        # and it took musllinux, PyPy and py2 wheels for installable ones (re-read 2026-10-16 at the snapshot versions)
+        self.assertEqual([rows[n]["class"] for n in ("lupa", "lazy-object-proxy", "langdetect", "pure-sasl")],
+                         ["older_only", "older_only", "no_linux_x86_wheel", "no_linux_x86_wheel"])
 
     def test_fallback_skips_yanked_prerelease_and_capped(self):
-        rel = {"1.0": [{"requires_python": ">=3.8"}], "1.5": [{"requires_python": ">=3.8", "yanked": True}],
-               "1.9rc1": [{"requires_python": ">=3.8"}], "1.2": [{"requires_python": None}],
-               "1.10": [{"requires_python": ">=3.9, !=3.15.*"}], "2.0": [{"requires_python": "<3.15"}], "2.1": []}
+        rel = {"1.0": [sd("1.0", ">=3.8")], "1.5": [sd("1.5", ">=3.8", yanked=True)],
+               "1.9rc1": [sd("1.9rc1", ">=3.8")], "1.2": [sd("1.2")],
+               "1.10": [sd("1.10", ">=3.9, !=3.15.*")], "2.0": [sd("2.0", "<3.15")], "2.1": []}
         self.assertEqual(F.fallback_315(rel), "1.2")
-        self.assertIsNone(F.fallback_315({"2.0": [{"requires_python": "<3.15"}]}))
+        self.assertIsNone(F.fallback_315({"2.0": [sd("2.0", "<3.15")]}))
+
+    def test_fallback_follows_pep440_order_and_per_file_eligibility(self):
+        lin = "manylinux_2_17_x86_64"
+        self.assertEqual(F.fallback_315({"1.0.post2": [sd("1.0.post2")], "1.0.1": [sd("1.0.1")]}), "1.0.1")
+        self.assertEqual(F.fallback_315({"1.0.post2": [sd("1.0.post2")], "1.0": [sd("1.0")]}), "1.0.post2")
+        self.assertEqual(F.fallback_315({"1!0.1": [sd("1!0.1")], "2.0": [sd("2.0")]}), "1!0.1")
+        # the first file's cap is not the release's: an eligible sdist after a capped wheel counts
+        self.assertEqual(F.fallback_315({"1.0": [sd("1.0")],
+                                         "1.5": [dict(whl("x", "cp314", "cp314", lin), requires_python="<3.15"), sd("1.5")]}), "1.5")
+        self.assertEqual(F.fallback_315({"1.0": [sd("1.0")], "1.5": [sd("1.5", "<3.15"), sd("1.5", ">=3.8")]}), "1.5")
+        # a release with only a Windows wheel or a musllinux wheel installs nothing here
+        self.assertEqual(F.fallback_315({"1.0": [sd("1.0")], "1.5": [whl("x", "cp315", "cp315", "win_amd64")],
+                                         "1.6": [whl("x", "cp315", "cp315", "musllinux_1_2_x86_64")]}), "1.0")
+        self.assertEqual(F.fallback_315({"1.0": [sd("1.0")], "1.5": [whl("x", "py3", "none", "any")]}), "1.5")
+        # pip takes a pre-release only when no final release qualifies, and a yanked file only when nothing else does
+        self.assertEqual(F.fallback_315({"2.0b1": [sd("2.0b1")], "2.0a3": [sd("2.0a3")], "1.9": [sd("1.9", "<3.15")]}), "2.0b1")
+        self.assertEqual(F.fallback_315({"1.0": [sd("1.0", yanked=True)], "0.9": [sd("0.9", yanked=True)]}), "1.0 (yanked)")
+        self.assertEqual(F.fallback_315({"1.0": [sd("1.0")], "not a version": [sd("9")]}), "1.0")
+
+    def test_pep440_key_orders_like_the_spec(self):
+        order = ["1.0.dev456", "1.0a1", "1.0a2.dev456", "1.0a12.dev456", "1.0a12", "1.0b1.dev456", "1.0b2",
+                 "1.0b2.post345.dev456", "1.0b2.post345", "1.0rc1.dev456", "1.0rc1", "1.0", "1.0.post456.dev34",
+                 "1.0.post456", "1.0.1", "1.0.15", "1.1.dev1", "1!0.1"]
+        self.assertEqual(sorted(reversed(order), key=lambda v: F.pep440_key(v)[1]), order)
+        self.assertEqual(F.pep440_key("1.0")[1], F.pep440_key("1.0.0")[1])
+        self.assertEqual(F.pep440_key("1.0-1")[1], F.pep440_key("1.0.post1")[1])
+        self.assertEqual(F.pep440_key("1.0C1")[1], F.pep440_key("1.0rc1")[1])
+        self.assertEqual([F.pep440_key(v)[0] for v in ("1.0", "1.0.post1", "1.0rc1", "1.0.dev1")], [False, False, True, True])
+        self.assertIsNone(F.pep440_key("1.0+local"))
 
     def test_fixed_since_snapshot_are_dropped(self):
         lin = "manylinux_2_28_x86_64"
@@ -529,11 +604,10 @@ class PyPIRecheckTests(unittest.TestCase):
 
     def test_still_flagged_uses_pypi_today(self):
         lin = "manylinux_2_28_x86_64"
-        rel = {"1.0": [{"requires_python": ">=3.8"}], "1.1": [{"requires_python": ">=3.8"}],
-               "2.2": [{"requires_python": "<3.15,>=3.10"}]}
+        rel = {"1.0": [sd("1.0", ">=3.8")], "1.1": [sd("1.1", ">=3.8")], "2.2": [sd("2.2", "<3.15,>=3.10")]}
         got, _ = self.findings({
             "capd": pypi_doc("2.2", [whl("capd", "py3", "none", "any")], "<3.15,>=3.10", rel),
-            "nowhl": pypi_doc("3.2", [whl("nowhl", "cp314", "cp314", lin)]),
+            "nowhl": pypi_doc("3.2", [whl("nowhl", "cp314", "cp314", lin), sd("3.2")]),
             "srconly": pypi_doc("1.3", [{"filename": "srconly-1.3.tar.gz"}])})
         self.assertEqual(got["capd"]["cause"], "capd 2.2 requires-python <3.15,>=3.10: pip falls back to 1.1 on 3.15")
         self.assertEqual(got["capd"]["where"], "pyproject.toml")

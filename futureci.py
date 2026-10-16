@@ -181,55 +181,126 @@ def pypi_json(name):
     return json.loads(body)
 
 
+PY315_GLIBC = (2, 39)  # the py315 job runs on ubuntu-24.04
+SDIST_EXTS = (".tar.gz", ".tgz", ".tar", ".zip", ".tar.bz2", ".tbz", ".tar.xz", ".txz", ".tlz", ".tar.lz", ".tar.lzma")
+
+
 def py3_tag_ok(py):
     """pip accepts an abi-none wheel on CPython 3.15 if its Python tag is py3 or py3X with X <= 15."""
     m = re.fullmatch(r"py3(\d*)", py)
     return bool(m) and (not m[1] or int(m[1]) <= 15)
 
 
+def plat_ok(plat):
+    """True if pip on CPython 3.15, glibc PY315_GLIBC, x86_64 accepts this platform tag (musllinux never)."""
+    if plat in ("any", "linux_x86_64", "manylinux1_x86_64", "manylinux2010_x86_64", "manylinux2014_x86_64"):
+        return True
+    m = re.fullmatch(r"manylinux_(\d+)_(\d+)_x86_64", plat)
+    return bool(m) and int(m[1]) == PY315_GLIBC[0] and 5 <= int(m[2]) <= PY315_GLIBC[1]
+
+
+def tag_ok(py, abi, plat):
+    """One expanded wheel tag against pip's CPython 3.15 tag list (packaging.tags: cpython_tags, compatible_tags)."""
+    if not plat_ok(plat):
+        return False
+    if abi == "none":
+        return py3_tag_ok(py) or py == "cp315"
+    if plat == "any":
+        return False
+    if abi == "cp315":
+        return py == "cp315"
+    m = re.fullmatch(r"cp3(\d+)", py)
+    return abi == "abi3" and bool(m) and 2 <= int(m[1]) <= 15
+
+
+def file_live(f):
+    """An unyanked file whose own requires-python admits 3.15.0 (missing or unparsable admits, as pip does)."""
+    rp = f.get("requires_python")
+    return not f.get("yanked") and not (rp and spec_allows(str(rp), "3.15.0") is False)
+
+
+def wheel_tags(filename):
+    m = re.fullmatch(r".+-(?P<py>[^-]+)-(?P<abi>[^-]+)-(?P<plat>[^-]+)\.whl", filename)
+    if not m:
+        return []
+    return [(py, abi, plat) for py in m["py"].split(".") for abi in m["abi"].split(".") for plat in m["plat"].split(".")]
+
+
 def wheel_class(files):
-    """What CPython 3.15 on Linux x86_64 can install from a release's files without a build
-    (the classes of data/top3000-wheels.tsv)."""
+    """What CPython 3.15 on Linux x86_64 (glibc) can install from a release's files without a build
+    (the classes of data/top3000-wheels.tsv). Only unyanked files that admit 3.15 and carry a tag pip
+    accepts there count; anything else leaves the release at a risk class."""
     if not files:
         return "no_files"
-    whl = [f["filename"] for f in files if str(f.get("filename", "")).endswith(".whl")]
-    tags = set()
-    for w in whl:
-        m = re.match(r".+-(?P<py>[^-]+)-(?P<abi>[^-]+)-(?P<plat>[^-]+)\.whl$", w)
-        if not m:
-            continue
-        if m["plat"] == "any" and m["abi"] == "none" and any(py3_tag_ok(t) for t in m["py"].split(".")):
-            return "pure"
-        if "x86_64" in m["plat"] and "linux" in m["plat"]:
-            tags |= {(py, abi) for py in m["py"].split(".") for abi in m["abi"].split(".")}
-    if any(py == "cp315" and abi in ("cp315", "none") for py, abi in tags):
-        return "cp315"
-    if any(abi == "abi3" for _, abi in tags):
-        return "abi3"
-    if any(abi == "none" and py3_tag_ok(py) for py, abi in tags):
+    live = [str(f.get("filename", "")) for f in files if file_live(f)]
+    whl = [w for w in live if w.endswith(".whl")]
+    ok = [t for w in whl for t in wheel_tags(w) if tag_ok(*t)]
+    if any(plat == "any" for _, _, plat in ok):
         return "pure"
-    if tags:
+    if any(py == "cp315" and abi in ("cp315", "none") for py, abi, _ in ok):
+        return "cp315"
+    if any(abi == "abi3" for _, abi, _ in ok):
+        return "abi3"
+    if ok:
+        return "pure"
+    if any(re.fullmatch(r"(many)?linux(\w*)_x86_64", plat) for w in whl for _, _, plat in wheel_tags(w)):
         return "older_only"
-    return "no_linux_x86_wheel" if whl else "sdist_only"
+    if whl:
+        return "no_linux_x86_wheel"
+    return "sdist_only" if any(w.endswith(SDIST_EXTS) for w in live) else "no_files"
+
+
+_PEP440 = re.compile(r"""v?(?:(?P<epoch>\d+)!)?(?P<release>\d+(?:\.\d+)*)
+    (?:[-_.]?(?P<pre_l>alpha|a|beta|b|preview|pre|c|rc)[-_.]?(?P<pre_n>\d+)?)?
+    (?:-(?P<post_n1>\d+)|[-_.]?(?P<post_l>post|rev|r)[-_.]?(?P<post_n2>\d+)?)?
+    (?:[-_.]?(?P<dev_l>dev)[-_.]?(?P<dev_n>\d+)?)?""", re.VERBOSE | re.IGNORECASE)
+
+
+def pep440_key(v):
+    """(is_prerelease, sort key) in PEP 440 order, or None if `v` is not a public PEP 440 version (pip skips it)."""
+    m = _PEP440.fullmatch(v.strip())
+    if not m:
+        return None
+    rel = [int(x) for x in m["release"].split(".")]
+    while len(rel) > 1 and rel[-1] == 0:
+        rel.pop()
+    pre_l = (m["pre_l"] or "").lower()
+    pre = None if not pre_l else ({"alpha": 0, "a": 0, "beta": 1, "b": 1}.get(pre_l, 2), int(m["pre_n"] or 0))
+    post = m["post_n1"] or (m["post_n2"] or "0" if m["post_l"] else None)
+    dev = None if not m["dev_l"] else int(m["dev_n"] or 0)
+    key = (int(m["epoch"] or 0), tuple(rel),
+           (-1,) if pre is None and post is None and dev is not None else (2,) if pre is None else (0,) + pre,
+           (-1,) if post is None else (0, int(post)),
+           (1,) if dev is None else (0, dev))
+    return pre is not None or dev is not None, key
+
+
+def file_usable(f):
+    """pip on CPython 3.15 / Linux x86_64 can use this file: it admits 3.15.0 and is a compatible wheel or an sdist."""
+    name = str(f.get("filename", ""))
+    rp = f.get("requires_python")
+    if rp and spec_allows(str(rp), "3.15.0") is False:
+        return False
+    if name.endswith(".whl"):
+        return any(tag_ok(*t) for t in wheel_tags(name))
+    return name.endswith(SDIST_EXTS)
 
 
 def fallback_315(releases):
-    """The release an unpinned install picks on CPython 3.15.0: the newest final release with unyanked
-    files whose requires-python admits 3.15.0 (missing or unparsable admits, as pip does)."""
-    best = None
+    """The release an unpinned `pip install` picks on CPython 3.15.0 / Linux x86_64, as pip's finder does:
+    PEP 440 versions with a usable file (file_usable, per file); final releases unless only pre-releases
+    remain; unyanked files before yanked ones, then the highest version. A yanked pick says so."""
+    cands = []
     for v, files in releases.items():
-        if not re.fullmatch(r"\d+(\.\d+)*(\.post\d+)?", v):
-            continue
-        live = [f for f in files if not f.get("yanked")]
-        if not live:
-            continue
-        rp = live[0].get("requires_python")
-        if rp and spec_allows(rp, "3.15.0") is False:
-            continue
-        key = tuple(int(x) for x in re.findall(r"\d+", v))
-        if best is None or key > best[0]:
-            best = (key, v)
-    return best[1] if best else None
+        k = pep440_key(str(v))
+        usable = [f for f in files or [] if file_usable(f)] if k else []
+        if usable:
+            cands.append((not all(f.get("yanked") for f in usable), k[1], k[0], str(v)))
+    finals = [c for c in cands if not c[2]]
+    if not (finals or cands):
+        return None
+    best = max(finals or cands)
+    return best[3] if best[0] else best[3] + " (yanked)"
 
 
 def py315_now(name, fetch=pypi_json):
@@ -242,6 +313,10 @@ def py315_now(name, fetch=pypi_json):
         state["allows"] = not rp or spec_allows(rp, "3.15.0") is not False
         if not state["allows"]:
             state["fallback"] = fallback_315(d.get("releases") or {})
+        elif state["class"] in PY315_RISK_CLASSES + ("no_files",):
+            if not any(file_live(f) and str(f.get("filename", "")).endswith(SDIST_EXTS) for f in d.get("urls") or []):
+                state["no_source"] = True
+                state["fallback"] = fallback_315(d.get("releases") or {})
         return state
     except Exception:
         return None
@@ -279,6 +354,9 @@ def py315_dep_findings(deps, capped, wheels, fetch=pypi_json):
             cause += f" (PyPI not read; snapshot of {PY315_SNAPSHOT})"
         elif not s["allows"]:
             cause = (f"{name} {s['version']} requires-python {s['requires_python']}: "
+                     f"pip falls back to {s['fallback'] or 'nothing'} on 3.15")
+        elif s.get("no_source"):
+            cause = (f"{name} {s['version']} has no cp315 wheel and no source release: "
                      f"pip falls back to {s['fallback'] or 'nothing'} on 3.15")
         elif s["class"] in PY315_RISK_CLASSES or s["class"] == "no_files":
             cause = f"{name} {s['version']} has no cp315 wheel: builds from source on 3.15"
